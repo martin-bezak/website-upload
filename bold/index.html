@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-style="bold" data-lang="en" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MB Arcade — economics &amp; finance games</title>
+  <meta name="description" content="MB Arcade: browser games for economics and finance students and anyone curious about markets. Estimate real numbers, read real stock charts, play a new daily round every day.">
+  <meta name="theme-color" content="#16181d">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MB Arcade — economics &amp; finance games">
+  <meta property="og:description" content="Economics and finance, played. Two browser games, a new daily round every day.">
+  <meta property="og:url" content="https://martinbezak.com/bold/">
+  <meta property="og:image" content="https://martinbezak.com/bold/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="MB Arcade logo: MB over an orange bar, ARCADE below">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css?v=10">
+  <script>
+    document.documentElement.classList.add('js', 'intro');
+    /* Saved light/dark choice (shared with the professional page); this page defaults to dark */
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <a href="#games" class="skip">Skip to games</a>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" aria-label="Main">
+    <a href="#top" class="lockup lockup-sm" aria-label="MB Arcade, back to top"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true">Arcade</span></a>
+    <ul class="nav-links">
+      <li><a href="#games">Games</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="../index.html" title="Professional profile">Profile <span aria-hidden="true">↗</span></a></li>
+    </ul>
+    <div class="prefs" data-prefs></div>
+  </nav>
+
+  <!-- ============ HERO: Press start + the cabinet ============ -->
+  <header class="arcade" id="top">
+    <div class="topo" aria-hidden="true"></div>
+
+    <div>
+      <p class="eyebrow eyebrow-hero">Economics &amp; finance games</p>
+      <h1 class="arcade-title" aria-label="Press start">
+        <span data-split>Press</span>
+        <span class="hot"><span data-split>Start</span><i class="caret" aria-hidden="true"></i></span>
+      </h1>
+      <p class="arcade-tag">Economics and finance, played. For students and anyone curious about markets. <strong>Two games, a new daily round every day.</strong></p>
+      <div class="cta">
+        <a class="btn" href="#games">See the games <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+
+    <div class="cabinet">
+      <div class="cab-top">
+        <span class="lockup" aria-hidden="true"><span class="lk-mb">MB</span><span class="lk-bar"></span><span class="lk-word"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></span>
+      </div>
+      <div class="screen" aria-hidden="true">
+        <div class="screen-still"><i class="p1"></i><i class="b"></i><i class="p2"></i></div>
+      </div>
+      <div class="cab-panel">
+        <button type="button" class="insert-coin" data-again="Play again" data-stop="Stop game" data-win="You win!" data-lose="CPU wins" data-ready="Ready" data-you="You" data-cpu="CPU" data-game="Pong game against the computer"><span class="coin-slot" aria-hidden="true"></span><span class="label">Insert coin</span></button>
+        <p class="coin-help mono" hidden>First to 3 wins · Mouse, finger or ↑ ↓</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee marquee-hot on-hot" aria-hidden="true">
+    <div class="track">
+      <span>Press start</span><i></i><span>Estimate it</span><i></i><span>Chart it</span><i></i><span>New dailies every day</span><i></i><span>More coming soon</span><i></i>
+      <span>Press start</span><i></i><span>Estimate it</span><i></i><span>Chart it</span><i></i><span>New dailies every day</span><i></i><span>More coming soon</span><i></i>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ GAMES ============
+         To add a game: add a copy of a .game-card below
+         (and put the game itself in its own folder, e.g. bold/games/my-game/index.html).
+         Card covers are typographic (.game-cover); a screenshot <img> works there too. -->
+    <section class="games" id="games">
+      <div class="games-head">
+        <div>
+          <p class="eyebrow">Games</p>
+          <h2 class="mega">The <span class="hl">line-up</span></h2>
+        </div>
+        <p class="games-note">Two games so far: Estimate it and Chart it. Each has a daily round, the same for everyone. More are being built.</p>
+      </div>
+
+      <div class="games-grid">
+        <a class="game-card inv rv" href="games/estimate/index.html?lang=en">
+          <div class="game-cover" aria-hidden="true"><span class="cv-label">10% off</span><b><span data-count="92">92</span><small>/100</small></b><span class="cv-meter"></span></div>
+          <div class="game-body">
+            <span class="slot-no">Game 01</span>
+            <h3>Estimate <span class="hl">it.</span></h3>
+            <p>750 economics and finance questions at three levels, from textbook theory to real-world numbers. Type one number; the closer you get, the more points. Plus a daily round: five questions, the same for everyone.</p>
+            <span class="play">Play</span>
+          </div>
+        </a>
+        <a class="game-card inv rv" href="games/charts/index.html?lang=en">
+          <div class="game-cover" aria-hidden="true"><span class="cv-label">30 days</span>
+            <svg class="cv-chart" viewBox="0 0 300 140"><rect x="4" y="70" width="12" height="34"/><rect x="24" y="58" width="12" height="30"/><rect x="44" y="66" width="12" height="40"/><rect x="64" y="50" width="12" height="30"/><rect x="84" y="56" width="12" height="26"/><rect x="104" y="40" width="12" height="32"/><rect x="124" y="46" width="12" height="22"/><rect class="cv-zone" x="150" y="4" width="146" height="132"/><polyline class="cv-draw" points="142,52 170,40 196,58 222,30 250,44 284,14"/></svg>
+          </div>
+          <div class="game-body">
+            <span class="slot-no">Game 02</span>
+            <h3>Chart <span class="hl">it.</span></h3>
+            <p>A real stock chart stops right at a classic pattern’s breakout. Draw the next 30 days, then see the textbook projection and what really happened.</p>
+            <span class="play">Play</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ FEEDBACK ============ -->
+    <section class="fb-band on-hot" aria-labelledby="fb-title">
+      <div class="fb-band-in">
+        <div>
+          <p class="eyebrow">Feedback</p>
+          <h2 class="mega" id="fb-title">Found a bug?</h2>
+          <p>Or an idea for a new game, or something about this page you’d change? Tell me, I read every message.</p>
+        </div>
+        <a class="btn btn-ink" href="feedback.html">Write me a message <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- ============ FOUNDER: one short mention ============ -->
+    <section class="founder inv" id="founder" aria-label="About">
+      <div class="founder-inner">
+        <img src="images/portrait-founder.jpg" width="320" height="320" loading="lazy" alt="Martin Bezák">
+        <p>
+          <span class="eyebrow">Founder</span>
+          MB Arcade was founded by Martin Bezák, an Economics &amp; Finance student at IES, Charles University.
+        </p>
+        <a class="btn btn-line" href="../index.html">Professional profile <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <a href="#top" class="lockup" aria-label="MB Arcade, back to top"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></a>
+      <div class="foot-side">
+        <nav class="foot-alt" aria-label="Other versions">
+          <a href="feedback.html">Feedback</a>
+          <a href="sk/index.html" hreflang="sk" lang="sk">Slovensky</a>
+          <a href="cs/index.html" hreflang="cs" lang="cs">Česky</a>
+          <a href="../index.html">Professional profile →</a>
+          <a href="#top" class="to-top">Back to top <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 MB Arcade</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../prefs.js"></script>
+  <script src="script.js?v=9"></script>
+</body>
+</html>

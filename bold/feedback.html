@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" data-style="bold" data-lang="en" data-root="../" data-page="feedback.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback — MB Arcade</title>
+  <meta name="description" content="Tell me what you think of the Games page, report a bug or suggest an idea.">
+  <meta name="theme-color" content="#16181d">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="style.css?v=10">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <a href="#form" class="skip">Skip to the form</a>
+
+  <nav class="nav" aria-label="Main">
+    <a href="index.html" class="lockup lockup-sm" aria-label="MB Arcade, home"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true">Arcade</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Games</a></li>
+      <li><a href="feedback.html" aria-current="page">Feedback</a></li>
+      <li><a href="../index.html" title="Professional profile">Profile <span aria-hidden="true">↗</span></a></li>
+    </ul>
+    <div class="prefs" data-prefs></div>
+  </nav>
+
+  <main class="fb" id="top">
+    <div class="fb-intro">
+      <p class="eyebrow">Feedback</p>
+      <h1 class="mega">Tell me <span class="hl">anything.</span></h1>
+      <p class="fb-lede">Found a bug, have an idea for a new game, or just want to say what you think of the page? Write me a few lines. I read every message.</p>
+      <a class="fb-back" href="index.html#games">← Back to the games</a>
+    </div>
+
+    <form class="fb-form" id="form" data-feedback novalidate
+          data-subject="[MB Arcade] Website feedback" data-topic-word="Topic"
+          data-msg-empty="Please write a message first." data-msg-email="That email address doesn’t look right." data-msg-sending="Sending…"
+          data-msg-sent="Thank you! Your message is on its way." data-msg-failed="Sending didn’t work. Please try again, or email me directly." data-msg-mail="Your email app should now open with the message. If it didn’t, write to me directly.">
+      <fieldset class="fb-topics">
+        <legend>What is it about?</legend>
+        <div class="fb-topic-row">
+            <label class="fb-topic"><input type="radio" name="topic" value="page" data-label="The page" checked><span>The page</span></label>
+            <label class="fb-topic"><input type="radio" name="topic" value="bug" data-label="A bug"><span>A bug</span></label>
+            <label class="fb-topic"><input type="radio" name="topic" value="idea" data-label="An idea"><span>An idea</span></label>
+            <label class="fb-topic"><input type="radio" name="topic" value="other" data-label="Something else"><span>Something else</span></label>
+        </div>
+      </fieldset>
+
+      <label class="fb-field">
+        <span>Your message</span>
+        <textarea name="message" rows="6" required maxlength="5000" placeholder="What happened, what would you change, what should I build next…"></textarea>
+      </label>
+
+      <div class="fb-two">
+        <label class="fb-field">
+          <span>Your name <em>(optional)</em></span>
+          <input type="text" name="name" autocomplete="name" maxlength="100">
+        </label>
+        <label class="fb-field">
+          <span>Your email <em>(optional)</em></span>
+          <input type="email" name="email" autocomplete="email" maxlength="200" aria-describedby="fb-email-hint">
+          <small id="fb-email-hint">Only if you’d like a reply.</small>
+        </label>
+      </div>
+
+      <!-- Spam trap: hidden from people, bots fill it in -->
+      <input type="checkbox" name="botcheck" class="fb-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="btn">Send message <span aria-hidden="true">→</span></button>
+      <p class="fb-note" data-mail-note>Sending opens your email app with the message ready to go.</p>
+      <p class="fb-status" data-status role="status" aria-live="polite"></p>
+      <p class="fb-direct">Prefer plain email? <a href="mailto:bezak84.martin@gmail.com">bezak84.martin@gmail.com</a></p>
+    </form>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <a href="index.html" class="lockup" aria-label="MB Arcade, home"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></a>
+      <div class="foot-side">
+        <nav class="foot-alt" aria-label="Other versions">
+          <a href="sk/feedback.html" hreflang="sk" lang="sk">Slovensky</a>
+          <a href="cs/feedback.html" hreflang="cs" lang="cs">Česky</a>
+          <a href="../index.html">Professional profile →</a>
+          <a href="#top" class="to-top">Back to top <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 MB Arcade</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../prefs.js"></script>
+  <script src="script.js?v=9"></script>
+  <script src="feedback.js?v=3"></script>
+</body>
+</html>

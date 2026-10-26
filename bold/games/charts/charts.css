@@ -1,0 +1,83 @@
+/* Chart it: the parts the Estimate stylesheet doesn't have. Same tokens and rules:
+   no motion except the ~1 s reveal fade drawn on the canvas.
+   The candle and annotation colours below are data colours (up / down / pattern), the only
+   colours outside ink, cream and blaze orange anywhere in MB Arcade. */
+
+:root {
+  --cg-up: #5f9e7a;       /* rising candles: muted green */
+  --cg-down: #c06a58;     /* falling candles: muted red */
+  --cg-ann: #d9b25c;      /* pattern annotation: soft gold */
+}
+:root[data-theme="light"] {
+  --cg-up: #2f7a52;
+  --cg-down: #b0452f;
+  --cg-ann: #9a6f12;
+}
+
+.cg-chart { margin: 8px 0 16px; border-radius: 0; overflow: hidden; border: 1px solid var(--est-line); }
+.cg-chart canvas { display: block; user-select: none; -webkit-user-select: none; }
+.cg-explain { margin: -4px 0 8px; max-width: 46em; }
+.cg-hint-text { margin-bottom: 12px; }
+.cg-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px; }
+.cg-controls .est-btn { min-height: 48px; }
+.cg-toggle[aria-pressed="true"] { background: var(--est-text); color: var(--est-bg); border-color: var(--est-text); }
+.est-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.est-btn--primary:disabled:hover { background: var(--est-hot); border-color: var(--est-hot); color: var(--est-on-hot); }
+[data-cover] { min-height: 24px; margin-bottom: 8px; }
+
+.cg-quiz { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+.cg-quiz .est-btn { min-height: 56px; text-transform: none; font-family: var(--est-display); font-size: 16px; letter-spacing: 0; }
+.cg-quiz-result { margin-bottom: 12px; color: var(--est-hot-text); font-weight: 600; }
+.cg-quiz-result.is-ok { color: var(--cg-up); }
+
+.cg-score { display: grid; gap: 4px; margin-bottom: 12px; }
+.cg-score .est-big { margin: 0; }
+.cg-vs { font-family: var(--est-mono); font-size: 13px; text-transform: uppercase; }
+.cg-bonus { color: var(--est-hot-text); }
+.cg-expected { margin-top: 8px; color: var(--est-text); }
+.cg-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-bottom: 16px; color: var(--est-muted); }
+.cg-key { display: inline-block; width: 18px; height: 3px; border-radius: 0; vertical-align: middle; margin-right: 6px; }
+.cg-key--you { background: var(--est-hot); }
+.cg-key--tb { background: var(--est-text); }
+.cg-key--inv { background: repeating-linear-gradient(90deg, var(--cg-down) 0 4px, transparent 4px 8px); }
+.cg-reveal { display: grid; gap: 8px; padding-top: 16px; border-top: 2px solid var(--est-text); margin-bottom: 24px; }
+.cg-reveal .est-label { margin: 0; }
+.cg-who { font-weight: 600; }
+.cg-badge { display: inline-block; padding: 2px 10px; border-radius: 0; border: 1px solid currentColor; }
+.cg-badge--hit { color: var(--cg-up); }
+.cg-badge--failed { color: var(--cg-down); }
+.cg-badge--partial { color: var(--est-muted); }
+.cg-disclaimer { margin-top: 16px; }
+
+.cg-modes { margin-bottom: 8px; }
+.cg-mode .est-pick-sub { text-transform: none; font-family: var(--est-display); font-size: 14px; line-height: 1.35; }
+
+.cg-gap { margin-top: 32px; }
+.cg-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.cg-table th, .cg-table td { padding: 10px 8px 10px 0; border-bottom: 1px solid var(--est-line); text-align: right; }
+.cg-table th[scope="row"], .cg-table thead th:first-child { text-align: left; font-weight: 400; }
+.cg-table thead th { font-family: var(--est-mono); font-size: 11px; text-transform: uppercase; color: var(--est-muted); font-weight: 400; }
+.cg-dataline { margin-top: 16px; font-weight: 600; }
+
+.cg-library { display: grid; gap: 16px; }
+.cg-lib { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 16px; border: 1px solid var(--est-line); border-radius: 0; align-items: start; }
+.cg-lib-name { font-weight: 800; font-variation-settings: "wdth" 75, "opsz" 96; font-size: 26px; line-height: 1; text-transform: uppercase; margin-bottom: 4px; }
+.cg-lib p + p { margin-top: 6px; }
+.cg-diagram { width: 100%; height: auto; }
+.cg-d-path { fill: none; stroke: var(--est-text); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+.cg-d-line { stroke: var(--cg-ann); stroke-width: 1.5; }
+.cg-d-arrow { stroke: var(--est-hot); stroke-width: 2; stroke-dasharray: 4 3; }
+.cg-d-target { fill: var(--est-hot); }
+.cg-lib.is-locked { filter: grayscale(1); opacity: 0.55; }
+.cg-locked-note { color: var(--est-hot-text); }
+
+@container estview (max-width: 440px) {
+  .cg-lib { grid-template-columns: 1fr; }
+  .cg-lib .cg-diagram { max-width: 220px; }
+  .cg-quiz { grid-template-columns: 1fr; }
+}
+
+/* Blind mode: "Step 1 of 2 / Step 2 of 2" heading above the chart */
+.cg-step { margin-bottom: 8px; }
+.cg-step .est-q { margin: 4px 0; }
+.cg-step .cg-quiz-result { margin: 8px 0 0; }

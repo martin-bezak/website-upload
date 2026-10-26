@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="cs" data-style="classic" data-lang="cs" data-root="../" data-page="projects.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projekty · Martin Bezák</title>
+  <meta name="description" content="místo v krajském kole Matematické olympiády">
+  <meta name="author" content="Martin Bezák">
+  <meta name="theme-color" content="#4e0e1b">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <!-- TODO po zveřejnění: nahraďte "../og-image.jpg" plnou adresou, např. https://martin-bezak.netlify.app/og-image.jpg -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Martin Bezák · Ekonomie a finance, IES Univerzita Karlova">
+  <meta property="og:description" content="Student v Praze. Automatizace procesů, studentské parlamenty a školní akce pro 200+ lidí.">
+  <meta property="og:url" content="https://martinbezak.com/cs/projects.html">
+  <meta property="og:image" content="https://martinbezak.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    document.documentElement.classList.add('js');
+    /* Apply a saved light/dark choice before the page paints, so it never flashes */
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Přeskočit na obsah</a>
+
+  <header class="masthead">
+    <div class="bar" id="masthead">
+    <div class="wrap">
+      <a href="index.html" class="mark" aria-label="Martin Bezák">MB</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <nav aria-label="Hlavní">
+        <ul class="nav-links" id="nav-links"><li><a href="index.html#about">O mně</a></li><li><a href="index.html#experience">Zkušenosti</a></li><li><a href="index.html#skills">Dovednosti</a></li><li><a href="index.html#hobbies">Koníčky</a></li><li><a href="projects.html" aria-current="page">Projekty</a></li><li><a href="index.html#contact">Kontakt</a></li></ul>
+      </nav>
+      <div class="prefs" data-prefs></div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section class="page-head s-oxblood" id="top">
+    <div class="wrap">
+      <h1 class="page-title">Projekty</h1>
+    </div>
+  </section>
+
+  <main id="main">
+    <article class="section project" aria-labelledby="arcade-h">
+      <div class="wrap g12">
+        <div class="project-head">
+          <h2 class="h2 arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h2>
+          <p class="lead">Ekonomie a finance jako hra: hry v prohlížeči pro studenty i každého, koho zajímají trhy.</p>
+          <div class="buttons"><a href="../bold/cs/index.html" class="btn btn-primary">Otevřít MB Arcade</a></div>
+        </div>
+        <div class="project-body">
+          <p class="project-note">Zatím dvě hry: Odhadni to a Nakresli to. Každá má denní kolo, stejné pro všechny. Další se právě tvoří.</p>
+          <ul class="games">
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>10 % vedle</span><b>92</b></div>
+              <div>
+                <h3 class="h3"><a href="../bold/games/estimate/index.html?lang=cs">Odhadni to.</a></h3>
+                <p>750 otázek z ekonomie a financí ve třech obtížnostech, od učebnicové teorie po reálná čísla. Napiš jedno číslo, čím blíž, tím víc bodů. K tomu denní kolo: pět otázek, stejných pro všechny.</p>
+              </div>
+            </li>
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>30 dní</span><b>↗ ?</b></div>
+              <div>
+                <h3 class="h3"><a href="../bold/games/charts/index.html?lang=cs">Nakresli to.</a></h3>
+                <p>Skutečný graf akcie končí přesně v okamžiku průrazu klasické formace. Nakresli dalších 30 dní a pak uvidíš učebnicovou projekci i to, co se opravdu stalo.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer s-ink">
+    <div class="wrap">
+      <span>© 2026 Martin Bezák</span>
+      <nav class="foot-alt" aria-label="Jiné verze"><a href="../projects.html" hreflang="en" lang="en">English</a><a href="../sk/projects.html" hreflang="sk" lang="sk">Slovensky</a></nav>
+      <a href="#top">Zpět nahoru</a>
+    </div>
+  </footer>
+
+  <script src="../prefs.js"></script>
+  <script src="../main.js"></script>
+</body>
+</html>

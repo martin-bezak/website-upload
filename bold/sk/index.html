@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="sk" data-style="bold" data-lang="sk" data-root="../../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MB Arcade — hry z ekonómie a financií</title>
+  <meta name="description" content="MB Arcade: hry v prehliadači pre študentov ekonómie a financií a každého, koho zaujímajú trhy. Odhadujte skutočné čísla, čítajte skutočné grafy akcií, každý deň nové denné kolo.">
+  <meta name="theme-color" content="#16181d">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MB Arcade — hry z ekonómie a financií">
+  <meta property="og:description" content="Ekonómia a financie ako hra. Dve hry v prehliadači, každý deň nové denné kolo.">
+  <meta property="og:url" content="https://martinbezak.com/bold/sk/">
+  <meta property="og:image" content="https://martinbezak.com/bold/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo MB Arcade: MB nad oranžovým pruhom, pod ním ARCADE">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../style.css?v=10">
+  <script>
+    document.documentElement.classList.add('js', 'intro');
+    /* Saved light/dark choice (shared with the professional page); this page defaults to dark */
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <a href="#games" class="skip">Preskočiť na hry</a>
+
+  <!-- ============ NAV ============ -->
+  <nav class="nav" aria-label="Hlavná">
+    <a href="#top" class="lockup lockup-sm" aria-label="MB Arcade, späť hore"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true">Arcade</span></a>
+    <ul class="nav-links">
+      <li><a href="#games">Hry</a></li>
+      <li><a href="feedback.html">Spätná väzba</a></li>
+      <li><a href="../../sk/index.html" title="Profesionálny profil">Profil <span aria-hidden="true">↗</span></a></li>
+    </ul>
+    <div class="prefs" data-prefs></div>
+  </nav>
+
+  <!-- ============ HERO: Press start + the cabinet ============ -->
+  <header class="arcade" id="top">
+    <div class="topo" aria-hidden="true"></div>
+
+    <div>
+      <p class="eyebrow eyebrow-hero">Hry z ekonómie a financií</p>
+      <h1 class="arcade-title" aria-label="Press start">
+        <span data-split>Press</span>
+        <span class="hot"><span data-split>Start</span><i class="caret" aria-hidden="true"></i></span>
+      </h1>
+      <p class="arcade-tag">Ekonómia a financie ako hra. Pre študentov aj každého, koho zaujímajú trhy. <strong>Dve hry, každý deň nové denné kolo.</strong></p>
+      <div class="cta">
+        <a class="btn" href="#games">Pozrieť hry <span aria-hidden="true">↓</span></a>
+      </div>
+    </div>
+
+    <div class="cabinet">
+      <div class="cab-top">
+        <span class="lockup" aria-hidden="true"><span class="lk-mb">MB</span><span class="lk-bar"></span><span class="lk-word"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></span>
+      </div>
+      <div class="screen" aria-hidden="true">
+        <div class="screen-still"><i class="p1"></i><i class="b"></i><i class="p2"></i></div>
+      </div>
+      <div class="cab-panel">
+        <button type="button" class="insert-coin" data-again="Hrať znova" data-stop="Zastaviť hru" data-win="Vyhrali ste!" data-lose="Vyhral počítač" data-ready="Pozor" data-you="Vy" data-cpu="PC" data-game="Hra Pong proti počítaču"><span class="coin-slot" aria-hidden="true"></span><span class="label">Vhoďte mincu</span></button>
+        <p class="coin-help mono" hidden>Kto prvý 3, vyhráva · Myš, prst alebo ↑ ↓</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee marquee-hot on-hot" aria-hidden="true">
+    <div class="track">
+      <span>Press start</span><i></i><span>Odhadni to</span><i></i><span>Nakresli to</span><i></i><span>Nové denné výzvy každý deň</span><i></i><span>Ďalšie už čoskoro</span><i></i>
+      <span>Press start</span><i></i><span>Odhadni to</span><i></i><span>Nakresli to</span><i></i><span>Nové denné výzvy každý deň</span><i></i><span>Ďalšie už čoskoro</span><i></i>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ============ GAMES ============ (how to add a game: see bold/index.html) -->
+    <section class="games" id="games">
+      <div class="games-head">
+        <div>
+          <p class="eyebrow">Hry</p>
+          <h2 class="mega">Naša <span class="hl">ponuka</span></h2>
+        </div>
+        <p class="games-note">Zatiaľ dve hry: Odhadni to a Nakresli to. Každá má denné kolo, rovnaké pre všetkých. Ďalšie sa práve tvoria.</p>
+      </div>
+
+      <div class="games-grid">
+        <a class="game-card inv rv" href="../games/estimate/index.html?lang=sk">
+          <div class="game-cover" aria-hidden="true"><span class="cv-label">10 % vedľa</span><b><span data-count="92">92</span><small>/100</small></b><span class="cv-meter"></span></div>
+          <div class="game-body">
+            <span class="slot-no">Hra 01</span>
+            <h3>Odhadni <span class="hl">to.</span></h3>
+            <p>750 otázok z ekonómie a financií v troch náročnostiach, od učebnicovej teórie po reálne čísla. Napíš jedno číslo, čím bližšie, tým viac bodov. K tomu denné kolo: päť otázok, rovnakých pre všetkých.</p>
+            <span class="play">Hrať</span>
+          </div>
+        </a>
+        <a class="game-card inv rv" href="../games/charts/index.html?lang=sk">
+          <div class="game-cover" aria-hidden="true"><span class="cv-label">30 dní</span>
+            <svg class="cv-chart" viewBox="0 0 300 140"><rect x="4" y="70" width="12" height="34"/><rect x="24" y="58" width="12" height="30"/><rect x="44" y="66" width="12" height="40"/><rect x="64" y="50" width="12" height="30"/><rect x="84" y="56" width="12" height="26"/><rect x="104" y="40" width="12" height="32"/><rect x="124" y="46" width="12" height="22"/><rect class="cv-zone" x="150" y="4" width="146" height="132"/><polyline class="cv-draw" points="142,52 170,40 196,58 222,30 250,44 284,14"/></svg>
+          </div>
+          <div class="game-body">
+            <span class="slot-no">Hra 02</span>
+            <h3>Nakresli <span class="hl">to.</span></h3>
+            <p>Skutočný graf akcie končí presne v okamihu prierazu klasickej formácie. Nakresli ďalších 30 dní a potom uvidíš učebnicovú projekciu aj to, čo sa naozaj stalo.</p>
+            <span class="play">Hrať</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- ============ FEEDBACK ============ -->
+    <section class="fb-band on-hot" aria-labelledby="fb-title">
+      <div class="fb-band-in">
+        <div>
+          <p class="eyebrow">Spätná väzba</p>
+          <h2 class="mega" id="fb-title">Našli ste chybu?</h2>
+          <p>Alebo máte nápad na novú hru či by ste na stránke niečo zmenili? Napíšte mi, čítam každú správu.</p>
+        </div>
+        <a class="btn btn-ink" href="feedback.html">Napísať správu <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <!-- ============ FOUNDER: one short mention ============ -->
+    <section class="founder inv" id="founder" aria-label="O nás">
+      <div class="founder-inner">
+        <img src="../images/portrait-founder.jpg" width="320" height="320" loading="lazy" alt="Martin Bezák">
+        <p>
+          <span class="eyebrow">Zakladateľ</span>
+          MB Arcade založil Martin Bezák, študent ekonómie a financií na IES Univerzity Karlovej.
+        </p>
+        <a class="btn btn-line" href="../../sk/index.html">Profesionálny profil <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <a href="#top" class="lockup" aria-label="MB Arcade, späť hore"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></a>
+      <div class="foot-side">
+        <nav class="foot-alt" aria-label="Iné verzie">
+          <a href="feedback.html">Spätná väzba</a>
+          <a href="../index.html" hreflang="en" lang="en">English</a>
+          <a href="../cs/index.html" hreflang="cs" lang="cs">Česky</a>
+          <a href="../../sk/index.html">Profesionálny profil →</a>
+          <a href="#top" class="to-top">Späť hore <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 MB Arcade</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../prefs.js"></script>
+  <script src="../script.js?v=9"></script>
+</body>
+</html>

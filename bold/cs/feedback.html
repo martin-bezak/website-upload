@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="cs" data-style="bold" data-lang="cs" data-root="../../" data-page="feedback.html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zpětná vazba — MB Arcade</title>
+  <meta name="description" content="Napište mi, co si o stránce myslíte, nahlaste chybu nebo navrhněte nápad.">
+  <meta name="theme-color" content="#16181d">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="../style.css?v=10">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <a href="#form" class="skip">Přeskočit na formulář</a>
+
+  <nav class="nav" aria-label="Hlavní">
+    <a href="index.html" class="lockup lockup-sm" aria-label="MB Arcade, domů"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true">Arcade</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#games">Hry</a></li>
+      <li><a href="feedback.html" aria-current="page">Zpětná vazba</a></li>
+      <li><a href="../../cs/index.html" title="Profesní profil">Profil <span aria-hidden="true">↗</span></a></li>
+    </ul>
+    <div class="prefs" data-prefs></div>
+  </nav>
+
+  <main class="fb" id="top">
+    <div class="fb-intro">
+      <p class="eyebrow">Zpětná vazba</p>
+      <h1 class="mega">Napište mi <span class="hl">cokoli.</span></h1>
+      <p class="fb-lede">Našli jste chybu, máte nápad na novou hru, nebo mi chcete jen říct, co si o stránce myslíte? Napište pár řádků. Čtu každou zprávu.</p>
+      <a class="fb-back" href="index.html#games">← Zpět na hry</a>
+    </div>
+
+    <form class="fb-form" id="form" data-feedback novalidate
+          data-subject="[MB Arcade] Zpětná vazba z webu" data-topic-word="Téma"
+          data-msg-empty="Nejdřív prosím napište zprávu." data-msg-email="Tahle e-mailová adresa nevypadá správně." data-msg-sending="Odesílám…"
+          data-msg-sent="Díky! Zpráva je na cestě." data-msg-failed="Odeslání nevyšlo. Zkuste to prosím znovu, nebo mi napište přímo." data-msg-mail="Teď by se vám měla otevřít e-mailová aplikace se zprávou. Pokud ne, napište mi přímo.">
+      <fieldset class="fb-topics">
+        <legend>O čem to je?</legend>
+        <div class="fb-topic-row">
+            <label class="fb-topic"><input type="radio" name="topic" value="page" data-label="O stránce" checked><span>O stránce</span></label>
+            <label class="fb-topic"><input type="radio" name="topic" value="bug" data-label="Chyba"><span>Chyba</span></label>
+            <label class="fb-topic"><input type="radio" name="topic" value="idea" data-label="Nápad"><span>Nápad</span></label>
+            <label class="fb-topic"><input type="radio" name="topic" value="other" data-label="Něco jiného"><span>Něco jiného</span></label>
+        </div>
+      </fieldset>
+
+      <label class="fb-field">
+        <span>Vaše zpráva</span>
+        <textarea name="message" rows="6" required maxlength="5000" placeholder="Co se stalo, co byste změnili, co mám udělat příště…"></textarea>
+      </label>
+
+      <div class="fb-two">
+        <label class="fb-field">
+          <span>Vaše jméno <em>(nepovinné)</em></span>
+          <input type="text" name="name" autocomplete="name" maxlength="100">
+        </label>
+        <label class="fb-field">
+          <span>Váš e-mail <em>(nepovinné)</em></span>
+          <input type="email" name="email" autocomplete="email" maxlength="200" aria-describedby="fb-email-hint">
+          <small id="fb-email-hint">Jen pokud chcete odpověď.</small>
+        </label>
+      </div>
+
+      <!-- Spam trap: hidden from people, bots fill it in -->
+      <input type="checkbox" name="botcheck" class="fb-trap" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+      <button type="submit" class="btn">Odeslat zprávu <span aria-hidden="true">→</span></button>
+      <p class="fb-note" data-mail-note>Odesláním se otevře vaše e-mailová aplikace s připravenou zprávou.</p>
+      <p class="fb-status" data-status role="status" aria-live="polite"></p>
+      <p class="fb-direct">Radši klasický e-mail? <a href="mailto:bezak84.martin@gmail.com">bezak84.martin@gmail.com</a></p>
+    </form>
+  </main>
+
+  <footer class="foot">
+    <div class="foot-in">
+      <a href="index.html" class="lockup" aria-label="MB Arcade, domů"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></a>
+      <div class="foot-side">
+        <nav class="foot-alt" aria-label="Jiné verze">
+          <a href="../feedback.html" hreflang="en" lang="en">English</a>
+          <a href="../sk/feedback.html" hreflang="sk" lang="sk">Slovensky</a>
+          <a href="../../cs/index.html">Profesionální profil →</a>
+          <a href="#top" class="to-top">Zpět nahoru <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 MB Arcade</small>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../../prefs.js"></script>
+  <script src="../script.js?v=9"></script>
+  <script src="../feedback.js?v=3"></script>
+</body>
+</html>

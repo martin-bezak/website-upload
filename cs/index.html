@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="cs" data-style="classic" data-lang="cs" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Martin Bezák · student ekonomie a financí, Praha</title>
+  <meta name="description" content="místo v krajském kole Matematické olympiády">
+  <meta name="author" content="Martin Bezák">
+  <meta name="theme-color" content="#4e0e1b">
+
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+
+  <!-- TODO po zveřejnění: nahraďte "../og-image.jpg" plnou adresou, např. https://martin-bezak.netlify.app/og-image.jpg -->
+  <meta property="og:type" content="profile">
+  <meta property="og:title" content="Martin Bezák · Ekonomie a finance, IES Univerzita Karlova">
+  <meta property="og:description" content="Student v Praze. Automatizace procesů, studentské parlamenty a školní akce pro 200+ lidí.">
+  <meta property="og:url" content="https://martinbezak.com/cs/">
+  <meta property="og:image" content="https://martinbezak.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preload" as="image" href="../images/portrait.jpg" imagesrcset="../images/portrait-600.jpg 600w, ../images/portrait.jpg 1000w, ../images/portrait-1600.jpg 1600w" imagesizes="(min-width: 960px) 100vh, 100vw">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css">
+  <script>
+    document.documentElement.classList.add('js');
+    /* Apply a saved light/dark choice before the page paints, so it never flashes */
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Přeskočit na obsah</a>
+
+  <header class="masthead">
+    <div class="bar" id="masthead">
+    <div class="wrap">
+      <a href="#top" class="mark" aria-label="Martin Bezák, zpět nahoru">MB</a>
+      <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <nav aria-label="Hlavní">
+        <ul class="nav-links" id="nav-links"><li><a href="#about">O mně</a></li><li><a href="#experience">Zkušenosti</a></li><li><a href="#skills">Dovednosti</a></li><li><a href="#hobbies">Koníčky</a></li><li><a href="projects.html">Projekty</a></li><li><a href="#contact">Kontakt</a></li></ul>
+      </nav>
+      <div class="prefs" data-prefs></div>
+    </div>
+    </div>
+  </header>
+
+  <!-- ===================== HERO (oxblood) ===================== -->
+  <section class="hero s-oxblood" id="top">
+    <div class="hero-grid">
+      <div class="hero-main">
+        <p class="hero-role">Ekonomie a finance · IES, Univerzita Karlova</p>
+        <h1 class="hero-name"><span>Martin</span> <span>Bezák</span></h1>
+        <div class="hero-foot">
+          <p class="hero-tagline">Student v Praze, původem ze Slovenska. Analytická povaha, přirozený lídr a organizátor. Baví mě zlepšovat věci, od dat až po akce.</p>
+          <div class="buttons">
+            <a href="#contact" class="btn btn-primary">Napište mi</a>
+            <a href="../Bezak_Martin.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Stáhnout životopis (EN)</a>
+          </div>
+        </div>
+      </div>
+      <figure class="hero-photo">
+        <img src="../images/portrait.jpg" srcset="../images/portrait-600.jpg 600w, ../images/portrait.jpg 1000w, ../images/portrait-1600.jpg 1600w" sizes="(min-width: 960px) 100vh, 100vw" width="1000" height="1502" alt="Portrét Martina Bezáka v bílé košili" fetchpriority="high">
+      </figure>
+    </div>
+  </section>
+
+  <section class="now" aria-label="Teď">
+    <div class="wrap">
+      <dl>
+        <div><dt>Studuji</dt><dd>Bc. Ekonomie a finance, IES FSV UK</dd></div><div><dt>Tvořím</dt><dd><a href="projects.html">MB Arcade</a>, vlastní hry v prohlížeči o ekonomii a trzích</dd></div><div><dt>Jazyky</dt><dd>slovenština, angličtina C2, čeština, němčina A2</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <main id="main">
+
+    <!-- ===================== ABOUT ===================== -->
+    <section class="section about" id="about" aria-labelledby="about-h">
+      <div class="wrap g12">
+        <h2 class="sec-label" id="about-h">O mně</h2>
+        <div class="body">
+          <p class="statement"><span>Mám analytickou povahu, ale pořád se ocitám</span> <span>před lidmi.</span></p>
+          <div class="prose cols">
+            <p>Studuji ekonomii a finance na Institutu ekonomických studií v Praze. Začalo to, když mi bylo 13: během covidu jsem začal poslouchat byznysové podcasty a chytlo mě, jak peníze fungují a jak se hýbou.</p>
+            <p>Předseda parlamentu, kapitán týmu, organizátor akce od nuly. Právě tuhle kombinaci si chci udržet: rozumět číslům a vést lidi, kteří za nimi stojí.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== IN NUMBERS (oxblood) — the 40h → 5h bar is the signature detail ===================== -->
+    <section class="section numbers s-oxblood" aria-labelledby="numbers-h">
+      <div class="wrap">
+        <h2 class="h3" id="numbers-h">V číslech</h2>
+        <div class="stats">
+          <div class="stat">
+            <p class="fig">200+</p>
+            <p class="desc">lidí na GymParty, školní párty, kterou jsem založil a dvakrát vedl</p>
+          </div>
+          <div class="stat">
+            <p class="fig">40h → 5h</p>
+            <p class="desc">doba zpracování jedné jednotky po automatizaci, kterou jsem navrhl ve VIPO</p>
+            <div class="ratio" aria-hidden="true"><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i><i style="--i:28"></i><i style="--i:29"></i><i style="--i:30"></i><i style="--i:31"></i><i style="--i:32"></i><i style="--i:33"></i><i style="--i:34"></i><i style="--i:35"></i><i style="--i:36"></i><i style="--i:37"></i><i style="--i:38"></i><i style="--i:39"></i><i style="--i:40"></i></div>
+            <div class="ratio-scale" aria-hidden="true"><span>0h</span><span>5h</span><span>40h</span></div>
+          </div>
+          <div class="stat">
+            <p class="fig">1.</p>
+            <p class="desc">místo v krajském kole Matematické olympiády</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===================== EXPERIENCE ===================== -->
+    <section class="section experience" id="experience" aria-labelledby="exp-h">
+      <div class="wrap">
+        <div class="exp-head">
+          <h2 class="h2" id="exp-h">Zkušenosti a leadership</h2>
+        </div>
+
+        <div class="group">
+          <h3 class="h3">Práce</h3>
+          <div class="rows">
+            <div class="row">
+              <p class="row-date">07/2025 – 09/2026</p>
+              <div>
+                <h4>Stážista pro digitalizaci</h4>
+                <p class="row-org">VIPO a.s. · výroba pneumatik, ~100 zaměstnanců</p>
+                <ul><li>Navrhl jsem automatizaci a prosadil její zavedení</li><li>Zkrátil jsem dobu zpracování jedné jednotky ze 40 hodin na 5</li><li>Otestoval jsem skript, aby fungoval na každém počítači</li><li>Nahrával jsem dokumenty a data do B2B systému</li></ul>
+              </div>
+            </div>
+            <div class="row">
+              <p class="row-date">Léta 2023, 2024</p>
+              <div>
+                <h4>Stážista v prodeji a marketingu</h4>
+                <p class="row-org">VIPO a.s. · dvě letní stáže</p>
+                <ul><li>Zpracovával jsem data objednávek v Excelu</li><li>Připravoval jsem prezentace pro obchodní tým</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="h3">Nezávislé projekty</h3>
+          <div class="rows">
+            <div class="row">
+              <!-- TODO (Martin): zkontrolujte datum začátku -->
+              <p class="row-date">2026 – současnost</p>
+              <div>
+                <h4>Zakladatel a vývojář, MB Arcade</h4>
+                <p class="row-org">Nezávislý projekt · hry v prohlížeči o ekonomii a trzích</p>
+                <ul><li>Navrhl jsem a od nuly naprogramoval dvě hry v angličtině, češtině a slovenštině</li><li>Odhadni to: 750 otázek z ekonomie a financí ve třech obtížnostech</li><li>Nakresli to: v Pythonu jsem napsal datový pipeline, který prochází denní ceny akcií z S&amp;P 500, hlavních ETF a kryptoměn a hledá klasické grafické formace, a z ~1 000 kandidátů jsem vybral 821 skutečných grafů</li></ul>
+                <p class="row-link"><a class="text-link" href="projects.html">Zobrazit projekt</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="h3">Leadership</h3>
+          <div class="rows">
+            <div class="row">
+              <p class="row-date">09/2024 – 06/2026</p>
+              <div>
+                <h4>Místopředseda</h4>
+                <p class="row-org">Krajský parlament mládeže, Trenčínský kraj</p>
+                <ul><li>Zrealizoval jsem celokrajský průzkum problémů studentů</li><li>Dvakrát ročně jsem organizoval Shromáždění delegátů</li></ul>
+              </div>
+            </div>
+            <div class="row">
+              <p class="row-date">09/2024 – 09/2025</p>
+              <div>
+                <h4>Předseda</h4>
+                <p class="row-org">Studentský parlament, Gymnázium Partizánske</p>
+                <ul><li>Zlepšil jsem organizaci školních akcí</li><li>Spustil jsem GymParty, novou školní akci</li></ul>
+              </div>
+            </div>
+            <div class="row">
+              <!-- TODO (Martin): doplňte roky, kdy jste byl kapitánem -->
+              <p class="row-date">Lední hokej</p>
+              <div>
+                <h4>Kapitán týmu</h4>
+                <p class="row-org">Obránce, hrál jsem od 4 do 19 let</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Featured project -->
+        <article class="case" aria-labelledby="case-h">
+          <p class="h3">Hlavní projekt</p>
+          <div class="case-media">
+            <figure class="case-photo">
+              <img src="../images/gymparty-stage.jpg" width="940" height="660" loading="lazy" alt="Martin a další moderátoři na pódiu na GymParty">
+              <figcaption>Na pódiu na GymParty s moderátorským týmem</figcaption>
+            </figure>
+            <dl class="case-facts s-ink"><div><dt>Hosté</dt><dd>200+</dd></div><div><dt>Tým</dt><dd>5–10 lidí</dd></div><div><dt>Ročníky</dt><dd>3<small>2 jsem vedl, 1 mentoroval</small></dd></div><div><dt>Role</dt><dd>Zakladatel<small>později mentor</small></dd></div></dl>
+          </div>
+          <div class="case-body">
+            <div class="case-intro">
+              <h3 class="case-name" id="case-h">GymParty</h3>
+              <p class="case-lede">Školní párty, kterou jsem rozjel od nuly až po tradici.</p>
+            </div>
+            <div class="case-did">
+              <h4>Co jsem dělal</h4>
+              <ul><li>Založil jsem ji jako předseda Studentského parlamentu, aby po mně na škole zůstalo něco trvalého</li><li>Vedl jsem tým 5–10 lidí</li><li>Měl jsem na starosti program, přípravu a ceny</li><li>Vyjednal jsem dohodu s prostory včetně slev pro hosty</li><li>První dva ročníky jsem vedl, u třetího jsem mentoroval studenta, který ho vedl</li></ul>
+              <!-- TODO (Martin): jedna-dvě věty o nejtěžším problému a jak jste ho vyřešil -->
+            </div>
+          </div>
+        </article>
+
+        <div class="group">
+          <h3 class="h3">Další akce</h3>
+          <div class="events">
+            <article class="event">
+              <h4>Shromáždění delegátů</h4>
+              <p class="event-meta"><span>Krajský parlament mládeže</span><span>Dvakrát ročně</span></p>
+              <p>Delegát z každé střední školy v Trenčínském kraji přišel mluvit o problémech na své škole. Jako místopředseda jsem ho pomáhal organizovat dvakrát ročně.</p>
+            </article>
+            <article class="event">
+              <h4>Desítky dalších</h4>
+              <p class="event-meta"><span>Ve škole i mimo ni</span></p>
+              <p>Menší školní a komunitní akce, které jsem organizoval po celou dobu studia na střední škole.</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="group">
+          <h3 class="h3">Vzdělání a ocenění</h3>
+          <div class="rows">
+            <div class="row">
+              <p class="row-date">09/2026 – současnost</p>
+              <div>
+                <h4>Bc. Ekonomie a finance</h4>
+                <p class="row-org">Univerzita Karlova, IES FSV UK</p>
+                <ul><li>Člen E-klubu</li></ul>
+              </div>
+            </div>
+            <div class="row">
+              <p class="row-date">09/2018 – 06/2026</p>
+              <div>
+                <h4>Gymnázium Partizánske</h4>
+                <p class="row-org">Střední škola</p>
+                <ul><li>Maturita: nejlepší známky ze slovenštiny, angličtiny, matematiky a fyziky</li><li>Nejlepší student roku</li></ul>
+              </div>
+            </div>
+            <div class="row">
+              <p class="row-date">Krajské kolo</p>
+              <div>
+                <h4>Matematická olympiáda</h4>
+                <p class="row-org">1. místo v kategoriích B a C, 2. místo v kategorii A</p>
+              </div>
+            </div>
+            <div class="row">
+              <p class="row-date">Krajské kolo</p>
+              <div>
+                <h4>Fyzikální olympiáda</h4>
+                <p class="row-org">5. místo v kategorii D</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== SKILLS ===================== -->
+    <section class="section skills-sec" id="skills" aria-labelledby="skills-h">
+      <div class="wrap">
+        <div class="skills-head">
+          <h2 class="h2" id="skills-h">Co přináším</h2>
+        </div>
+        <div class="skills">
+          <div class="skill-group">
+            <h3 class="h3">Analytické</h3>
+            <ul class="skill-list"><li>Matematika</li><li>Řešení problémů</li><li>Zlepšování procesů</li><li>Excel</li><li>Rychle se učím</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="h3">Leadership</h3>
+            <ul class="skill-list"><li>Vedení týmů</li><li>Organizace akcí</li><li>Mentoring</li><li>Veřejné vystupování</li><li>Prezentace</li></ul>
+          </div>
+          <div class="skill-group">
+            <h3 class="h3">Jazyky</h3>
+            <ul class="lang-table"><li><span>Slovenština</span><span class="lang-level">Rodilý mluvčí</span></li><li><span>Angličtina</span><span class="lang-level">C2</span></li><li><span>Čeština</span><span class="lang-level">C2 pasivně</span></li><li><span>Němčina</span><span class="lang-level">A2</span></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== HOBBIES ===================== -->
+    <section class="section hobbies-sec" id="hobbies" aria-labelledby="hob-h">
+      <div class="wrap g12">
+        <div class="hob-head">
+          <h2 class="h2" id="hob-h">Mimo životopis</h2>
+          <p class="lead">Co dělám vedle školy a práce a co mě každá z těchto věcí naučila.</p>
+        </div>
+        <div class="hob-body">
+          <p class="statement"><span>Mým nejoblíbenějším koníčkem jsou</span> <span>lidé.</span></p>
+          <div class="prose">
+            <p>Baví mě vést skupinu, být hostitelem a vytvářet akce, na kterých se všichni dobře baví. Tak vznikla i GymParty, školní párty pro 200+ lidí: ne z povinnosti, ale proto, že mě to opravdu baví.</p>
+            <p>To, co začalo jako koníček, se změnilo v jednu z mých nejcennějších zkušeností.</p>
+          </div>
+          <ul class="traits"><li>Vedení</li><li>Moderování</li><li>Organizování</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ice hockey (ink) -->
+    <section class="section hockey s-ink" id="hockey" aria-labelledby="hockey-h">
+      <div class="hockey-grid">
+        <figure class="hockey-photo">
+          <img src="../images/hockey.jpg" width="480" height="600" loading="lazy" alt="Martin v plné výstroji při hokeji">
+          <figcaption>Lední hokej</figcaption>
+        </figure>
+        <div class="hockey-text">
+          <h2 class="h2" id="hockey-h">Patnáct let na ledě</h2>
+          <div class="prose"><p>Lední hokej jsem hrál jako obránce od 4 do 19 let a stal jsem se kapitánem týmu. Hokej mě naučil přijít každý den, nevzdat to, když je těžko, a nést zodpovědnost za lidi kolem sebe.</p></div>
+          <div class="figures"><div class="figure"><p class="num">15 let</p><p class="desc">ledního hokeje, od 4 do 19 let</p></div><div class="figure"><p class="num">Kapitán</p><p class="desc">vedení týmu na ledě i mimo něj</p></div></div>
+          <ul class="traits"><li>Disciplína</li><li>Vytrvalost</li><li>Zodpovědnost</li><li>Týmová práce</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Art and hiking -->
+    <section class="section art-hiking" id="art" aria-labelledby="ah-h">
+      <div class="wrap">
+        <h2 class="sec-label" id="ah-h">Umění a turistika</h2>
+        <div class="pair">
+          <div class="art">
+            <h3 class="kicker">Umění</h3>
+            <p class="h3-statement"><span>Tvarovat něco rukama je</span> <span>opak tabulky v Excelu.</span></p>
+            <div class="prose"><p>Od 4 do 18 let jsem chodil do umělecké školy a keramika byla vždy moje volba. Z hlíny jsem většinou tvořil města a budovy. Odměňuje trpělivost, intuici a pozornost k nejmenšímu detailu.</p></div>
+            <div class="figures"><div class="figure"><p class="num">14 let</p><p class="desc">v umělecké škole, od 4 do 18 let</p></div><div class="figure"><p class="num">Hlína</p><p class="desc">můj oblíbený materiál, hlavně města a budovy</p></div></div>
+            <ul class="traits"><li>Kreativita</li><li>Trpělivost</li><li>Smysl pro detail</li></ul>
+          </div>
+          <div class="hiking" id="hiking">
+            <figure class="hiking-photo">
+              <img src="../images/hiking.jpg" width="480" height="600" loading="lazy" alt="Martin se psem na turistické stezce">
+            </figure>
+            <h3 class="kicker">Turistika</h3>
+            <p class="h3-statement"><span>Čas</span> <span>v přírodě.</span></p>
+            <div class="prose"><p>Turistika je můj způsob, jak vypnout a nabrat energii, většinou v kopcích a lesích nedaleko mého rodného města. Dlouhý den venku, bez obrazovek a s jasným cílem na vrcholu, je nejlepší způsob, jak si vyčistit hlavu.</p></div>
+            <ul class="traits"><li>Vytrvalost</li><li>Nadhled</li><li>Rovnováha</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONTACT (oxblood) ===================== -->
+    <section class="section contact s-oxblood" id="contact" aria-labelledby="contact-h">
+      <div class="wrap">
+        <h2 class="h2" id="contact-h">Ozvěte se.</h2>
+        <ul class="contact-list">
+          <li><a href="mailto:bezak84.martin@gmail.com"><span class="contact-label">E-mail</span><span class="contact-value is-email">bezak84.martin@gmail.com</span></a></li>
+          <li><a href="https://www.linkedin.com/in/martin-bezak" target="_blank" rel="noopener"><span class="contact-label">LinkedIn</span><span class="contact-value">in/martin-bezak</span></a></li>
+          <li><a href="tel:+421908428991"><span class="contact-label">Telefon</span><span class="contact-value">+421 908 428 991</span></a></li>
+          <li><a href="../Bezak_Martin.pdf" target="_blank" rel="noopener"><span class="contact-label">Životopis</span><span class="contact-value">Stáhnout PDF (EN)</span></a></li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer s-ink">
+    <div class="wrap">
+      <span>© 2026 Martin Bezák</span>
+      <nav class="foot-alt" aria-label="Jiné verze"><a href="../index.html" hreflang="en" lang="en">English</a><a href="../sk/index.html" hreflang="sk" lang="sk">Slovensky</a><a href="projects.html">Projekty</a></nav>
+      <a href="#top">Zpět nahoru</a>
+    </div>
+  </footer>
+
+  <script src="../prefs.js"></script>
+  <script src="../main.js"></script>
+</body>
+</html>

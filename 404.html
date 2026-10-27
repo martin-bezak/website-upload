@@ -12,6 +12,14 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
   <!-- Absolute paths, because this page can be shown at any address on the site -->
   <link rel="stylesheet" href="/styles.css">
+  <script>
+    /* MB Arcade moved from /bold/ to /MBArcade/ (27 Oct 2026), and the host is case-sensitive:
+       send old links and any spelling of /mbarcade to the real address, keeping the rest of the path. */
+    (function () {
+      var p = location.pathname, m = p.match(/^\/(bold|mbarcade)(\/.*)?$/i);
+      if (m && p.indexOf('/MBArcade') !== 0) location.replace('/MBArcade' + (m[2] || '/') + location.search + location.hash);
+    })();
+  </script>
   <script>try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}</script>
 </head>
 <body class="s-oxblood">

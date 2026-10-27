@@ -194,8 +194,9 @@ strong { font-weight: 700; }
 .cab-top { display: grid; place-items: center; padding: var(--s24) var(--s24) var(--s16); border-bottom: 3px solid var(--cream); }
 .cab-top .lockup { --mb: 72px; color: var(--cream); }
 .screen { position: relative; aspect-ratio: 4 / 3; overflow: hidden; background: var(--ink); }
-.screen canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; }
-.screen.playing canvas { cursor: none; }
+.screen canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+/* Only a running game takes over touches; the self-playing demo lets the page scroll */
+.screen.playing canvas { cursor: none; touch-action: none; }
 /* Without JavaScript: a still frame */
 .screen-still { position: absolute; inset: 0; }
 .screen-still::before { content: ""; position: absolute; left: 50%; top: 6%; bottom: 6%; border-left: 3px dashed rgb(246 241 232 / .3); }

@@ -155,6 +155,7 @@
   function finish(playerWon) {
     g.over = true;
     g.msg = playerWon ? txt('win') : txt('lose');
+    screen.classList.remove('playing');   // game over: touches scroll the page again
     coinBtn.classList.remove('is-playing');
     label.textContent = txt('again');
   }
@@ -265,9 +266,9 @@
     var r = screen.getBoundingClientRect();
     g.target = (clientY - r.top) / r.height * H - g.ph / 2;
   }
-  canvas.addEventListener('mousemove', function (e) { if (g && !g.demo) follow(e.clientY); });
-  canvas.addEventListener('touchstart', function (e) { if (g && !g.demo) { follow(e.touches[0].clientY); e.preventDefault(); } }, { passive: false });
-  canvas.addEventListener('touchmove', function (e) { if (g && !g.demo) { follow(e.touches[0].clientY); e.preventDefault(); } }, { passive: false });
+  canvas.addEventListener('mousemove', function (e) { if (g && !g.demo && !g.over) follow(e.clientY); });
+  canvas.addEventListener('touchstart', function (e) { if (g && !g.demo && !g.over) { follow(e.touches[0].clientY); e.preventDefault(); } }, { passive: false });
+  canvas.addEventListener('touchmove', function (e) { if (g && !g.demo && !g.over) { follow(e.touches[0].clientY); e.preventDefault(); } }, { passive: false });
   window.addEventListener('resize', function () { size(); if (reduce && g && g.demo) draw(); });
 
   if ('IntersectionObserver' in window) {

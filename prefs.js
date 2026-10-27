@@ -27,7 +27,8 @@
   var HASH = { classic: { think: 'lenses' }, bold: { lenses: 'think' } };
 
   function url(toStyle, toLang) {
-    var path = root + (toStyle === 'bold' ? 'bold/' : '') + (toLang === 'en' ? '' : toLang + '/') + (toStyle === style ? page : 'index.html');
+    // The arcade lives in MBArcade/ (its pages still say data-style="bold")
+    var path = root + (toStyle === 'bold' ? 'MBArcade/' : '') + (toLang === 'en' ? '' : toLang + '/') + (toStyle === style ? page : 'index.html');
     var hash = location.hash.slice(1);
     if (hash) path += '#' + ((HASH[toStyle] || {})[hash] || hash);
     return path;

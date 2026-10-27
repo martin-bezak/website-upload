@@ -1,5 +1,5 @@
 /* Estimate: the game itself. It mounts into any element with [data-estimate]:
-     - on the Games page (bold/index.html, cs/, sk/) it is embedded: language and theme follow the page;
+     - on the Games page (MBArcade/index.html, cs/, sk/) it is embedded: language and theme follow the page;
      - on games/estimate/index.html it runs full screen ([data-standalone]) with its own language and theme switch.
    State lives in one object that is saved to localStorage after every action (and on every keystroke),
    so closing the tab never loses anything. Both versions share the same saved game. */

@@ -282,10 +282,8 @@ function renderPlay() {
     ? `${t('dailyName', { n: state.daily.no })} · ${t('roundOf', { i: state.daily.idx + 1, n: DAILY_COUNT })}`
     : t('endlessLabel', { f: S().filters[state.filter] });
   return `
-    <div class="stt-top">
-      <p class="est-label">${esc(label)}</p>
-      <p class="stt-meta"><span>${esc(t('mystery', { cat: S().cats[chart.c] }))}</span> <span data-day></span></p>
-    </div>
+    <div class="est-meta"><span>${esc(label)}</span>${btn('menu', t('menu'), 'quiet')}</div>
+    <p class="stt-meta"><span>${esc(t('mystery', { cat: S().cats[chart.c] }))}</span> <span data-day></span></p>
     <dl class="stt-stats">
       <div class="stt-you"><dt>${esc(t('you'))}</dt><dd data-you>+0%</dd></div>
       <div><dt>${esc(t('hold'))}</dt><dd data-hold>+0%</dd></div>

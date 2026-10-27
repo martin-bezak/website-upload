@@ -94,7 +94,7 @@ export const STRINGS = {
     endlessName: 'Nekonečná hra', endlessDesc: 'Jeden graf za druhým. Vyber trh:',
     filters: { all: 'Vše', stock: 'Akcie', crypto: 'Krypto', commodity: 'Komodity', index: 'Indexy a měny' },
     continue: 'Pokračovat →',
-    statsBtn: 'Statistiky', menu: 'Menu',
+    statsBtn: 'Statistiky', menu: 'Nabídka',
     themeToLight: 'Světlý motiv', themeToDark: 'Tmavý motiv',
     feedbackLink: 'Našel jsi chybu nebo máš nápad? Napiš mi →',
 
@@ -161,7 +161,7 @@ export const STRINGS = {
     endlessName: 'Nekonečná hra', endlessDesc: 'Jeden graf za druhým. Vyber trh:',
     filters: { all: 'Všetko', stock: 'Akcie', crypto: 'Krypto', commodity: 'Komodity', index: 'Indexy a meny' },
     continue: 'Pokračovať →',
-    statsBtn: 'Štatistiky', menu: 'Menu',
+    statsBtn: 'Štatistiky', menu: 'Ponuka',
     themeToLight: 'Svetlý motív', themeToDark: 'Tmavý motív',
     feedbackLink: 'Našiel si chybu alebo máš nápad? Napíš mi →',
 

@@ -3,7 +3,7 @@
    with hindsight: a round that was running when the page closed ends right there, with the trades
    made so far (the position you were in is kept to the end of the year). */
 
-import { STRINGS, LANGS, LANG_LABELS, FILTERS, initialLang, fill, pct, num } from './i18n.js';
+import { STRINGS, LANGS, LANG_LABELS, FILTERS, initialLang, fill, pct, num } from './i18n.js?v=2';
 import { DURATION, days, price, wealth, holdWealth, isInvested, result, top } from './round.js';
 import { ChartView } from './chart.js';
 import { todayKey, dailyNumber, dailyIds, DAILY_COUNT } from './daily.js';

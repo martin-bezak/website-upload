@@ -1,0 +1,88 @@
+/* Sell the top: the parts on top of ../estimate/style.css (tokens, bar, buttons, menu, results).
+   Same three colours only: ink, cream, blaze. Spacing on the 4 / 8 / 16 / 24 / 32 / 48 scale. */
+
+/* ---------- menu ---------- */
+.stt-endless { border-top: 2px solid var(--est-text); padding-top: 16px; }
+.stt-endless-name {
+  font-family: var(--est-head); font-weight: 900; font-size: 40px; line-height: 0.95;
+  letter-spacing: -0.015em; text-transform: uppercase;
+}
+.stt-endless-sub { font-family: var(--est-mono); font-size: 12px; text-transform: uppercase; color: var(--est-muted); margin: 8px 0 16px; }
+.stt-chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; }
+.stt-chip { min-height: 52px; color: var(--est-text); text-transform: uppercase; }
+.stt-chip:hover { border-color: var(--est-hot); color: var(--est-text); }
+.stt-chip.is-on { border-color: var(--est-text); }
+
+/* ---------- play ---------- */
+.stt-top { display: flex; justify-content: space-between; align-items: baseline; gap: 8px 16px; flex-wrap: wrap; }
+.stt-meta { font-family: var(--est-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--est-muted); }
+.stt-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 16px;
+  border-top: 1px solid var(--est-line); border-bottom: 1px solid var(--est-line);
+}
+.stt-stats div { padding: 12px 0; min-width: 0; }
+.stt-stats div + div { padding-left: 16px; border-left: 1px solid var(--est-line); }
+.stt-stats dt { font-family: var(--est-mono); font-size: 12px; text-transform: uppercase; color: var(--est-muted); margin-bottom: 8px; }
+.stt-stats dd {
+  font-family: var(--est-head); font-weight: 900; font-size: 40px; line-height: 1;
+  font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.stt-you dd { color: var(--est-hot-text); }
+
+.stt-stage { position: relative; margin: 16px 0; }
+.stt-canvas { display: block; width: 100%; height: clamp(280px, 48vh, 420px); touch-action: manipulation; }
+.stt-pos {
+  display: inline-block; margin-bottom: 8px;
+  font-family: var(--est-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; padding: 4px 8px;
+}
+.stt-pos[hidden] { display: none; }
+.stt-pos.is-in { background: var(--est-hot); color: var(--est-on-hot); }
+.stt-pos.is-out { border: 1px solid var(--est-text); color: var(--est-text); }
+.stt-prompt { display: flex; align-items: center; gap: 16px 24px; flex-wrap: wrap; }
+.stt-prompt p { flex: 1 1 240px; font-size: 16px; line-height: 1.4; }
+.stt-prompt .stt-go { flex: 1 1 200px; min-height: 64px; font-size: 16px; }
+
+.stt-controls { display: flex; align-items: center; gap: 24px; }
+.stt-trade {
+  flex: 1; min-height: 88px; border: 0; border-radius: 0;
+  background: var(--est-text); color: var(--est-bg);
+  font-family: var(--est-head); font-weight: 900; font-size: 48px; line-height: 1; text-transform: uppercase; letter-spacing: 0.02em;
+  user-select: none; -webkit-user-select: none; -webkit-tap-highlight-color: transparent;
+}
+.stt-trade.is-buy { background: var(--est-hot); color: var(--est-on-hot); }
+.stt-trade:active { transform: translateY(2px); }
+.stt-hint { font-family: var(--est-mono); font-size: 12px; text-transform: uppercase; color: var(--est-muted); max-width: 140px; }
+
+/* ---------- reveal ---------- */
+.stt-reveal { border-top: 4px solid var(--est-hot); padding-top: 24px; }
+.stt-verdict {
+  font-family: var(--est-head); font-weight: 900; font-size: 40px; line-height: 0.95;
+  text-transform: uppercase; letter-spacing: -0.01em;
+}
+.stt-verdict.is-win { color: var(--est-hot-text); }
+.stt-money { margin-top: 8px; color: var(--est-muted); }
+.stt-gap { margin-top: 32px; }
+.stt-who {
+  font-family: var(--est-head); font-weight: 900; font-size: 56px; line-height: 0.9;
+  text-transform: uppercase; letter-spacing: -0.01em;
+}
+.stt-span { font-family: var(--est-mono); font-size: 13px; text-transform: uppercase; margin: 8px 0 16px; }
+.stt-story { max-width: 34em; margin-top: 8px; }
+
+.stt-disclaimer { margin-top: 24px; }
+
+/* ---------- stats ---------- */
+.stt-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.stt-table th, .stt-table td { padding: 12px 8px 12px 0; border-top: 1px solid var(--est-line); text-align: right; font-variant-numeric: tabular-nums; }
+.stt-table th:first-child { text-align: left; }
+.stt-table thead th { font-family: var(--est-mono); font-size: 12px; font-weight: 400; text-transform: uppercase; color: var(--est-muted); border-top: 0; }
+
+@media (max-width: 600px) {
+  .stt-stats dd { font-size: 28px; }
+  .stt-canvas { height: clamp(240px, 40vh, 340px); }
+  .stt-stats div + div { padding-left: 8px; }
+  .stt-trade { min-height: 80px; font-size: 40px; }
+  .stt-verdict { font-size: 32px; }
+  .stt-who { font-size: 40px; }
+  .stt-endless-name { font-size: 34px; }
+}

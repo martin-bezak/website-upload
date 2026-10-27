@@ -287,6 +287,17 @@ strong { font-weight: 700; }
 .cv-chart text { font-family: var(--display); font-weight: 900; font-size: 72px; fill: currentColor; }
 .game-card:hover .cv-draw, .game-card:focus-visible .cv-draw { animation: draw .9s var(--ease) both; }
 .game-card:hover .cv-meter::after, .game-card:focus-visible .cv-meter::after { animation: fill .9s var(--ease) both; }
+/* Sell the top cover: a year that peaks, with the sell marker at the top */
+.cv-top .cv-draw { stroke-dasharray: 400; }
+.cv-top .cv-sell { fill: currentColor; }
+.game-card:hover .cv-top .cv-draw, .game-card:focus-visible .cv-top .cv-draw { animation-name: draw-top; }
+@keyframes draw-top { from { stroke-dashoffset: 400; } }
+/* The third card runs the full width: cover on the left, text on the right */
+.game-card--wide { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.game-card--wide .game-cover { aspect-ratio: auto; min-height: 100%; padding: var(--s40) 0 var(--s24); }
+.game-card--wide .cv-label { position: absolute; top: var(--s16); left: var(--s24); }
+.game-card--wide .game-body { padding: var(--s40); align-content: center; }
+.js .games-grid .rv:nth-child(3) { transition-delay: .16s; }
 @keyframes draw { from { stroke-dashoffset: 260; } }
 @keyframes fill { from { transform: scaleX(0); } }
 .game-body { padding: var(--s24) var(--s24) var(--s40); display: grid; gap: var(--s8); flex: 1; align-content: start; }
@@ -306,6 +317,9 @@ strong { font-weight: 700; }
   .games-grid { grid-template-columns: minmax(0, 1fr); gap: var(--s40); }
   .game-card { box-shadow: 8px 8px 0 var(--hot); margin-right: 8px; }
   .game-card h3 { font-size: 40px; }
+  .game-card--wide { display: flex; }
+  .game-card--wide .game-cover { aspect-ratio: 2 / 1; min-height: 0; }
+  .game-card--wide .game-body { padding: var(--s24) var(--s24) var(--s40); }
 }
 
 /* ---------- feedback band: a full orange field ---------- */

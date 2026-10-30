@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
   <script>
     document.documentElement.classList.add('js');
     /* Apply a saved light/dark choice before the page paints, so it never flashes */
@@ -63,7 +63,43 @@
   </section>
 
   <main id="main">
-    <article class="section project" aria-labelledby="arcade-h">
+    <article class="section project" aria-labelledby="btclab-h">
+      <div class="wrap g12">
+        <div class="project-head">
+          <h2 class="h2" id="btclab-h">Bitcoin<br>Lab</h2>
+          <p class="lead">Three tested Bitcoin strategies, updated every night: what to do today, and what $100,000 would have become in any period since 2018.</p>
+          <div class="buttons"><a href="BitcoinLab/index.html" class="btn btn-primary">Open Bitcoin Lab</a></div>
+        </div>
+        <div class="project-body">
+          <p class="project-note">Built on eight years of hourly data. Every rule was written down before it was tested, and every idea that failed is kept in the archive.</p>
+          <ul class="games">
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>Mostly</span><b>BTC</b></div>
+              <div>
+                <h3 class="h3"><a href="BitcoinLab/index.html?s=growth">Growth</a></h3>
+                <p>Holds Bitcoin almost all the time and sells everything when an unusually calm stretch ends with a break downwards.</p>
+              </div>
+            </li>
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>Trend</span><b>In/out</b></div>
+              <div>
+                <h3 class="h3"><a href="BitcoinLab/index.html?s=balanced">Balanced</a></h3>
+                <p>Holds Bitcoin only above its 50-, 100- and 200-day averages, and cash earning interest otherwise.</p>
+              </div>
+            </li>
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>Smaller</span><b>Risk</b></div>
+              <div>
+                <h3 class="h3"><a href="BitcoinLab/index.html?s=defensive">Defensive</a></h3>
+                <p>The same decisions as Balanced, but it holds less Bitcoin when Bitcoin is wild.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="section project project-next" aria-labelledby="arcade-h">
       <div class="wrap g12">
         <div class="project-head">
           <h2 class="h2 arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h2>

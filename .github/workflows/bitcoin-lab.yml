@@ -1,0 +1,73 @@
+# Bitcoin Lab: rebuilds the three strategies every night and publishes the whole site to Pages.
+# Needs: repo Settings → Pages → Source = "GitHub Actions" (instead of "Deploy from a branch").
+# Price files are kept in the Actions cache, not in the repo. Only the live action log
+# (BitcoinLab/data/actions.json) is committed, so the public track record survives between runs.
+name: Bitcoin Lab nightly
+
+on:
+  schedule:
+    - cron: "30 3 * * *"     # 03:30 UTC, after Binance Vision publishes the previous day's files
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install numpy pandas
+
+      - name: Restore the price cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ runner.temp }}/btc-cache
+          key: btc-${{ github.run_id }}
+          restore-keys: btc-
+
+      - name: Download new Binance Vision files
+        run: python tools/bitcoin/data.py
+        env:
+          BTCLAB_CACHE: ${{ runner.temp }}/btc-cache   # runner.* only works at step level
+
+      - name: The three strategies and the comparison assets
+        run: python tools/bitcoin/profiles.py
+        env:
+          BTCLAB_CACHE: ${{ runner.temp }}/btc-cache   # runner.* only works at step level
+
+      - name: Save the live action log
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add BitcoinLab/data/actions.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Bitcoin Lab: actions for $(date -u +%F)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - id: deploy
+        uses: actions/deploy-pages@v4

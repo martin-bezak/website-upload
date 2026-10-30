@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" class="btc" data-style="classic" data-lang="en" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How it works · Bitcoin Lab · Martin Bezak</title>
+  <meta name="description" content="The exact rules of the Growth, Balanced and Defensive Bitcoin strategies, how they were tested, their results since 2018, and their risks.">
+  <meta name="author" content="Martin Bezak">
+  <meta name="theme-color" content="#08090b">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css?v=2">
+  <link rel="stylesheet" href="base.css?v=1">
+  <link rel="stylesheet" href="lab.css?v=18">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+  <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
+  <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header class="lab-nav" id="lab-nav">
+    <div class="wrap lab-nav-in">
+      <a href="index.html" class="lab-logo" aria-label="Bitcoin Lab, home"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <button type="button" class="lab-menu" aria-expanded="false" aria-controls="lab-links">Menu</button>
+      <nav aria-label="Bitcoin Lab">
+        <ul class="lab-links" id="lab-links">
+          <li><a href="index.html">Strategy</a></li>
+          <li><a href="method.html" aria-current="page">How it works</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="../index.html" title="Martin Bezák, professional profile">Profile <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch light or dark">Aa</button>
+    </div>
+  </header>
+
+  <section class="r-head lab-head s-oxblood" id="top">
+    <div class="wrap">
+      <p class="r-kicker">A research project by <a href="../index.html">Martin Bezák</a></p>
+      <p class="page-title" aria-hidden="true">Bitcoin<br><span class="o">lab</span></p>
+    </div>
+  </section>
+
+  <main id="main" class="doc">
+    <div class="wrap doc-grid">
+      <nav class="toc" aria-label="On this page">
+        <p class="toc-h">On this page</p>
+        <ol>
+          <li><a href="#short">In short</a></li>
+          <li><a href="#signals">The two signals</a></li>
+          <li><a href="#growth">Growth</a></li>
+          <li><a href="#balanced">Balanced</a></li>
+          <li><a href="#defensive">Defensive</a></li>
+          <li><a href="#cash">Interest on cash</a></li>
+          <li><a href="#results">Results since 2018</a></li>
+          <li><a href="#testing">How it was tested</a></li>
+          <li><a href="#risks">Risks and limits</a></li>
+          <li><a href="#practice">Following it in practice</a></li>
+          <li><a href="#words">Words used here</a></li>
+          <li><a href="#data">Data and licences</a></li>
+        </ol>
+      </nav>
+
+      <article class="doc-body">
+        <h1 class="h2">How it<br>works</h1>
+        <p class="lead">Three strategies, built from two signals that survived a long series of tests. This page gives the exact rules, the numbers, and the ways they can go wrong. <a href="archive.html" class="text-link">The Archive</a> tells how we got here, including everything that failed.</p>
+
+        <section id="short">
+          <h2 class="h3">In short</h2>
+          <div class="table-scroll">
+            <table class="ledger stack">
+              <caption class="vh">The three strategies compared</caption>
+              <thead><tr><th>Strategy</th><th>What it does</th><th class="n">$1 since Sep 2018</th><th class="n">Worst drop</th><th class="n">Worst year</th></tr></thead>
+              <tbody>
+                <tr><td data-l="Strategy"><b>Growth</b></td><td data-l="What it does">Holds Bitcoin; sells on a squeeze breakdown until that move is over</td><td class="n" data-l="$1 since Sep 2018" data-m="growth.mult">55×</td><td class="n" data-l="Worst drop" data-m="growth.mdd">−61%</td><td class="n" data-l="Worst year" data-m="growth.worst">−46%</td></tr>
+                <tr><td data-l="Strategy"><b>Balanced</b></td><td data-l="What it does">Bitcoin only in an uptrend; squeezes can buy or sell early</td><td class="n" data-l="$1 since Sep 2018" data-m="balanced.mult">32×</td><td class="n" data-l="Worst drop" data-m="balanced.mdd">−42%</td><td class="n" data-l="Worst year" data-m="balanced.worst">−15%</td></tr>
+                <tr><td data-l="Strategy"><b>Defensive</b></td><td data-l="What it does">Balanced, with smaller positions when Bitcoin is volatile</td><td class="n" data-l="$1 since Sep 2018" data-m="defensive.mult">20×</td><td class="n" data-l="Worst drop" data-m="defensive.mdd">−27%</td><td class="n" data-l="Worst year" data-m="defensive.worst">−11%</td></tr>
+                <tr><td data-l="Strategy">Bitcoin, buy and hold</td><td data-l="What it does">Buy once, never sell</td><td class="n" data-l="$1 since Sep 2018" data-m="btc.mult">13×</td><td class="n" data-l="Worst drop">−77%</td><td class="n" data-l="Worst year">−64%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="chart-cap">Simulated with fees, from 7 Sep 2018 to the latest data (updated nightly). Past results; no guarantee.</p>
+        </section>
+
+        <section id="signals">
+          <h2 class="h3">The two signals</h2>
+          <h3 class="h4-label">1 · Trend</h3>
+          <p>Bitcoin is “in an uptrend” when its daily closing price is above its average closing price of the last 50, 100 <em>and</em> 200 days. If it is below any of them, the trend is off.</p>
+          <p><b>Why it can work:</b> Bitcoin’s big moves last months, and its crashes rarely happen while the price is above all three averages. Staying out when the trend is off skipped most of 2018 and 2022. The price of this: entering and leaving late, and some false starts in sideways markets.</p>
+          <h3 class="h4-label">2 · Squeeze breakout</h3>
+          <ol class="steps">
+            <li><b>A calm stretch.</b> Bitcoin’s volatility over the last 20 days is in the lowest 20% of the past year. This “arms” the signal for 10 days.</li>
+            <li><b>The range.</b> The highest high and lowest low of the last 20 days.</li>
+            <li><b>The break.</b> A daily close below the range is a <b>breakdown</b> (sell); above it, a <b>breakout</b> (buy).</li>
+            <li><b>The exit.</b> The trade ends when the price reaches the other side of the range (the stop), moves twice as far as the risk in the trade’s direction (the target, “2R”), or after 20 days, whichever comes first. Stops and targets are checked against every hour’s high and low.</li>
+          </ol>
+          <p><b>Why it can work:</b> unusually quiet markets tend to be followed by big moves, and Bitcoin’s calm-then-crash pattern repeated in Nov 2018, Feb–Mar 2020, Jan and May 2022 and Nov 2025. The breakdown side passed every test (it beat random timing in 995 of 1,000 simulations); the breakout side is weaker evidence.</p>
+        </section>
+
+        <section id="growth">
+          <h2 class="h3">Growth</h2>
+          <ol class="steps">
+            <li>Hold 100% Bitcoin.</li>
+            <li>On a squeeze <b>breakdown</b> (daily close below the range), sell everything right after that close.</li>
+            <li>Buy everything back when that trade ends: stop above, target below, or 20 days.</li>
+            <li>While in cash, earn the T-bill rate.</li>
+          </ol>
+          <p><b>When it does badly:</b> long falls that start without a calm stretch first (it held through most of 2022’s −64%, losing −46%), and breakdowns that reverse straight away (July 2021: sold, then Bitcoin rose 19% before the stop bought back).</p>
+        </section>
+
+        <section id="balanced">
+          <h2 class="h3">Balanced</h2>
+          <ol class="steps">
+            <li>Each day at the close (00:00 UTC): if the trend is on, hold 100% Bitcoin; if it is off, hold 0% and earn interest.</li>
+            <li>A squeeze <b>breakdown</b> sells to 0% even in an uptrend; a squeeze <b>breakout</b> buys 100% even before the trend turns. Each override lasts until its trade ends (stop, 2R target or 20 days); then the trend rule takes over again.</li>
+          </ol>
+          <p><b>When it does badly:</b> sideways years, when the price keeps crossing its averages (2025 roughly broke even while Bitcoin lost 6%), and sharp recoveries it joins late (2023: +95% against Bitcoin’s +156%).</p>
+        </section>
+
+        <section id="defensive">
+          <h2 class="h3">Defensive</h2>
+          <ol class="steps">
+            <li>The same decisions as Balanced.</li>
+            <li>But when in Bitcoin, hold only <code>min(100%, 50% ÷ Bitcoin’s current yearly volatility)</code>. Volatility is measured the RiskMetrics way (an exponentially weighted average of daily moves, λ = 0.94). At 80% volatility that means 62% Bitcoin; at 40% or less, 100%.</li>
+            <li>Position changes under 10 percentage points are skipped to save fees.</li>
+          </ol>
+          <p><b>When it does badly:</b> the same as Balanced, plus it holds less during the wildest rallies (2020: +132% against Balanced’s +165%).</p>
+        </section>
+
+        <section id="cash">
+          <h2 class="h3">Interest on cash</h2>
+          <p>All three strategies spend time out of Bitcoin (Balanced and Defensive about 60% of the time). That money earns the 3-month US Treasury bill rate of each day: almost 0% in 2020–21, about 5% in 2023–24, <span data-m="rf">–</span> now. It added about 2% a year to Balanced from 2020 on, without any extra market risk. A version with only half that rate still came out ahead.</p>
+          <p>In practice this means T-bills, a money market fund, or a stablecoin savings product. They don’t carry the same risk: T-bills are backed by the US government, stablecoin products by the company offering them.</p>
+        </section>
+
+        <section id="results">
+          <h2 class="h3">Results since 2018</h2>
+          <div class="table-scroll">
+            <table class="ledger stack" id="years">
+              <caption class="vh">Return per calendar year</caption>
+              <thead><tr><th>Year</th><th class="n">Growth</th><th class="n">Balanced</th><th class="n">Defensive</th><th class="n">Bitcoin</th></tr></thead>
+              <tbody><tr><td colspan="5">Loading…</td></tr></tbody>
+            </table>
+          </div>
+          <p class="chart-cap">2018 starts on 7 September; the current year runs to the latest data. Try other start dates with the <a href="index.html#mock-h" class="text-link">mock portfolio</a>.</p>
+          <dl class="method">
+            <div><dt>Sharpe</dt><dd>Growth <span data-m="growth.sharpe">1.15</span> · Balanced <span data-m="balanced.sharpe">1.28</span> · Defensive <span data-m="defensive.sharpe">1.36</span> · Bitcoin <span data-m="btc.sharpe">0.82</span>. Higher is better: more return per unit of up-and-down.</dd></div>
+            <div><dt>From every start</dt><dd>Started at any of six dates between 2018 and 2024, Balanced and Defensive had the higher Sharpe and about half the worst drop. Their return beat Bitcoin’s from every start except mid-2023, the start of a strong rally (2.9× against 3.0×).</dd></div>
+            <div><dt>Similar settings</dt><dd>27 nearby versions (other averages, calm thresholds and range lengths) all beat buy-and-hold on return and Sharpe ($1 became 16× to 31× vs 13×). The chosen settings are not the best of the bunch; they were fixed before testing.</dd></div>
+          </dl>
+        </section>
+
+        <section id="testing">
+          <h2 class="h3">How it was tested</h2>
+          <dl class="method">
+            <div><dt>Data</dt><dd>Hourly Bitcoin prices on Binance since August 2017 (Binance Vision). Every decision uses only data that existed at that moment.</dd></div>
+            <div><dt>Execution</dt><dd>Bitcoin trades around the clock, but every rule reads <em>daily</em> closes (00:00 UTC), so a signal can only be known when the day ends. The backtest trades at the first price after that close. Stops and targets are checked against every hour’s high and low; if both are touched in the same hour, the stop is assumed to come first. A stop that the price gaps through fills at the worse price.</dd></div>
+            <div><dt>Costs</dt><dd>0.10% fee plus 0.05% slippage on every trade. Re-tested at two and three times the costs, with 0.5% worse stop fills: all three strategies still beat buy-and-hold.</dd></div>
+            <div id="delay"><dt>Trading later</dt><dd>This site updates around 03:30 UTC, hours after the close the backtest trades at. So every trade was re-run 1 to 12 hours late (stops and targets unchanged, since they are orders placed with the trade). Returns barely moved: Growth 44× to 58×, Balanced 31× to 34×, Defensive 20× to 22×, all far ahead of Bitcoin’s 12×. The worst drop moved more: Balanced −44% to −49%, Defensive −28% to −34%. At about 4 hours late, roughly when you can act on this page: 52×, 31× and 20×, with worst drops of −61%, −49% and −33%.</dd></div>
+            <div><dt>Rules first</dt><dd>Every rule was written down before its first test, with standard values, not tuned to the results. The main hypotheses were registered in advance and corrected for testing several ideas at once (Holm method); only the squeeze breakdown passed (p = 0.010).</dd></div>
+            <div><dt>Placebos</dt><dd>The same exits from 1,000 sets of random entry times, and the same positions shifted to random dates. A real signal has to beat both.</dd></div>
+            <div><dt>No hindsight tuning</dt><dd>A version that picked the best of 32 rule variants each January, using only past data, did worse out of sample than the fixed rules ($8.2 against $16.4 per $1 from 2020). So the rules stay fixed.</dd></div>
+          </dl>
+        </section>
+
+        <section id="risks">
+          <h2 class="h3">Risks and limits</h2>
+          <ul class="bullets">
+            <li><b>History is short.</b> About two and a half Bitcoin market cycles. The evidence that the strategies beat buy-and-hold on risk-adjusted terms is borderline for Balanced and Defensive (p ≈ 0.05–0.10); it is strong only for the squeeze breakdown.</li>
+            <li><b>The ideas came after looking.</b> The rules were fixed before each test, but the ideas themselves were chosen with knowledge of Bitcoin’s past. The live record, starting October 2026, is the real test.</li>
+            <li><b>Big drops still happen.</b> Growth fell 61% at its worst; Balanced 42%; Defensive 27%. Trading a few hours after the close, as you will with this page, made the worst drops of Balanced and Defensive up to 7 points deeper in tests (<a href="#delay" class="text-link">trading later</a>).</li>
+            <li><b>Long dull stretches.</b> Trend strategies can trail Bitcoin for a year or more in fast rallies.</li>
+            <li><b>One exchange.</b> Prices are Binance’s; other exchanges differ slightly, and exchanges can fail.</li>
+            <li><b>Taxes are not included.</b> Every sell can be a taxable event where you live.</li>
+          </ul>
+        </section>
+
+        <section id="practice">
+          <h2 class="h3">Following it in practice</h2>
+          <p>Bitcoin trades all day, but the rules only look at the daily close (00:00 UTC). The page updates once a night, around 03:30 UTC, when the day’s data is published; trade when you see the new action. Stop and target levels can be set as orders on the exchange straight away. The <a href="index.html" class="text-link">Strategy page</a> shows that night’s action, the levels that would change it, and any open trade’s stop and target. Following a strategy means checking once a day and trading on a spot exchange (no leverage, no shorting), plus holding the cash part somewhere that earns interest.</p>
+          <p class="disclaimer"><b>This is a research project, not investment advice.</b> The rules don’t know your goals, taxes or tolerance for losses, and past results don’t guarantee future ones.</p>
+        </section>
+
+        <section id="words">
+          <h2 class="h3">Words used here</h2>
+          <dl class="method">
+            <div><dt>Moving average</dt><dd>The average closing price of the last N days.</dd></div>
+            <div><dt>Volatility</dt><dd>How much the price moves around, as a yearly percentage. Bitcoin is usually at 50–80%; the S&amp;P 500 at about 15–20%.</dd></div>
+            <div><dt>Worst drop</dt><dd>The biggest fall from a peak to a later low (maximum drawdown).</dd></div>
+            <div><dt>Sharpe ratio</dt><dd>Average return divided by volatility, per year. A way to compare return for the same amount of risk.</dd></div>
+            <div><dt>R, 2R</dt><dd>R is the risk in a trade: the distance from entry to stop. A 2R target is twice that distance in the trade’s favour.</dd></div>
+            <div><dt>p-value</dt><dd>How likely a result at least this good would be from luck alone. Below 0.05 is the usual bar.</dd></div>
+          </dl>
+        </section>
+
+        <section id="data">
+          <h2 class="h3">Data and licences</h2>
+          <p class="licence">Bitcoin prices and futures data: <a href="https://data.binance.vision/" class="text-link">Binance Vision</a>, licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-link">CC BY-NC-SA 4.0</a>; the strategy data on these pages is shared under the same licence. T-bill and 10-year Treasury yields: <a href="https://fred.stlouisfed.org/" class="text-link">FRED</a>, Federal Reserve Bank of St. Louis. S&amp;P 500 comparison: the SPY fund, Yahoo Finance. Live price: TradingView. Not affiliated with or endorsed by any of them. Code: Python and NumPy, rebuilt every night.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <section class="founder" aria-labelledby="founder-h">
+    <div class="wrap founder-in">
+      <img src="../images/portrait-600.jpg" alt="Martin Bezák, Economics and Finance student" width="600" height="901" loading="lazy">
+      <div>
+        <p class="r-num">Who built this</p>
+        <h2 class="founder-h" id="founder-h">Martin Bezák</h2>
+        <p class="founder-p">Economics &amp; Finance student at IES, Charles University in Prague. Bitcoin Lab is my research project: every rule here was written down before it was tested, and every idea that failed is in the <a href="archive.html" class="text-link">Archive</a>.</p>
+        <div class="buttons"><a href="../index.html" class="btn btn-primary">Visit my website →</a><a href="../MBArcade/index.html" class="btn btn-secondary">MB Arcade, my finance games</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="lab-foot">
+    <div class="wrap lab-foot-in">
+      <a href="#top" class="lab-sign" aria-label="Bitcoin Lab, back to top"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <div class="lab-foot-side">
+        <nav class="lab-foot-links" aria-label="Footer">
+          <a href="index.html">Strategy</a>
+          <a href="method.html">How it works</a>
+          <a href="archive.html">Archive</a>
+          <a href="../index.html">Martin Bezák, professional profile →</a>
+          <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 Bitcoin Lab by Martin Bezák · strategy data CC BY-NC-SA 4.0 · not investment advice</small>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    // Keep the numbers on this page in step with the nightly data
+    import { load, chrome } from './js/lab.js?v=5';
+    chrome();
+    const P = await load('profiles');
+    const set = (k, v) => document.querySelectorAll(`[data-m="${k}"]`).forEach(n => (n.textContent = v));
+    const b = P.series.btc;
+    set('btc.mult', (b[b.length - 1] / b[0]).toFixed(0) + '×');
+    set('rf', (P.rf_now * 100).toFixed(1) + '%');
+    const br = b.slice(1).map((v, i) => v / b[i] - 1), bm = br.reduce((x, y) => x + y, 0) / br.length;
+    set('btc.sharpe', (bm / Math.sqrt(br.reduce((x, y) => x + (y - bm) ** 2, 0) / (br.length - 1)) * Math.sqrt(365)).toFixed(2));
+    for (const k of ['growth', 'balanced', 'defensive']) {
+      const s = P.profiles[k].stats, ys = Object.values(P.profiles[k].years);
+      set(k + '.mult', (1 + s.total).toFixed(0) + '×');
+      set(k + '.mdd', '−' + Math.abs(Math.round(s.mdd * 100)) + '%');
+      set(k + '.worst', '−' + Math.abs(Math.round(Math.min(...ys) * 100)) + '%');
+      set(k + '.sharpe', s.sharpe.toFixed(2));
+    }
+    const yrs = Object.keys(P.profiles.growth.years);
+    const btcYear = y => {
+      const t = P.t0, n = P.n, idx = i => new Date((t + i * 86400) * 1000).getUTCFullYear();
+      let a = -1, z = -1;
+      for (let i = 0; i < n; i++) if (idx(i) == y) { if (a < 0) a = i; z = i; }
+      const base = a > 0 ? b[a - 1] : b[a];
+      return b[z] / base - 1;
+    };
+    const f = v => (v >= 0 ? '+' : '−') + Math.abs(Math.round(v * 100)) + '%';
+    document.querySelector('#years tbody').innerHTML = yrs.map(y => `<tr><td data-l="Year"><b>${y}</b></td>` +
+      ['growth', 'balanced', 'defensive'].map(k => `<td class="n" data-l="${P.profiles[k].name}">${f(P.profiles[k].years[y])}</td>`).join('') +
+      `<td class="n" data-l="Bitcoin">${f(btcYear(+y))}</td></tr>`).join('');
+  </script>
+</body>
+</html>

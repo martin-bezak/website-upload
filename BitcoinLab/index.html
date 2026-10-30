@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en" class="btc" data-style="classic" data-lang="en" data-root="../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bitcoin Lab · Martin Bezak</title>
+  <meta name="description" content="Three tested Bitcoin strategies (Growth, Balanced, Defensive): today's action, the rules behind it, and a $100,000 mock portfolio against buy-and-hold, cash, bonds and the S&P 500.">
+  <meta name="author" content="Martin Bezak">
+  <meta name="theme-color" content="#08090b">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../styles.css?v=2">
+  <link rel="stylesheet" href="base.css?v=1">
+  <link rel="stylesheet" href="lab.css?v=18">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+  <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
+  <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header class="lab-nav" id="lab-nav">
+    <div class="wrap lab-nav-in">
+      <a href="index.html" class="lab-logo" aria-label="Bitcoin Lab, home"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <button type="button" class="lab-menu" aria-expanded="false" aria-controls="lab-links">Menu</button>
+      <nav aria-label="Bitcoin Lab">
+        <ul class="lab-links" id="lab-links">
+          <li><a href="index.html" aria-current="page">Strategy</a></li>
+          <li><a href="method.html">How it works</a></li>
+          <li><a href="archive.html">Archive</a></li>
+          <li><a href="../index.html" title="Martin Bezák, professional profile">Profile <span aria-hidden="true">↗</span></a></li>
+        </ul>
+      </nav>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch light or dark">Aa</button>
+    </div>
+  </header>
+
+  <section class="r-head lab-head s-oxblood" id="top">
+    <div class="wrap">
+      <p class="r-kicker">A research project by <a href="../index.html">Martin Bezák</a></p>
+      <div class="lab-top">
+        <div>
+          <h1 class="page-title">Bitcoin<br><span class="o">lab</span></h1>
+        </div>
+        <div class="live">
+          <p class="live-label"><span class="live-dot" aria-hidden="true"></span> Live price, BTC/USDT</p>
+          <div class="live-widget" id="live-widget"></div>
+          <p class="live-note">Live data and widget by <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">TradingView</a>. Strategy signals use daily closes; the last one was <span id="asof">–</span> at <span id="asof-price">–</span>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="h-bar">
+    <div class="wrap">
+      <span class="h-label" id="p-label">Strategy</span>
+      <div class="seg h-seg p-seg" role="group" aria-labelledby="p-label">
+        <button type="button" data-p="growth" aria-pressed="false">Growth</button><button type="button" data-p="balanced" aria-pressed="true">Balanced</button><button type="button" data-p="defensive" aria-pressed="false">Defensive</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="main">
+    <!-- ===================== TODAY ===================== -->
+    <section class="today" aria-labelledby="act-h" aria-busy="true" id="today">
+      <div class="wrap today-grid">
+        <div>
+          <p class="r-num" id="act-kicker">Balanced · today</p>
+          <h2 class="act" id="act-h"><span id="act">–</span></h2>
+          <p class="act-sub" id="act-sub">–</p>
+          <div class="pos">
+            <div class="pos-bar" aria-hidden="true"><i id="pos-btc"></i></div>
+            <p class="pos-legend"><span><b id="pos-btc-p">–</b> in Bitcoin</span><span><b id="pos-cash-p">–</b> in cash earning <span id="rf">–</span> a year</span></p>
+          </div>
+          <label class="ctrl amount"><span>Your portfolio (USD)</span>
+            <input type="text" inputmode="numeric" id="amount" value="100,000" autocomplete="off">
+          </label>
+          <p class="amount-out" id="amount-out">–</p>
+        </div>
+        <div>
+          <div class="active-trade" id="active" hidden></div>
+          <h3 class="h4-label">What would change it</h3>
+          <ul class="watch" id="watch"></ul>
+          <h3 class="h4-label">How often its calls were right</h3>
+          <div id="record"></div>
+        </div>
+      </div>
+      <div class="wrap">
+        <div class="explain" id="explain"></div>
+      </div>
+    </section>
+
+    <!-- ===================== THE THREE STRATEGIES ===================== -->
+    <section class="r-sec three-sec" aria-labelledby="three-h">
+      <div class="wrap">
+        <div class="r-top">
+          <div>
+            <p class="r-num">Pick your risk</p>
+            <h2 class="h2 r-title" id="three-h">Three<br>strategies</h2>
+          </div>
+          <p class="r-intro">Same signals, three levels of risk. All of them were tested hour by hour since 2018 with trading fees, and all earn interest on the money that is not in Bitcoin. <a href="method.html" class="text-link">Full rules and numbers</a>.</p>
+        </div>
+        <div class="three" id="three">
+          <article class="pcard" data-card="growth">
+            <h3 class="pc-name">Growth</h3>
+            <p class="pc-what">Stays fully invested in Bitcoin and only steps aside for one specific danger: a calm stretch that ends with a break downwards. Historically, those breaks came before some of Bitcoin’s fastest falls.</p>
+            <h4 class="pc-h">How it decides</h4>
+            <ul class="pc-list">
+              <li><b>Default:</b> 100% Bitcoin.</li>
+              <li><b>Sells</b> everything when Bitcoin has been unusually quiet (volatility in the lowest 20% of the past year) and then a daily close falls below its 20-day range.</li>
+              <li><b>Buys back</b> when that move is over: the price climbs back to the top of the range (stop), falls twice as far as that risk (target), or 20 days pass.</li>
+            </ul>
+            <h4 class="pc-h">What to expect</h4>
+            <dl class="pc-dl" data-expect="growth"></dl>
+            <p class="pc-for"><b>For:</b> long-term holders who want the highest return and can sit through deep drops; it still held through most of 2022.</p>
+            <button type="button" class="btn btn-secondary pc-pick" data-p="growth" aria-pressed="false">Use Growth</button>
+          </article>
+          <article class="pcard" data-card="balanced">
+            <h3 class="pc-name">Balanced</h3>
+            <p class="pc-what">Owns Bitcoin only while it is in a clear uptrend and waits in cash, earning interest, the rest of the time. The calm-then-break signal can move it in or out early, before the trend confirms.</p>
+            <h4 class="pc-h">How it decides</h4>
+            <ul class="pc-list">
+              <li><b>Buys</b> (100%) when a daily close is above the 50-, 100- and 200-day averages.</li>
+              <li><b>Sells</b> (to cash) when a close falls below any of them.</li>
+              <li><b>Early moves:</b> after a quiet stretch, a close above the 20-day range buys and a close below it sells, until that trade’s stop, target or 20 days.</li>
+            </ul>
+            <h4 class="pc-h">What to expect</h4>
+            <dl class="pc-dl" data-expect="balanced"></dl>
+            <p class="pc-for"><b>For:</b> beating buy-and-hold with about half its worst drop, if you accept missing the first part of big rallies.</p>
+            <button type="button" class="btn btn-secondary pc-pick" data-p="balanced" aria-pressed="false">Use Balanced</button>
+          </article>
+          <article class="pcard" data-card="defensive">
+            <h3 class="pc-name">Defensive</h3>
+            <p class="pc-what">Makes the same buy and sell decisions as Balanced, but holds less Bitcoin when Bitcoin is wild, so a bad week hurts less. When markets are calm it holds the full amount.</p>
+            <h4 class="pc-h">How it decides</h4>
+            <ul class="pc-list">
+              <li><b>When to own Bitcoin:</b> exactly as Balanced.</li>
+              <li><b>How much:</b> 50% ÷ Bitcoin’s current yearly volatility, at most 100%. At 80% volatility it holds 62%; at 40% or less, everything.</li>
+              <li><b>Small changes</b> (under 10 points) are skipped to save fees.</li>
+            </ul>
+            <h4 class="pc-h">What to expect</h4>
+            <dl class="pc-dl" data-expect="defensive"></dl>
+            <p class="pc-for"><b>For:</b> the steadiest ride: the smallest drops of the three, still ahead of buy-and-hold since 2018.</p>
+            <button type="button" class="btn btn-secondary pc-pick" data-p="defensive" aria-pressed="false">Use Defensive</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== LIVE RECORD ===================== -->
+    <section class="r-sec live-sec" aria-labelledby="live-h">
+      <div class="wrap">
+        <div class="r-top">
+          <div>
+            <p class="r-num">Live record</p>
+            <h2 class="h2 r-title" id="live-h">Every night,<br>kept</h2>
+          </div>
+          <p class="r-intro">Everything above (2018–2026) is a backtest. This is the real test: each night’s action for every strategy is saved after the close and never edited.</p>
+        </div>
+        <div class="live-sum" id="live-sum"></div>
+        <div class="chart-key" id="live-key"></div>
+        <div class="chart live-chart" id="live-chart"><div class="r-loading">Loading…</div></div>
+        <p class="chart-cap late-score" id="late-score"></p>
+        <div class="table-scroll">
+          <table class="ledger stack">
+            <caption class="vh">Live actions</caption>
+            <thead><tr><th>After the close on</th><th class="n">BTC price</th><th class="n">Growth</th><th class="n">Balanced</th><th class="n">Defensive</th></tr></thead>
+            <tbody id="live-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MOCK PORTFOLIO ===================== -->
+    <section class="r-sec s-ink mock-sec" aria-labelledby="mock-h">
+      <div class="wrap">
+        <div class="r-top">
+          <div>
+            <p class="r-num">Mock portfolio</p>
+            <h2 class="h2 r-title" id="mock-h">$100,000,<br>any period</h2>
+          </div>
+          <p class="r-intro">Pick any stretch of history and see what $100,000 would have become with this strategy, compared with holding Bitcoin, the S&amp;P 500, US government bonds or cash. Every line restarts at $100,000 on the first day shown.</p>
+        </div>
+        <div class="ctrls mock-ctrls">
+          <label class="ctrl"><span>From</span><input type="date" id="from"></label>
+          <label class="ctrl"><span>To</span><input type="date" id="to"></label>
+          <div class="ctrl"><span>Periods</span>
+            <div class="quick" id="quick">
+              <button type="button" class="btn btn-secondary btn-sm" data-from="start" data-to="end">All</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-from="2018-09-07" data-to="2019-12-31">2018–19 bottom</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-from="2020-01-01" data-to="2021-04-14">2020 crash and boom</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-from="2021-11-10" data-to="2022-12-31">2021 top to 2022 bottom</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-from="2023-01-01" data-to="end">2023 to now</button>
+              <button type="button" class="btn btn-secondary btn-sm" data-ago="365" data-to="end">Last year</button>
+            </div>
+          </div>
+        </div>
+        <div class="mock-tools">
+          <p class="mock-range" id="mock-range" aria-live="polite">–</p>
+          <div class="zoom" role="group" aria-label="Zoom">
+            <button type="button" class="zbtn" id="z-in" aria-label="Zoom in">+</button>
+            <button type="button" class="zbtn" id="z-out" aria-label="Zoom out">−</button>
+            <button type="button" class="zbtn zreset" id="z-reset">Reset</button>
+          </div>
+          <label class="check log-toggle"><input type="checkbox" id="logscale" checked> Log scale</label>
+        </div>
+        <div class="chart-key mock-key" id="mock-key"></div>
+        <div class="chart mock-chart" id="mock-chart" tabindex="0" aria-describedby="mock-help"><div class="r-loading">Loading…</div><div class="readout" id="mock-readout" hidden></div></div>
+        <div class="mock-nav" id="mock-nav" aria-label="Whole history: drag the window to choose the period"></div>
+        <p class="chart-cap" id="mock-help">Zoom: pinch with two fingers (phone or trackpad), hold Ctrl (⌘ on Mac) and scroll, or use + and −. Move in time: drag the chart sideways, drag the window in the strip below, or use the arrow keys. Double-click or Reset to see everything.</p>
+        <div class="table-scroll">
+          <table class="ledger on-ink mock-table stack">
+            <caption class="vh">What $100,000 became</caption>
+            <thead><tr><th>Portfolio</th><th class="n">Worth at the end</th><th class="n">Return</th><th class="n">Per year</th><th class="n">Worst drop</th><th class="n">Worst calendar year</th></tr></thead>
+            <tbody id="mock-table"></tbody>
+          </table>
+        </div>
+        <p class="chart-cap">Strategies: fees (0.10% + 0.05% slippage per trade) included; cash earns the 3-month US T-bill rate of each day. Bitcoin: buy and hold. Cash: 3-month T-bills. Bonds: 10-year US Treasury, return estimated from FRED yields. S&amp;P 500: the SPY fund with dividends. Past results, simulated; not a promise of future ones.</p>
+      </div>
+    </section>
+
+    <section class="r-sec" aria-label="Notes">
+      <div class="wrap">
+        <p class="disclaimer"><b>Not investment advice.</b> These are the outputs of fixed rules, tested on history, published as a student research project. They don’t know your situation, can be wrong for long stretches, and past results don’t guarantee anything. If you act on them, that’s your decision.</p>
+        <p class="licence">Bitcoin prices: <a href="https://data.binance.vision/" class="text-link">Binance Vision</a>, licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-link">CC BY-NC-SA 4.0</a>; the strategy data on these pages is shared under the same licence. T-bill and Treasury yields: <a href="https://fred.stlouisfed.org/" class="text-link">FRED</a>, Federal Reserve Bank of St. Louis. S&amp;P 500 (SPY): Yahoo Finance. Live price: TradingView. Not affiliated with or endorsed by any of them.</p>
+      </div>
+    </section>
+  </main>
+
+  <section class="founder" aria-labelledby="founder-h">
+    <div class="wrap founder-in">
+      <img src="../images/portrait-600.jpg" alt="Martin Bezák, Economics and Finance student" width="600" height="901" loading="lazy">
+      <div>
+        <p class="r-num">Who built this</p>
+        <h2 class="founder-h" id="founder-h">Martin Bezák</h2>
+        <p class="founder-p">Economics &amp; Finance student at IES, Charles University in Prague. Bitcoin Lab is my research project: every rule here was written down before it was tested, and every idea that failed is in the <a href="archive.html" class="text-link">Archive</a>.</p>
+        <div class="buttons"><a href="../index.html" class="btn btn-primary">Visit my website →</a><a href="../MBArcade/index.html" class="btn btn-secondary">MB Arcade, my finance games</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="lab-foot">
+    <div class="wrap lab-foot-in">
+      <a href="#top" class="lab-sign" aria-label="Bitcoin Lab, back to top"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <div class="lab-foot-side">
+        <nav class="lab-foot-links" aria-label="Footer">
+          <a href="index.html">Strategy</a>
+          <a href="method.html">How it works</a>
+          <a href="archive.html">Archive</a>
+          <a href="../index.html">Martin Bezák, professional profile →</a>
+          <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 Bitcoin Lab by Martin Bezák · strategy data CC BY-NC-SA 4.0 · not investment advice</small>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="js/strategy.js?v=17"></script>
+</body>
+</html>

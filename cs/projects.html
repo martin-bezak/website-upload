@@ -27,7 +27,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=2">
   <script>
     document.documentElement.classList.add('js');
     /* Apply a saved light/dark choice before the page paints, so it never flashes */
@@ -61,7 +61,43 @@
   </section>
 
   <main id="main">
-    <article class="section project" aria-labelledby="arcade-h">
+    <article class="section project" aria-labelledby="btclab-h">
+      <div class="wrap g12">
+        <div class="project-head">
+          <h2 class="h2" id="btclab-h">Bitcoin<br>Lab</h2>
+          <p class="lead">Tři otestované strategie pro Bitcoin, aktualizované každou noc: co dělat dnes a co by se stalo se 100 000 $ v libovolném období od roku 2018.</p>
+          <div class="buttons"><a href="../BitcoinLab/index.html" class="btn btn-primary">Otevřít Bitcoin Lab</a></div>
+        </div>
+        <div class="project-body">
+          <p class="project-note">Postaveno na osmi letech hodinových dat. Každé pravidlo bylo zapsáno před testem a každý nápad, který selhal, zůstává v archivu. Bitcoin Lab je v angličtině.</p>
+          <ul class="games">
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>Skoro</span><b>BTC</b></div>
+              <div>
+                <h3 class="h3"><a href="../BitcoinLab/index.html?s=growth">Growth</a></h3>
+                <p>Drží Bitcoin téměř pořád a prodá vše, když neobvykle klidné období skončí prolomením ceny dolů.</p>
+              </div>
+            </li>
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>Trend</span><b>Dovnitř/ven</b></div>
+              <div>
+                <h3 class="h3"><a href="../BitcoinLab/index.html?s=balanced">Balanced</a></h3>
+                <p>Drží Bitcoin jen nad jeho 50-, 100- a 200denním průměrem, jinak hotovost, která nese úrok.</p>
+              </div>
+            </li>
+            <li class="game">
+              <div class="game-cover s-ink" aria-hidden="true"><span>Menší</span><b>Riziko</b></div>
+              <div>
+                <h3 class="h3"><a href="../BitcoinLab/index.html?s=defensive">Defensive</a></h3>
+                <p>Stejná rozhodnutí jako Balanced, ale když je Bitcoin divoký, drží ho méně.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </article>
+
+    <article class="section project project-next" aria-labelledby="arcade-h">
       <div class="wrap g12">
         <div class="project-head">
           <h2 class="h2 arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h2>

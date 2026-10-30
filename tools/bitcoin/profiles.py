@@ -195,6 +195,7 @@ def main():
           + (f"  S&P {b(out['series']['sp500']):.2f}" if "sp500" in out["series"] else "  (no S&P data)"))
     print("levels:", out["levels"])
     # live record: each night's action per strategy, appended and never rewritten
+    os.makedirs(OUT, exist_ok=True)      # BitcoinLab/data/ is not in the repo until the first run creates it
     log_path = os.path.join(OUT, "actions.json")
     live = json.load(open(log_path)) if os.path.exists(log_path) else {"days": {}}
     day = str(out["last"])

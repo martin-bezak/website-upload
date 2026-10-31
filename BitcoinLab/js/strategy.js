@@ -9,8 +9,8 @@ const BENCH = [
 let P, sel = 'balanced', show = { btc: true, sp500: true, others: false };
 const DAY = 86400;
 
-// Bitcoin trades all day, but the rules read daily closes: the signal is from 00:00 UTC, the page updates after it
-const WHEN = 'The signal is from the daily close at 00:00 UTC; this page updates around 03:30 UTC, so trade when you see it.';
+// Bitcoin trades all day, but the rules read daily closes: the signal is from 00:00 UTC
+const WHEN = 'The signal is from the daily close at 00:00 UTC; the backtest trades right after that close.';
 const fmtUsd = v => '$' + Math.round(v).toLocaleString('en-US');
 // signed percentages; a value that rounds to zero shows as 0%, never −0%
 const sgn = (v, d) => { const t = Math.abs(v * 100).toFixed(d); return (+t === 0 ? '' : v > 0 ? '+' : '−') + t + '%'; };
@@ -214,19 +214,8 @@ function renderLive() {
     `<tr><td data-l="After the close on"><b>${when(t)}</b></td><td class="n" data-l="BTC price">${fmtUsd(v.price)}</td>` +
     KEYS.map(k => `<td class="n ${k === sel ? 'is-cur' : ''}" data-l="${NAMES[k]}">${cell(v[k])}</td>`).join('') + '</tr>').join('');
   liveI0 = i0;
-  renderLate(i0, f);
-  $('#live-key').innerHTML = `<span><i class="k-live"></i> ${NAMES[sel]}</span><span><i class="k-late"></i> ${NAMES[sel]}, traded ${P.late?.hours ?? 4} hours late</span><span><i class="k-lbtc"></i> Bitcoin</span>`;
+  $('#live-key').innerHTML = `<span><i class="k-live"></i> ${NAMES[sel]}</span><span><i class="k-lbtc"></i> Bitcoin</span>`;
   drawLive();
-}
-
-/* the small score: the same rules with every trade some hours after the close (about when this page updates) */
-function renderLate(i0, f) {
-  const L = P.late, box = $('#late-score');
-  if (!L) { box.hidden = true; return; }
-  const live = L.live[sel], nowAt = P.profiles[sel].eq[P.n - 1] / P.profiles[sel].eq[i0] - 1;
-  const lateAt = live[live.length - 1] - 1;
-  box.innerHTML = `<b>Traded ${L.hours} hours late</b>, about when this page updates: ${NAMES[sel]} ${f(lateAt)} since the live record started (at the close: ${f(nowAt)}). ` +
-    `Over the whole backtest: ${KEYS.map(k => `${NAMES[k]} ${L.mult[k].toFixed(1)}× instead of ${(1 + P.profiles[k].stats.total).toFixed(1)}×`).join(', ')}. <a href="method.html#delay" class="text-link">Why</a>`;
 }
 
 /* chart of the live record only: $100,000 on the first live night, nothing from the backtest before it */
@@ -237,7 +226,6 @@ function liveChart(w) {
   const val = arr => arr.slice(i0).map(v => 100000 * v / arr[i0]);
   const L = [
     { vals: val(P.series.btc), cls: 'lv-btc', label: 'Bitcoin' },
-    ...(P.late ? [{ vals: P.late.live[sel].map(v => 100000 * v), cls: 'lv-late', label: `${NAMES[sel]}, ${P.late.hours} h late` }] : []),
     { vals: val(P.profiles[sel].eq), cls: 'lv-acc', label: NAMES[sel], main: true },
   ];
   const H = w < 600 ? 220 : 280, m = { l: w < 600 ? 60 : 72, r: 16, t: 16, b: 30 };

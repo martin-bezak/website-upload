@@ -426,15 +426,11 @@ html.btc[data-theme="light"] .founder { background: var(--btc-black); --surface:
 .live-chart { margin-bottom: var(--s16); }
 .lv { fill: none; }
 .lv-acc { stroke: var(--c-acc); }
-.lv-late { stroke: var(--c-acc); stroke-dasharray: 2 5; stroke-linecap: round; }
 .lv-btc { stroke: var(--c-main); stroke-opacity: 0.55; }
 .lv-dot.lv-acc { fill: var(--c-acc); stroke: none; }
-.lv-dot.lv-late { fill: var(--bg); stroke: var(--c-acc); stroke-width: 2; stroke-dasharray: none; }
 .lv-dot.lv-btc { fill: var(--c-main); fill-opacity: 0.55; stroke: none; }
 .chart-key i.k-live { border-color: var(--c-acc); }
-.chart-key i.k-late { border-color: var(--c-acc); border-top-style: dotted; }
 .chart-key i.k-lbtc { border-color: var(--c-main); opacity: 0.55; }
-.late-score { margin: 0 0 var(--s40); }
 
 /* the strategy switch keeps the reader's place itself (js keepPlace); stop Chrome/Firefox from adjusting twice */
 html.btc { overflow-anchor: none; }

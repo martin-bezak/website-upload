@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="../styles.css?v=2">
   <link rel="stylesheet" href="base.css?v=1">
-  <link rel="stylesheet" href="lab.css?v=27">
+  <link rel="stylesheet" href="lab.css?v=28">
   <script>
     document.documentElement.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -165,7 +165,6 @@
             <div><dt>Data</dt><dd>Hourly Bitcoin prices on Binance since August 2017 (Binance Vision). Every decision uses only data that existed at that moment.</dd></div>
             <div><dt>Execution</dt><dd>Bitcoin trades around the clock, but every rule reads <em>daily</em> closes (00:00 UTC), so a signal can only be known when the day ends. The backtest trades at the first price after that close. Stops and targets are checked against every hour’s high and low; if both are touched in the same hour, the stop is assumed to come first. A stop that the price gaps through fills at the worse price.</dd></div>
             <div><dt>Costs</dt><dd>0.10% fee plus 0.05% slippage on every trade. Re-tested at two and three times the costs, with 0.5% worse stop fills: all three strategies still beat buy-and-hold.</dd></div>
-            <div id="delay"><dt>Trading later</dt><dd>This site updates around 03:30 UTC, hours after the close the backtest trades at. So every trade was re-run 1 to 12 hours late (stops and targets unchanged, since they are orders placed with the trade). Returns barely moved: Growth 44× to 58×, Balanced 31× to 34×, Defensive 20× to 22×, all far ahead of Bitcoin’s 12×. The worst drop moved more: Balanced −44% to −49%, Defensive −28% to −34%. At about 4 hours late, roughly when you can act on this page: 52×, 31× and 20×, with worst drops of −61%, −49% and −33%.</dd></div>
             <div><dt>Rules first</dt><dd>Every rule was written down before its first test, with standard values, not tuned to the results. The main hypotheses were registered in advance and corrected for testing several ideas at once (Holm method); only the squeeze breakdown passed (p = 0.010).</dd></div>
             <div><dt>Placebos</dt><dd>The same exits from 1,000 sets of random entry times, and the same positions shifted to random dates. A real signal has to beat both.</dd></div>
             <div><dt>No hindsight tuning</dt><dd>A version that picked the best of 32 rule variants each January, using only past data, did worse out of sample than the fixed rules ($8.2 against $16.4 per $1 from 2020). So the rules stay fixed.</dd></div>
@@ -177,7 +176,7 @@
           <ul class="bullets">
             <li><b>History is short.</b> About two and a half Bitcoin market cycles. The evidence that the strategies beat buy-and-hold on risk-adjusted terms is borderline for Balanced and Defensive (p ≈ 0.05–0.10); it is strong only for the squeeze breakdown.</li>
             <li><b>The ideas came after looking.</b> The rules were fixed before each test, but the ideas themselves were chosen with knowledge of Bitcoin’s past. The live record, starting October 2026, is the real test.</li>
-            <li><b>Big drops still happen.</b> Growth fell 61% at its worst; Balanced 42%; Defensive 27%. Trading a few hours after the close, as you will with this page, made the worst drops of Balanced and Defensive up to 7 points deeper in tests (<a href="#delay" class="text-link">trading later</a>).</li>
+            <li><b>Big drops still happen.</b> Growth fell 61% at its worst; Balanced 42%; Defensive 27%.</li>
             <li><b>Long dull stretches.</b> Trend strategies can trail Bitcoin for a year or more in fast rallies.</li>
             <li><b>One exchange.</b> Prices are Binance’s; other exchanges differ slightly, and exchanges can fail.</li>
             <li><b>Taxes are not included.</b> Every sell can be a taxable event where you live.</li>
@@ -186,7 +185,7 @@
 
         <section id="practice">
           <h2 class="h3">Following it in practice</h2>
-          <p>Bitcoin trades all day, but the rules only look at the daily close (00:00 UTC). The page updates once a night, around 03:30 UTC, when the day’s data is published; trade when you see the new action. Stop and target levels can be set as orders on the exchange straight away. The <a href="index.html" class="text-link">Strategy page</a> shows that night’s action, the levels that would change it, and any open trade’s stop and target. Following a strategy means checking once a day and trading on a spot exchange (no leverage, no shorting), plus holding the cash part somewhere that earns interest.</p>
+          <p>Bitcoin trades all day, but the rules only look at the daily close (00:00 UTC). The backtest trades right after that close, which an exchange bot or scheduled order can do for you. This page shows each night’s action once the day’s data is published. Stop and target levels can be set as orders on the exchange straight away. The <a href="index.html" class="text-link">Strategy page</a> shows that night’s action, the levels that would change it, and any open trade’s stop and target. Following a strategy means checking once a day and trading on a spot exchange (no leverage, no shorting), plus holding the cash part somewhere that earns interest.</p>
           <p class="disclaimer"><b>This is a research project, not investment advice.</b> The rules don’t know your goals, taxes or tolerance for losses, and past results don’t guarantee future ones.</p>
         </section>
 

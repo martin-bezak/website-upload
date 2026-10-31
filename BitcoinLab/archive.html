@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="../styles.css?v=2">
   <link rel="stylesheet" href="base.css?v=1">
-  <link rel="stylesheet" href="lab.css?v=27">
+  <link rel="stylesheet" href="lab.css?v=28">
   <script>
     document.documentElement.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -149,17 +149,6 @@
         </li>
         <li class="arc-item">
           <p class="arc-n">10</p>
-          <div class="arc-card">
-            <h2 class="h3">Trading later than the backtest <span class="tag t-rule">Method</span></h2>
-            <p><b>Problem.</b> Bitcoin trades around the clock, but the rules read daily closes, and the backtest traded right at the 00:00 UTC close. This site can only update around 03:30 UTC, once the day’s data is published, so anyone following it trades hours later.</p>
-            <p><b>Test.</b> Every trade re-run 1 to 12 hours after the close, with stops and targets unchanged.</p>
-            <p><b>Result.</b> Returns barely moved (Growth 44× to 58×, Balanced 31× to 34×, Defensive 20× to 22×, against Bitcoin’s 12×). Worst drops moved more: Balanced −44% to −49%, Defensive −28% to −34%, built up over many small differences in the 2019–20 sideways market, not one bad trade.</p>
-            <p><b>Kept going.</b> The test now also runs every night: the Strategy page keeps a small score of each strategy traded 4 hours late, next to the real one, so the live record shows whether the delay matters.</p>
-            <p class="lesson"><b>Lesson:</b> the edge doesn’t depend on catching the exact close, but a single worst-drop number overstates how precisely it is known.</p>
-          </div>
-        </li>
-        <li class="arc-item">
-          <p class="arc-n">11</p>
           <div class="arc-card arc-final">
             <h2 class="h3">Today: three strategies <span class="tag t-work">Live</span></h2>
             <p><b>Growth</b> (squeeze sell + interest), <b>Balanced</b> (Combo A + interest) and <b>Defensive</b> (Combo B + interest). Their live record starts in October 2026 and has its own chart: $100,000 from the first live night, with nothing from the backtest mixed in. That record, not the backtest, will decide whether they really work. <a href="index.html" class="text-link">See today’s actions</a> · <a href="method.html" class="text-link">Read the rules</a>.</p>

@@ -2,9 +2,9 @@
 <html lang="en" class="btc" data-style="classic" data-lang="en" data-root="../">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>Bitcoin Lab · Martin Bezak</title>
-  <meta name="description" content="Three tested Bitcoin strategies (Growth, Balanced, Defensive): today's action, the rules behind it, and a $100,000 mock portfolio against buy-and-hold, cash, bonds and the S&P 500.">
+  <meta name="description" content="Three tested Bitcoin strategies (Growth, Balanced, Defensive): today's action, the rules behind it, and a $100,000 mock portfolio against buying and holding Bitcoin and the S&P 500.">
   <meta name="author" content="Martin Bezak">
   <meta name="theme-color" content="#08090b">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="../styles.css?v=2">
   <link rel="stylesheet" href="base.css?v=1">
-  <link rel="stylesheet" href="lab.css?v=18">
+  <link rel="stylesheet" href="lab.css?v=27">
   <script>
     document.documentElement.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -27,7 +27,7 @@
 <body>
   <a href="#main" class="skip">Skip to content</a>
 
-  <header class="lab-nav" id="lab-nav">
+  <header class="lab-nav lab-nav-static" id="lab-nav">
     <div class="wrap lab-nav-in">
       <a href="index.html" class="lab-logo" aria-label="Bitcoin Lab, home"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
       <button type="button" class="lab-menu" aria-expanded="false" aria-controls="lab-links">Menu</button>
@@ -60,9 +60,9 @@
   </section>
 
   <div class="h-bar">
-    <div class="wrap">
-      <span class="h-label" id="p-label">Strategy</span>
-      <div class="seg h-seg p-seg" role="group" aria-labelledby="p-label">
+    <div class="wrap h-bar-in">
+      <a href="#top" class="h-mb" aria-label="Bitcoin Lab, back to the top"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span></a>
+      <div class="seg h-seg p-seg" role="group" aria-label="Strategy">
         <button type="button" data-p="growth" aria-pressed="false">Growth</button><button type="button" data-p="balanced" aria-pressed="true">Balanced</button><button type="button" data-p="defensive" aria-pressed="false">Defensive</button>
       </div>
     </div>
@@ -187,12 +187,12 @@
             <p class="r-num">Mock portfolio</p>
             <h2 class="h2 r-title" id="mock-h">$100,000,<br>any period</h2>
           </div>
-          <p class="r-intro">Pick any stretch of history and see what $100,000 would have become with this strategy, compared with holding Bitcoin, the S&amp;P 500, US government bonds or cash. Every line restarts at $100,000 on the first day shown.</p>
+          <p class="r-intro">See what $100,000 would have become with this strategy, compared with simply holding Bitcoin or the S&amp;P 500. Pick the day the money goes in, then move and zoom the chart freely: the lines only start again when you pick a new start date.</p>
         </div>
         <div class="ctrls mock-ctrls">
-          <label class="ctrl"><span>From</span><input type="date" id="from"></label>
-          <label class="ctrl"><span>To</span><input type="date" id="to"></label>
-          <div class="ctrl"><span>Periods</span>
+          <label class="ctrl"><span>Start ($100,000 in)</span><input type="date" id="from"></label>
+          <label class="ctrl"><span>Until</span><input type="date" id="to"></label>
+          <div class="ctrl"><span>Start from</span>
             <div class="quick" id="quick">
               <button type="button" class="btn btn-secondary btn-sm" data-from="start" data-to="end">All</button>
               <button type="button" class="btn btn-secondary btn-sm" data-from="2018-09-07" data-to="2019-12-31">2018–19 bottom</button>
@@ -213,9 +213,9 @@
           <label class="check log-toggle"><input type="checkbox" id="logscale" checked> Log scale</label>
         </div>
         <div class="chart-key mock-key" id="mock-key"></div>
-        <div class="chart mock-chart" id="mock-chart" tabindex="0" aria-describedby="mock-help"><div class="r-loading">Loading…</div><div class="readout" id="mock-readout" hidden></div></div>
+        <div class="chart-key mock-values" id="mock-readout"></div>
+        <div class="chart mock-chart" id="mock-chart" tabindex="0" aria-label="Mock portfolio chart: arrow keys move in time, + and − zoom, 0 shows everything"><div class="r-loading">Loading…</div></div>
         <div class="mock-nav" id="mock-nav" aria-label="Whole history: drag the window to choose the period"></div>
-        <p class="chart-cap" id="mock-help">Zoom: pinch with two fingers (phone or trackpad), hold Ctrl (⌘ on Mac) and scroll, or use + and −. Move in time: drag the chart sideways, drag the window in the strip below, or use the arrow keys. Double-click or Reset to see everything.</p>
         <div class="table-scroll">
           <table class="ledger on-ink mock-table stack">
             <caption class="vh">What $100,000 became</caption>
@@ -223,14 +223,14 @@
             <tbody id="mock-table"></tbody>
           </table>
         </div>
-        <p class="chart-cap">Strategies: fees (0.10% + 0.05% slippage per trade) included; cash earns the 3-month US T-bill rate of each day. Bitcoin: buy and hold. Cash: 3-month T-bills. Bonds: 10-year US Treasury, return estimated from FRED yields. S&amp;P 500: the SPY fund with dividends. Past results, simulated; not a promise of future ones.</p>
+        <p class="chart-cap">Strategies: fees (0.10% + 0.05% slippage per trade) included; cash earns the 3-month US T-bill rate of each day. Bitcoin: buy and hold. S&amp;P 500: the SPY fund with dividends. Past results, simulated; not a promise of future ones.</p>
       </div>
     </section>
 
     <section class="r-sec" aria-label="Notes">
       <div class="wrap">
         <p class="disclaimer"><b>Not investment advice.</b> These are the outputs of fixed rules, tested on history, published as a student research project. They don’t know your situation, can be wrong for long stretches, and past results don’t guarantee anything. If you act on them, that’s your decision.</p>
-        <p class="licence">Bitcoin prices: <a href="https://data.binance.vision/" class="text-link">Binance Vision</a>, licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-link">CC BY-NC-SA 4.0</a>; the strategy data on these pages is shared under the same licence. T-bill and Treasury yields: <a href="https://fred.stlouisfed.org/" class="text-link">FRED</a>, Federal Reserve Bank of St. Louis. S&amp;P 500 (SPY): Yahoo Finance. Live price: TradingView. Not affiliated with or endorsed by any of them.</p>
+        <p class="licence">Bitcoin prices: <a href="https://data.binance.vision/" class="text-link">Binance Vision</a>, licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-link">CC BY-NC-SA 4.0</a>; the strategy data on these pages is shared under the same licence. T-bill rates: <a href="https://fred.stlouisfed.org/" class="text-link">FRED</a>, Federal Reserve Bank of St. Louis. S&amp;P 500 (SPY): Yahoo Finance. Live price: TradingView. Not affiliated with or endorsed by any of them.</p>
       </div>
     </section>
   </main>
@@ -263,6 +263,6 @@
     </div>
   </footer>
 
-  <script type="module" src="js/strategy.js?v=17"></script>
+  <script type="module" src="js/strategy.js?v=26"></script>
 </body>
 </html>

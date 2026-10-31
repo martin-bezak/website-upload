@@ -2,7 +2,7 @@
 <html lang="en" class="btc" data-style="classic" data-lang="en" data-root="../">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <title>How it works · Bitcoin Lab · Martin Bezak</title>
   <meta name="description" content="The exact rules of the Growth, Balanced and Defensive Bitcoin strategies, how they were tested, their results since 2018, and their risks.">
   <meta name="author" content="Martin Bezak">
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="../styles.css?v=2">
   <link rel="stylesheet" href="base.css?v=1">
-  <link rel="stylesheet" href="lab.css?v=18">
+  <link rel="stylesheet" href="lab.css?v=27">
   <script>
     document.documentElement.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -240,7 +240,7 @@
 
   <script type="module">
     // Keep the numbers on this page in step with the nightly data
-    import { load, chrome } from './js/lab.js?v=5';
+    import { load, chrome } from './js/lab.js?v=6';
     chrome();
     const P = await load('profiles');
     const set = (k, v) => document.querySelectorAll(`[data-m="${k}"]`).forEach(n => (n.textContent = v));

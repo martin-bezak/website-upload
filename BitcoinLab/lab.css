@@ -418,7 +418,6 @@ html.btc[data-theme="light"] .founder { background: var(--btc-black); --surface:
 .nav-shade { fill: var(--btc-black); opacity: 0.6; }
 .nav-win { fill: none; stroke: var(--btc-orange); stroke-width: 2; }
 .nav-handle { fill: var(--btc-orange); cursor: ew-resize; }
-.mock-sec #mock-help { margin-top: var(--s8); }
 
 /* End-of-line values on the mock chart: outlined in the panel colour so they stay readable over the lines */
 .mock-chart .t-strong { paint-order: stroke; stroke: var(--surface); stroke-width: 5px; stroke-linejoin: round; }
@@ -439,3 +438,39 @@ html.btc[data-theme="light"] .founder { background: var(--btc-black); --surface:
 
 /* the strategy switch keeps the reader's place itself (js keepPlace); stop Chrome/Firefox from adjusting twice */
 html.btc { overflow-anchor: none; }
+
+/* ---------- Phones: no accidental page zoom, no sideways scrolling ----------
+   Pinch-zoom on the page made it wider than the screen. The page now only scrolls up and down;
+   pinching is left to the chart, which zooms itself. Form fields are at least 16px so iPhones
+   don't zoom in when one is tapped. */
+html.btc { touch-action: pan-x pan-y; }
+html.btc body { overflow-x: clip; }
+.ctrl select, .ctrl input[type="date"] { font-size: var(--fs-body); }
+.mock-chart, .mock-chart svg { touch-action: pan-y; overscroll-behavior: contain; -webkit-user-select: none; -webkit-touch-callout: none; }
+
+/* Values for the day being pointed at: a fixed strip above the chart, so nothing covers the lines */
+.mock-values { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: var(--s8) var(--s24); align-items: start;
+  margin: 0; padding-block: var(--s16); border-block: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.mock-values > span { display: grid; grid-template-columns: auto 1fr; column-gap: var(--s8); align-items: center; }
+.mock-values > span > b { grid-column: 2; font-weight: 700; font-size: var(--fs-body); }
+.mock-values .mv-date { display: block; font-weight: 700; font-size: var(--fs-body); }
+.mock-values .mv-date small { display: block; font-size: var(--fs-small); font-weight: 400; color: var(--muted); }
+.mock-nav + .table-scroll { margin-top: var(--s40); }
+.mock-range .mock-showing { font-size: var(--fs-small); color: var(--muted); }
+.nav-start { fill: var(--btc-white); }
+
+/* Strategy page: the top bar scrolls away; only the strategy bar stays, with the MB mark on the left and the three strategies centred */
+.lab-nav.lab-nav-static { position: relative; }
+.btc .h-bar { top: 0; }
+html.btc:has(.lab-nav-static) { scroll-padding-top: var(--s96); }
+.h-bar .h-bar-in { display: grid; grid-template-columns: 1fr minmax(0, 640px) 1fr; align-items: center; gap: var(--s16); }
+.h-bar-in .h-seg { grid-column: 2; max-width: none; }
+.h-mb { grid-column: 1; justify-self: start; display: inline-grid; grid-template-columns: max-content; justify-items: start; min-height: 44px; min-width: 44px; align-content: center; font-size: 28px; color: var(--text); text-decoration: none; }
+.h-mb .ll-mb { grid-row: 1; }
+.h-mb .ll-bar { grid-row: 2; justify-self: stretch; width: auto; }
+.h-mb:hover .ll-mb { color: var(--btc-orange); }
+@media (max-width: 719px) {
+  .h-bar .h-bar-in { grid-template-columns: auto minmax(0, 1fr); }
+  .h-mb { font-size: 24px; }
+}
+@media (max-width: 479px) { .h-bar-in .p-seg button { font-size: 18px; padding: 0 var(--s4); } }

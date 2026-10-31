@@ -77,6 +77,10 @@ export function liveWidget(box, lastPrice, lastTime) {
 
 // Bitcoin Lab's own top bar: phone menu and the light/dark switch (same saved setting as the main site)
 export function chrome() {
+  // No page zoom from a trackpad pinch (Chrome, Firefox and Edge send it as Ctrl + scroll; Safari as gesture events).
+  // The mock-portfolio chart catches the pinch first and zooms itself. Cmd + and Cmd − still work.
+  document.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
+  for (const t of ['gesturestart', 'gesturechange', 'gestureend']) document.addEventListener(t, e => e.preventDefault());
   const btn = document.querySelector('.lab-menu'), links = document.getElementById('lab-links');
   if (btn && links) {
     const set = open => { links.classList.toggle('is-open', open); btn.setAttribute('aria-expanded', String(open)); };

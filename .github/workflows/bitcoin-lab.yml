@@ -60,7 +60,7 @@ jobs:
           git add BitcoinLab/data/actions.json
           if ! git diff --cached --quiet; then
             git commit -m "Bitcoin Lab: actions for $(date -u +%F)"
-            git pull --rebase origin main
+            git pull --rebase --autostash origin main   # the run also refreshes other files (e.g. FRED rates); keep them out of the way
             git push origin HEAD:main
           fi
 

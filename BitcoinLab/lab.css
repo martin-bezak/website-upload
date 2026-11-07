@@ -470,3 +470,8 @@ html.btc:has(.lab-nav-static) { scroll-padding-top: var(--s96); }
   .h-mb { font-size: 24px; }
 }
 @media (max-width: 479px) { .h-bar-in .p-seg button { font-size: 18px; padding: 0 var(--s4); } }
+
+/* Live record table: the latest night only, until "Show all" is pressed */
+.live-table:not(.show-all) tr.is-old { display: none; }
+.live-more { margin-top: var(--s16); }
+.live-more[hidden] { display: none; }   /* .btn sets display, which would otherwise beat [hidden] */

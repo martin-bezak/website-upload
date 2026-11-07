@@ -210,12 +210,28 @@ function renderLive() {
     : `<p>Since the live record started (${when(first)}, ${days.length} nights): <b>${NAMES[sel]} ${f(chg(P.profiles[sel].eq))}</b> · Bitcoin ${f(chg(P.series.btc))}` +
       KEYS.filter(k => k !== sel).map(k => ` · ${NAMES[k]} ${f(chg(P.profiles[k].eq))}`).join('') + '</p>';
   const cell = a => `${a.action === 'HOLD' ? (a.target > 0.99 ? 'Hold BTC' : a.target < 0.01 ? 'Hold cash' : 'Hold ' + Math.round(a.target * 100) + '%') : (a.action === 'BUY' ? 'Buy' : 'Sell') + ' → ' + Math.round(a.target * 100) + '%'}`;
-  $('#live-rows').innerHTML = days.slice(0, 30).map(([t, v]) =>
-    `<tr><td data-l="After the close on"><b>${when(t)}</b></td><td class="n" data-l="BTC price">${fmtUsd(v.price)}</td>` +
+  // only the latest night is shown until the reader asks for the rest (the full list is long on a phone)
+  $('#live-rows').innerHTML = days.map(([t, v], i) =>
+    `<tr${i ? ' class="is-old"' : ''}><td data-l="After the close on"><b>${when(t)}</b></td><td class="n" data-l="BTC price">${fmtUsd(v.price)}</td>` +
     KEYS.map(k => `<td class="n ${k === sel ? 'is-cur' : ''}" data-l="${NAMES[k]}">${cell(v[k])}</td>`).join('') + '</tr>').join('');
+  const more = $('#live-more');
+  more.hidden = days.length < 2;
+  more.textContent = liveAll ? 'Show only the latest night' : `Show all ${days.length} nights`;
+  more.setAttribute('aria-expanded', String(liveAll));
+  $('#live-table').classList.toggle('show-all', liveAll);
   liveI0 = i0;
   $('#live-key').innerHTML = `<span><i class="k-live"></i> ${NAMES[sel]}</span><span><i class="k-lbtc"></i> Bitcoin</span>`;
   drawLive();
+}
+
+let liveAll = false;
+function bindLiveMore() {
+  const more = $('#live-more');
+  more.addEventListener('click', () => {
+    liveAll = !liveAll;
+    renderLive();
+    if (!liveAll && more.getBoundingClientRect().top < $('.h-bar').getBoundingClientRect().bottom) more.scrollIntoView({ block: 'center' });
+  });
 }
 
 /* chart of the live record only: $100,000 on the first live night, nothing from the backtest before it */
@@ -238,7 +254,13 @@ function liveChart(w) {
   const sx = linear([0, Math.max(1, n - 1)], [m.l, w - m.r]);
   yGrid(g, sy, ticks(lo - pad, hi + pad, 4), m.l, w - m.r, v => '$' + Math.round(v).toLocaleString('en-US'), { zero: 100000 });
   const xs = Array.from({ length: n }, (_, i) => sx(i));
-  const lab = n <= 8 ? xs.map((_, i) => i) : [0, Math.round((n - 1) / 2), n - 1];
+  // a whole-day step so labels stay at least ~70px apart; the last day is always labelled
+  const av = w - m.l - m.r, fit = Math.max(2, Math.floor(av / 70) + 1);
+  const step = n > 1 ? Math.ceil((n - 1) / (fit - 1)) : 1, px = av / Math.max(1, n - 1);
+  const lab = [];
+  for (let i = 0; i < n - 1; i += step) lab.push(i);
+  if (lab.length > 1 && (n - 1 - lab[lab.length - 1]) * px < 70) lab.pop();
+  lab.push(n - 1);
   for (const i of lab) {
     const t = el('text', { x: xs[i], y: H - 8, 'text-anchor': i === 0 ? 'start' : i === n - 1 ? 'end' : 'middle' }, g);
     t.textContent = when(P.t0 + (i0 + i) * DAY).replace(/ \d{4}$/, '');
@@ -765,7 +787,7 @@ async function init() {
     setStart(a, z);
   }));
   $('#logscale').addEventListener('change', () => drawMock());
-  bindChart(); bindNav();
+  bindChart(); bindNav(); bindLiveMore();
   renderCards();
   drawMock = responsive($('#mock-chart'), mockChart);
   drawLive = responsive($('#live-chart'), liveChart);

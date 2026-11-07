@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="../styles.css?v=2">
   <link rel="stylesheet" href="base.css?v=1">
-  <link rel="stylesheet" href="lab.css?v=28">
+  <link rel="stylesheet" href="lab.css?v=30">
   <script>
     document.documentElement.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
@@ -169,12 +169,13 @@
         <div class="chart-key" id="live-key"></div>
         <div class="chart live-chart" id="live-chart"><div class="r-loading">Loading…</div></div>
         <div class="table-scroll">
-          <table class="ledger stack">
+          <table class="ledger stack live-table" id="live-table">
             <caption class="vh">Live actions</caption>
             <thead><tr><th>After the close on</th><th class="n">BTC price</th><th class="n">Growth</th><th class="n">Balanced</th><th class="n">Defensive</th></tr></thead>
             <tbody id="live-rows"></tbody>
           </table>
         </div>
+        <button type="button" class="btn btn-secondary btn-sm live-more" id="live-more" aria-controls="live-rows" aria-expanded="false" hidden>Show all nights</button>
       </div>
     </section>
 
@@ -262,6 +263,6 @@
     </div>
   </footer>
 
-  <script type="module" src="js/strategy.js?v=27"></script>
+  <script type="module" src="js/strategy.js?v=30"></script>
 </body>
 </html>

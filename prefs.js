@@ -94,11 +94,14 @@
       '<button type="button" class="prefs-close">' + t.close + ' ×</button>';
   }
 
-  function open() {
+  // Opened with the keyboard (Enter/Space give a click with detail 0): focus the first option, with its ring.
+  // Opened with a mouse or finger: focus the panel itself, so Safari draws no focus ring on "English".
+  panel.setAttribute('tabindex', '-1');
+  function open(byKeyboard) {
     panel.hidden = false;
     btn.setAttribute('aria-expanded', 'true');
     var first = panel.querySelector('a, button');
-    if (first) first.focus();
+    if (byKeyboard && first) first.focus(); else panel.focus({ preventScroll: true });
   }
   function close(returnFocus) {
     panel.hidden = true;
@@ -108,13 +111,13 @@
 
   btn.addEventListener('click', function (e) {
     e.stopPropagation();
-    panel.hidden ? open() : close(false);
+    panel.hidden ? open(e.detail === 0) : close(false);
   });
   panel.addEventListener('click', function (e) {
     e.stopPropagation();   // clicks inside the panel never count as "outside"
     var set = e.target.closest('[data-theme-set]');
-    if (set) { setTheme(set.getAttribute('data-theme-set')); var again = panel.querySelector('[data-theme-set="' + set.getAttribute('data-theme-set') + '"]'); if (again) again.focus(); return; }
-    if (e.target.closest('.prefs-close')) close(true);
+    if (set) { setTheme(set.getAttribute('data-theme-set')); var again = panel.querySelector('[data-theme-set="' + set.getAttribute('data-theme-set') + '"]'); if (again && e.detail === 0) again.focus(); return; }
+    if (e.target.closest('.prefs-close')) close(e.detail === 0);
     e.stopPropagation();
   });
   document.addEventListener('click', function () { if (!panel.hidden) close(false); });

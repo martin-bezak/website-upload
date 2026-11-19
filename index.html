@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Martin Bezak · Economics &amp; Finance student, Prague</title>
-  <meta name="description" content="Martin Bezak, Economics &amp; Finance student at IES, Charles University in Prague: process automation, student parliaments and event organising. CV and contact.">
+  <meta name="description" content="Martin Bezak, Economics &amp; Finance student at IES, Charles University in Prague. Student leader who leads Bitcoin Lab, an AI-built finance project. CV and contact.">
   <link rel="canonical" href="https://martinbezak.com/">
   <link rel="alternate" hreflang="en" href="https://martinbezak.com/">
   <link rel="alternate" hreflang="sk" href="https://martinbezak.com/sk/">
@@ -20,7 +20,7 @@
   <!-- Link preview on LinkedIn, WhatsApp, Messenger, Slack. The image needs the full https address (LinkedIn requires it). -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Martin Bezak · Economics &amp; Finance, IES Charles University">
-  <meta property="og:description" content="Economics &amp; Finance student in Prague. Process automation, student parliaments and GymParty, a school event I founded.">
+  <meta property="og:description" content="Economics &amp; Finance student in Prague, student leader from Slovakia. I lead Bitcoin Lab, an AI-built finance project.">
   <meta property="og:url" content="https://martinbezak.com/">
   <meta property="og:image" content="https://martinbezak.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -50,14 +50,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=19">
   <script>
     document.documentElement.classList.add('js');
     /* Apply a saved light/dark choice before the page paints, so it never flashes */
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
   </script>
   <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
   <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="motion.css?v=1">
 </head>
 
 <body>
@@ -69,7 +75,7 @@
       <a href="#top" class="mark" aria-label="Martin Bezak, back to top">MB</a>
       <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <nav aria-label="Main">
-        <ul class="nav-links" id="nav-links"><li><a href="#about">About</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#hobbies">Hobbies</a></li><li><a href="projects.html">Projects</a></li><li><a href="#contact">Contact</a></li></ul>
+        <ul class="nav-links" id="nav-links"><li><a href="#about">About</a></li><li><a href="#projects">Projects</a></li><li><a href="#experience">Experience</a></li><li><a href="#skills">Skills</a></li><li><a href="#hobbies">Hobbies</a></li><li><a href="#contact">Contact</a></li></ul>
       </nav>
       <div class="prefs" data-prefs></div>
     </div>
@@ -83,7 +89,7 @@
         <p class="hero-role">Economics &amp; Finance · IES, Charles University</p>
         <h1 class="hero-name"><span>Martin</span> <span>Bezak</span></h1>
         <div class="hero-foot">
-          <p class="hero-tagline">Student in Prague, from Slovakia. I've chaired a school parliament, founded a school party (GymParty) and captained a hockey team. I enjoy making things work better, from data to events.</p>
+          <p class="hero-tagline">Student in Prague, from Slovakia. I've chaired a school parliament, founded a school party and captained a hockey team. Now I lead Bitcoin Lab, an AI-built finance project, and MB Arcade, economics games for fun.</p>
           <div class="buttons">
             <a href="#contact" class="btn btn-primary">Get in touch</a>
             <a href="Bezak_Martin.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Download CV</a>
@@ -96,14 +102,6 @@
     </div>
   </section>
 
-  <section class="now" aria-label="Now">
-    <div class="wrap">
-      <dl>
-        <div><dt>Studying</dt><dd>BSc Economics &amp; Finance, IES FSV UK</dd></div><div><dt>Building</dt><dd><a href="MBArcade/index.html">MB Arcade</a>, browser games on economics and markets, and <a href="BitcoinLab/index.html">Bitcoin Lab</a>, a Bitcoin strategy study</dd></div><div><dt>Languages</dt><dd>Slovak, English C2, Czech, German A2</dd></div>
-      </dl>
-    </div>
-  </section>
-
   <main id="main">
 
     <!-- ===================== ABOUT ===================== -->
@@ -112,10 +110,35 @@
         <h2 class="sec-label" id="about-h">About</h2>
         <div class="body">
           <p class="statement"><span>I'm analytical by nature, but I keep ending up</span> <span>in front of people.</span></p>
-          <div class="prose cols">
-            <p>I study Economics and Finance at the Institute of Economic Studies in Prague. It started when I was 13: during COVID I began listening to business podcasts and got hooked on how money works and moves.</p>
-            <p>Chairing a parliament, captaining a team, building an event from scratch. That's the combination I want to keep: understanding the numbers, and leading the people behind them.</p>
+          <div class="prose">
+            <p>I study Economics and Finance at the Institute of Economic Studies in Prague. It started when I was 13: during COVID I began listening to business podcasts and got hooked on how money works and moves. What I want to keep is the combination: understanding the numbers, and leading the people behind them.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS: Bitcoin Lab (ink panel, wide, the serious one) + MB Arcade (smaller, a fun side project). Role lines come from Martin's 19 Nov interview only. ===================== -->
+    <section class="section work-sec" id="projects" aria-labelledby="work-h">
+      <div class="wrap">
+        <div class="work-head">
+          <h2 class="sec-label" id="work-h">Projects</h2>
+          <a class="text-link" href="projects.html">All projects</a>
+        </div>
+        <div class="work">
+          <article class="work-item work-btc s-ink" aria-labelledby="btc-h">
+            <p class="work-meta">10/2026 – present · Founder and project lead</p>
+            <h3 class="work-name" id="btc-h">Bitcoin<br>Lab</h3>
+            <p class="work-what">Three backtested Bitcoin strategies, updated every night: what each one says today, and what $100,000 would have become in any period since 2018.</p>
+            <p class="work-role"><b>My role:</b> the idea, which strategies to keep and which to drop, the design and features, testing and the launch. The code, the statistical methods and the backtests were produced with AI.</p>
+            <div class="buttons"><a href="BitcoinLab/index.html" class="btn btn-primary">Open Bitcoin Lab</a></div>
+          </article>
+          <article class="work-item work-arcade" aria-labelledby="arcade-h">
+            <p class="work-meta">10/2026 – present · Side project, for fun</p>
+            <h3 class="arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h3>
+            <p class="work-what">Three quick browser games on economics and markets, each with a daily round.</p>
+            <p class="work-role"><b>My role:</b> the idea, the game concepts, the design and testing with friends. The code and the game content were made with AI to my brief.</p>
+            <p><a class="text-link work-link" href="MBArcade/index.html">Play MB Arcade</a></p>
+          </article>
         </div>
       </div>
     </section>
@@ -126,18 +149,14 @@
         <h2 class="h3" id="numbers-h">In numbers</h2>
         <div class="stats">
           <div class="stat">
-            <p class="fig">200+</p>
-            <p class="desc">guests at GymParty, a school party I founded and led twice</p>
-          </div>
-          <div class="stat">
             <p class="fig">40h → 5h</p>
             <p class="desc">processing time per unit after an automation I proposed at VIPO</p>
             <div class="ratio" aria-hidden="true"><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i><i style="--i:28"></i><i style="--i:29"></i><i style="--i:30"></i><i style="--i:31"></i><i style="--i:32"></i><i style="--i:33"></i><i style="--i:34"></i><i style="--i:35"></i><i style="--i:36"></i><i style="--i:37"></i><i style="--i:38"></i><i style="--i:39"></i><i style="--i:40"></i></div>
             <div class="ratio-scale" aria-hidden="true"><span>0h</span><span>5h</span><span>40h</span></div>
           </div>
           <div class="stat">
-            <p class="fig">1st</p>
-            <p class="desc">place in the regional round of the Mathematical Olympiad</p>
+            <p class="fig">200+</p>
+            <p class="desc">guests at GymParty, the school party I founded</p>
           </div>
         </div>
       </div>
@@ -159,40 +178,7 @@
               <div>
                 <h4>Digitalization Intern</h4>
                 <p class="row-org">VIPO a.s. · tyre industry, ~100 employees</p>
-                <ul><li>Proposed an automation and got it adopted; a colleague wrote the script</li><li>Processing time per unit fell from 40 hours to 5</li><li>Tested the script so it runs on every machine</li><li>Uploaded documents and data into the B2B system</li></ul>
-              </div>
-            </div>
-            <div class="row">
-              <p class="row-date">Summers 2023, 2024</p>
-              <div>
-                <h4>Sales &amp; Marketing Intern</h4>
-                <p class="row-org">VIPO a.s. · two summer internships</p>
-                <ul><li>Processed order data in Excel</li><li>Prepared presentations for the sales team</li></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3 class="h3">Independent projects</h3>
-          <div class="rows">
-            <div class="row">
-              <p class="row-date">10/2026 – present</p>
-              <div>
-                <h4>Founder and project lead, Bitcoin Lab</h4>
-                <p class="row-org">Independent project · a study of three backtested Bitcoin strategies, built with AI tools</p>
-                <ul><li>Came up with the idea: a study of three Bitcoin strategies that shows, every night, what each one says today</li><li>Decided which strategies to keep and which to drop, and shaped the design and features</li><li>The code, the statistical methods and the backtests were produced with AI</li><li>Tested the site and launched it in October 2026</li></ul>
-                <p class="row-link"><a class="text-link" href="projects.html">See the project</a></p>
-              </div>
-            </div>
-            <div class="row">
-              <!-- TODO (Martin): check the start date -->
-              <p class="row-date">2026 – present</p>
-              <div>
-                <h4>Founder and project lead, MB Arcade</h4>
-                <p class="row-org">Independent project · browser games on economics and markets, built with AI tools</p>
-                <ul><li>Came up with the idea, the audience and the three games: Estimate it, Chart it and Sell the top</li><li>Set the design direction and decided the games should run in English, Czech and Slovak</li><li>The code and the game content (750 questions, 821 real price charts, 1,000 one-year price windows) were made with AI to my brief</li><li>Tested the games, asked friends to play and report problems, and decided when to launch</li></ul>
-                <p class="row-link"><a class="text-link" href="projects.html">See the project</a></p>
+                <ul><li>Proposed an automation and got it adopted; a colleague wrote the script</li><li>Tested the script so it runs on every machine</li><li>Uploaded documents and data into the B2B system</li><li>Before that, two summer internships in Sales &amp; Marketing (2023, 2024): order data in Excel and presentations for the sales team</li></ul>
               </div>
             </div>
           </div>
@@ -206,7 +192,7 @@
               <div>
                 <h4>Vice-Chair</h4>
                 <p class="row-org">Regional Youth Parliament, Trenčín Region</p>
-                <ul><li>Ran a region-wide survey of students' problems</li><li>Organised the Assembly of Delegates twice a year</li></ul>
+                <ul><li>Ran a region-wide survey of students' problems</li><li>Helped organise the Assembly of Delegates twice a year, where a delegate from every secondary school in the region spoke about the issues at their school</li></ul>
               </div>
             </div>
             <div class="row">
@@ -214,56 +200,19 @@
               <div>
                 <h4>Chairman</h4>
                 <p class="row-org">Student Parliament, Gymnázium Partizánske</p>
-                <ul><li>Made school events better organised</li><li>Launched GymParty, the school's new event</li></ul>
+                <ul><li>Made school events better organised</li></ul>
               </div>
             </div>
             <div class="row">
-              <!-- TODO (Martin): add the years you were team captain -->
-              <p class="row-date">Ice hockey</p>
+              <!-- TODO (Martin): the years of the GymParty editions -->
+              <p class="row-date">Three editions</p>
               <div>
-                <h4>Team Captain</h4>
-                <p class="row-org">Defender, played from age 4 to 19</p>
+                <h4>Founder, GymParty</h4>
+                <p class="row-org">A school party I started from nothing, which became a tradition</p>
+                <ul><li>Started it as chairman of the Student Parliament and led a team of 5–10 people</li><li>Planned the programme and the prizes, and negotiated a deal with the venue, including discounts for our guests</li><li>Led the first two editions, then mentored the student who led the third</li></ul>
+                <!-- TODO (Martin): one or two sentences on the hardest problem and how you solved it -->
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Featured project -->
-        <article class="case" aria-labelledby="case-h">
-          <p class="h3">Featured project</p>
-          <div class="case-media">
-            <figure class="case-photo">
-              <img src="images/gymparty-stage.jpg" width="940" height="660" loading="lazy" alt="Martin and the other hosts on stage at GymParty">
-              <figcaption>On stage at GymParty with the hosting team</figcaption>
-            </figure>
-            <dl class="case-facts s-ink"><div><dt>Guests</dt><dd>200+</dd></div><div><dt>Team</dt><dd>5–10 people</dd></div><div><dt>Editions</dt><dd>3<small>led 2, mentored 1</small></dd></div><div><dt>Role</dt><dd>Founder<small>then mentor</small></dd></div></dl>
-          </div>
-          <div class="case-body">
-            <div class="case-intro">
-              <h3 class="case-name" id="case-h">GymParty</h3>
-              <p class="case-lede">A school party I started from nothing, which became a tradition.</p>
-            </div>
-            <div class="case-did">
-              <h4>What I did</h4>
-              <ul><li>Started it as chairman of the Student Parliament, to leave something lasting at my school</li><li>Led a team of 5–10 people</li><li>Planned the programme, the preparation and the prizes</li><li>Negotiated the deal with the venue, including discounts for our guests</li><li>Led the first two editions, then mentored the student who led the third</li></ul>
-              <!-- TODO (Martin): one or two sentences on the hardest problem and how you solved it -->
-            </div>
-          </div>
-        </article>
-
-        <div class="group">
-          <h3 class="h3">Other events</h3>
-          <div class="events">
-            <article class="event">
-              <h4>Assembly of Delegates</h4>
-              <p class="event-meta"><span>Regional Youth Parliament</span><span>Twice a year</span></p>
-              <p>A delegate from every secondary school in the Trenčín Region came to speak about the issues at their school. As vice-chair, I helped organise it twice a year.</p>
-            </article>
-            <article class="event">
-              <h4>Dozens more</h4>
-              <p class="event-meta"><span>In and outside school</span></p>
-              <p>Smaller school and community events, organised throughout my time at secondary school.</p>
-            </article>
           </div>
         </div>
 
@@ -287,17 +236,10 @@
               </div>
             </div>
             <div class="row">
-              <p class="row-date">Regional round</p>
+              <p class="row-date">Regional rounds</p>
               <div>
-                <h4>Mathematical Olympiad</h4>
-                <p class="row-org">1st place in categories B and C, 2nd in category A</p>
-              </div>
-            </div>
-            <div class="row">
-              <p class="row-date">Regional round</p>
-              <div>
-                <h4>Physics Olympiad</h4>
-                <p class="row-org">5th place in category D</p>
+                <h4>Mathematical and Physics Olympiads</h4>
+                <ul><li>Maths: 1st place in categories B and C, 2nd in category A</li><li>Physics: 5th place in category D</li></ul>
               </div>
             </div>
           </div>
@@ -328,61 +270,24 @@
       </div>
     </section>
 
-    <!-- ===================== HOBBIES ===================== -->
-    <section class="section hobbies-sec" id="hobbies" aria-labelledby="hob-h">
-      <div class="wrap g12">
-        <div class="hob-head">
-          <h2 class="h2" id="hob-h">Beyond the CV</h2>
-          <p class="lead">What I do outside of school and work, and what each of these has taught me.</p>
-        </div>
-        <div class="hob-body">
-          <p class="statement"><span>My favourite hobby is</span> <span>people.</span></p>
-          <div class="prose">
-            <p>I enjoy leading a group, being the host and creating events where everyone has a good time. That's how GymParty, our school party, came about: not as a duty, but because I genuinely enjoy it.</p>
-            <p>What started as a hobby turned into some of my most valuable experience.</p>
-          </div>
-          <ul class="traits"><li>Leading</li><li>Hosting</li><li>Organising</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ice hockey (ink) -->
-    <section class="section hockey s-ink" id="hockey" aria-labelledby="hockey-h">
-      <div class="hockey-grid">
-        <figure class="hockey-photo">
+    <!-- ===================== BEYOND THE CV (ink): hockey leads, art beside it, hiking as one line ===================== -->
+    <section class="section beyond s-ink" id="hobbies" aria-labelledby="hob-h">
+      <div class="beyond-grid">
+        <figure class="beyond-photo">
           <img src="images/hockey.jpg" width="480" height="600" loading="lazy" alt="Martin in full gear playing ice hockey">
-          <figcaption>Ice hockey</figcaption>
         </figure>
-        <div class="hockey-text">
-          <h2 class="h2" id="hockey-h">Fifteen years on the ice</h2>
-          <div class="prose"><p>I played ice hockey as a defender from the age of 4 until 19, and became captain of my team. Hockey taught me to show up every day, to push through when it gets hard, and to take responsibility for the people around me.</p></div>
-          <div class="figures"><div class="figure"><p class="num">15 years</p><p class="desc">of ice hockey, from age 4 to 19</p></div><div class="figure"><p class="num">Captain</p><p class="desc">leading my team on and off the ice</p></div></div>
-          <ul class="traits"><li>Discipline</li><li>Endurance</li><li>Responsibility</li><li>Teamwork</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Art and hiking -->
-    <section class="section art-hiking" id="art" aria-labelledby="ah-h">
-      <div class="wrap">
-        <h2 class="sec-label" id="ah-h">Art &amp; hiking</h2>
-        <div class="pair">
-          <div class="art">
-            <h3 class="kicker">Art</h3>
-            <p class="h3-statement"><span>Shaping something by hand is</span> <span>the opposite of a spreadsheet.</span></p>
-            <div class="prose"><p>I attended art school from the age of 4 until 18, and ceramics was always my go-to. I mostly made cities and buildings in clay. It rewards patience, intuition and attention to the smallest detail.</p></div>
-            <div class="figures"><div class="figure"><p class="num">14 years</p><p class="desc">at art school, from age 4 to 18</p></div><div class="figure"><p class="num">Clay</p><p class="desc">my favourite medium, mostly cities and buildings</p></div></div>
-            <ul class="traits"><li>Creativity</li><li>Patience</li><li>Eye for detail</li></ul>
+        <div class="beyond-text">
+          <h2 class="h2" id="hob-h">Beyond<br>the CV</h2>
+          <div class="beyond-item">
+            <h3 class="h3">Ice hockey</h3>
+            <div class="figures"><div class="figure"><p class="num">15 years</p><p class="desc">as a defender, from age 4 to 19</p></div><div class="figure"><p class="num">Captain</p><p class="desc">leading my team on and off the ice</p></div></div>
+            <p class="beyond-copy">Hockey taught me to show up every day, to push through when it gets hard, and to take responsibility for the people around me.</p>
           </div>
-          <div class="hiking" id="hiking">
-            <figure class="hiking-photo">
-              <img src="images/hiking.jpg" width="480" height="600" loading="lazy" alt="Martin with his dog on a hiking trail">
-            </figure>
-            <h3 class="kicker">Hiking</h3>
-            <p class="h3-statement"><span>Time</span> <span>in nature.</span></p>
-            <div class="prose"><p>Hiking is how I switch off and recharge, usually in the peaks and forests near my hometown. A long day outside, away from screens and with a clear goal at the top, is the best way I know to clear my head.</p></div>
-            <ul class="traits"><li>Endurance</li><li>Perspective</li><li>Balance</li></ul>
+          <div class="beyond-item">
+            <h3 class="h3">Art</h3>
+            <p class="beyond-copy">Fourteen years at art school. Ceramics was always my go-to: I mostly made cities and buildings in clay, which rewards patience and attention to the smallest detail.</p>
           </div>
+          <p class="beyond-line"><b>Hiking</b> is how I switch off: a long day in the peaks and forests near my hometown, away from screens.</p>
         </div>
       </div>
     </section>
@@ -405,12 +310,13 @@
   <footer class="site-footer s-ink">
     <div class="wrap">
       <span>© 2026 Martin Bezak</span>
-      <nav class="foot-alt" aria-label="Other versions"><a href="sk/index.html" hreflang="sk" lang="sk">Slovensky</a><a href="cs/index.html" hreflang="cs" lang="cs">Česky</a><a href="projects.html">Projects</a></nav>
+      <nav class="foot-alt" aria-label="Other versions"><a href="sk/index.html" hreflang="sk" lang="sk">Slovensky</a><a href="cs/index.html" hreflang="cs" lang="cs">Česky</a><a href="projects.html">Projects</a><a href="BitcoinLab/index.html">Bitcoin Lab →</a><a href="MBArcade/index.html">MB Arcade →</a></nav>
       <a href="#top">Back to top</a>
     </div>
   </footer>
 
-  <script src="prefs.js"></script>
+  <script src="prefs.js?v=2"></script>
   <script src="main.js"></script>
+  <script src="motion.js?v=10"></script>
 </body>
 </html>

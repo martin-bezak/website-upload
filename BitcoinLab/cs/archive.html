@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="cs" class="btc" data-style="classic" data-lang="cs" data-root="../../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Archiv · Bitcoin Lab · Martin Bezák</title>
+  <meta name="description" content="Jak vznikly strategie Bitcoin Lab: každý nápad otestovaný od prvního prototypu, který hledal podobné grafy, co selhalo, co přežilo a co který krok naučil.">
+  <link rel="canonical" href="https://martinbezak.com/BitcoinLab/cs/archive.html">
+  <link rel="alternate" hreflang="en" href="https://martinbezak.com/BitcoinLab/archive.html">
+  <link rel="alternate" hreflang="sk" href="https://martinbezak.com/BitcoinLab/sk/archive.html">
+  <link rel="alternate" hreflang="cs" href="https://martinbezak.com/BitcoinLab/cs/archive.html">
+  <link rel="alternate" hreflang="x-default" href="https://martinbezak.com/BitcoinLab/archive.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Archiv · Bitcoin Lab · Martin Bezák">
+  <meta property="og:description" content="Jak vznikly strategie Bitcoin Lab: každý nápad otestovaný od prvního prototypu, který hledal podobné grafy, co selhalo, co přežilo a co který krok naučil.">
+  <meta property="og:url" content="https://martinbezak.com/BitcoinLab/cs/archive.html">
+  <meta property="og:image" content="https://martinbezak.com/BitcoinLab/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo Bitcoin Lab: MB nad oranžovým pruhem a nápis Bitcoin Lab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="Martin Bezák">
+  <meta name="theme-color" content="#08090b">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../../styles.css?v=19">
+  <link rel="stylesheet" href="../base.css?v=1">
+  <link rel="stylesheet" href="../lab.css?v=34">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+  <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
+  <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="../../motion.css?v=1">
+  <script>
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Přeskočit na obsah</a>
+
+  <header class="lab-nav" id="lab-nav">
+    <div class="wrap lab-nav-in">
+      <a href="index.html" class="lab-logo" aria-label="Bitcoin Lab, domů"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <button type="button" class="lab-menu" aria-expanded="false" aria-controls="lab-links">Menu</button>
+      <nav aria-label="Bitcoin Lab">
+        <ul class="lab-links" id="lab-links">
+          <li><a href="index.html">Strategie</a></li>
+          <li><a href="method.html">Jak to funguje</a></li>
+          <li><a href="archive.html" aria-current="page">Archiv</a></li>
+          <li><a href="../../cs/index.html">Martin Bezák <span aria-hidden="true">→</span></a></li>
+          <li class="lab-lang"><a href="../archive.html" hreflang="en" lang="en" aria-label="English">EN</a><a href="../sk/archive.html" hreflang="sk" lang="sk" aria-label="Slovensky">SK</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Přepnout světlý nebo tmavý režim">Aa</button>
+    </div>
+  </header>
+
+  <section class="r-head lab-head s-oxblood" id="top">
+    <div class="wrap">
+      <p class="r-kicker">Výzkumný projekt vytvořený s AI, který vede <a href="../../cs/index.html">Martin Bezák</a></p>
+      <p class="page-title" aria-hidden="true">Bitcoin<br><span class="o">lab</span></p>
+    </div>
+  </section>
+
+  <main id="main" class="doc">
+    <div class="wrap">
+      <h1 class="h2">Archiv<br>pokusů</h1>
+      <p class="lead arc-lead">Většina nápadů selhala. To je ta užitečná část: každé selhání zúžilo hledání. Tady je každý krok od prvního prototypu ke třem strategiím, s čísly tak, jak byla tehdy naměřena.</p>
+      <ul class="arc-legend" aria-label="Verdikty">
+        <li><span class="tag t-fail">Nefungovalo</span> nepřekonalo jednoduché srovnávací měřítko</li>
+        <li><span class="tag t-part">Částečně</span> užitečné, ale neprokázané nebo nedostatečné</li>
+        <li><span class="tag t-work">Funguje</span> prošlo všemi testy</li>
+        <li><span class="tag t-rule">Metoda</span> změna ve způsobu testování</li>
+        <li><span class="tag t-part">Vyřazeno</span> nějakou dobu vytvořené a zobrazené, pak odstraněné</li>
+        <li><span class="tag t-work">Živě</span> běží teď, zaznamenává se každou noc</li>
+      </ul>
+
+      <ol class="arc">
+        <li class="arc-item">
+          <p class="arc-n">01</p>
+          <div class="arc-card">
+            <h2 class="h3">Market Rhymes: objevil se už tento graf někdy dřív? <span class="tag t-fail">Nefungovalo</span></h2>
+            <p><b>Nápad.</b> Vzít posledních 26 týdnů trhu, najít 10 nejpodobnějších úseků za 50 let v 15 trzích (indexy, akcie, zlato, ropa, měny) a podívat se, co následovalo.</p>
+            <p><b>Test.</b> Stejné hledání na 1 586 minulých datech, jen s daty dostupnými v dané době.</p>
+            <p><b>Výsledek.</b> Shody odhadly směr na 3 měsíce správně v 57% případů. Prosté tvrzení „nahoru“ pokaždé mělo pravdu v 64%. Známý příklad: před pádem Lehmanu (září 2008) shody ukazovaly +5%; S&amp;P 500 klesl o 30%.</p>
+            <p class="lesson"><b>Ponaučení:</b> podobně vypadající grafy přidávají šum, ne informaci. Každý signál musí nejdřív porazit to nejlínější pravidlo.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">02</p>
+          <div class="arc-card">
+            <h2 class="h3">Market Rhymes, krypto: 200 mincí, živě <span class="tag t-fail">Nefungovalo</span></h2>
+            <p><b>Nápad.</b> Stejné hledání shod na denních datech 584 mincí na Binance (včetně těch stažených z obchodování), aktualizované každou noc.</p>
+            <p><b>Výsledek.</b> 22 693 minulých odhadů: u směru na 30 dní správně v 52% případů. „Vždy dolů“ mělo pravdu v 59%, protože většina mincí ztrácí hodnotu. Mince se po odhadech „nahoru“ pohybovaly zhruba stejně jako po odhadech „dolů“.</p>
+            <p class="lesson"><b>Ponaučení:</b> srovnávací měřítko závisí na trhu. U kryptoměn je líným pravidlem „dolů“ a hledání vzorců s ním také prohrálo. Další poznatek: znovu použité tickery (LUNA, VEN) vytvářejí falešné cenové skoky a je třeba je rozdělit.</p>
+          </div>
+        </li>
+        <li class="arc-item" id="forecasts">
+          <p class="arc-n">03</p>
+          <div class="arc-card">
+            <h2 class="h3">Předpovědi Bitcoin Lab: sedm modelů, od 1 hodiny po 1 rok <span class="tag t-part">Vyřazeno</span></h2>
+            <p><b>Nápad.</b> Zaměřit se na Bitcoin s mnohem bohatšími daty (hodinové ceny, funding rates, open interest, poměry long/short) a nechat sedm modelů předpovídat pravděpodobnost růstu: základní míru, momentum, podobné grafy, cenový model, model ceny a derivátů, model volatility a jejich průměr.</p>
+            <p><b>Test.</b> Každý měsíc znovu odhadnuto na tehdy dostupných datech, hodnoceno pomocí Brier skill score, kalibrace a Diebold–Marianova testu oproti základní míře.</p>
+            <p><b>Výsledek.</b> Na 1 a 4 hodiny byly modely mírně, ale významně lepší (53% správně oproti 51%), jenže obchodování podle nich všechno ztratilo na poplatcích. Od 7 do 90 dní nic nepřekonalo základní míru. Na 1 rok bylo jen asi 6 nezávislých výsledků, příliš málo na posouzení. Podobné grafy byly horší než základní míra (48% oproti 53% na 7 dní, p &lt; 0,001) a byly odstraněny.</p>
+            <p class="lesson"><b>Ponaučení:</b> směr je téměř nepředvídatelný. Rozpětí modelu volatility však byla dobře kalibrovaná: <em>jak velké</em> pohyby budou, se předpovídat dá, i když <em>kterým směrem</em> ne. Z této myšlenky vznikl signál squeeze níže. Samotná stránka s předpověďmi byla vyřazena: pravděpodobnosti, které nepřekonají základní míru, nemá smysl ukazovat vedle strategií.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">04</p>
+          <div class="arc-card">
+            <h2 class="h3">Strategie 1: trend + cílová volatilita + posuvný stop <span class="tag t-part">Částečně</span></h2>
+            <p><b>Nápad.</b> Držet Bitcoin, když je nad 50-, 100- a 200denními průměry, s velikostí pozice pro volatilitu 50% a s posuvným stopem 3× průměrné denní rozpětí pod maximem.</p>
+            <p><b>Výsledek.</b> Duben 2018–říjen 2026: z 1 $ bylo 7,2× oproti 10,9× u Bitcoinu, ale největší propad byl −36% místo −77% a celé roky 2018 a 2022 strategie stála stranou. Vyhrálo jen 35% obchodů, ale ziskové měly v průměru +26,5% a ztrátové −3,9%. Překonání strategie koupit a držet po zohlednění rizika se neprokázalo (p = 0,23).</p>
+            <p class="lesson"><b>Ponaučení:</b> štít proti krachům, ne stroj na peníze. Pozdější testy ukázaly, že problémem byl posuvný stop: stejné pravidlo trendu bez něj udělalo z 1 $ 24,6×.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">05</p>
+          <div class="arc-card">
+            <h2 class="h3">Strategie 2: obrat přeplněné páky <span class="tag t-fail">Nefungovalo</span></h2>
+            <p><b>Nápad.</b> Když funding, prémie futures, open interest i pozice top traderů ukazují přeplněné longy (horních 15% za poslední rok), vsadit na prudké vyčištění pozic; zrcadlově u přeplněných shortů.</p>
+            <p><b>Výsledek.</b> Od roku 2021 jen 9–20 obchodů. Prodej proti přeplněným longům prodělal v 7 z 9 obchodů. Každá ze čtyř částí testovaná samostatně také selhala (nejlepší: pozice top traderů, p = 0,07 před korekcí).</p>
+            <p class="lesson"><b>Ponaučení:</b> na býčích trzích znamenají přeplněné longy „trend“, ne „vrchol“. Skutečná data o likvidacích z více burz by mohla fungovat lépe; denní průměry jen z Binance ne.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">06</p>
+          <div class="arc-card">
+            <h2 class="h3">Strategie 3: průlom po squeeze volatility <span class="tag t-work">Funguje</span> <span class="tag t-part">strana prodeje</span></h2>
+            <p><b>Nápad.</b> Využít tu část, která <em>je</em> předvídatelná. Po neobvykle klidném období (squeeze, tedy období neobvykle nízké volatility) odstartuje prolomení 20denního pásma velký pohyb. Stop na druhé straně pásma, cíl dvojnásobek rizika, nejvýše 20 dní.</p>
+            <p><b>Výsledek.</b> Držení Bitcoinu s prodejem jen při propadech udělalo z 1 $ 60,9× oproti 12,7× (září 2018–říjen 2026). Propady porazily náhodné časy prodeje se stejnými výstupy v 995 z 1 000 simulací. Všech 27 blízkých nastavení překonalo strategii koupit a držet. I bez svého jediného nejlepšího obchodu vydělala 38,9×. U nákupu při průlomech byly důkazy slabší (p = 0,07).</p>
+            <p class="lesson"><b>Ponaučení:</b> první skutečný signál: klid, pak propad dolů, pak pryč z trhu.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">07</p>
+          <div class="arc-card">
+            <h2 class="h3">Audit: byly testy dost důkladné? <span class="tag t-rule">Metoda</span></h2>
+            <p><b>Co se změnilo.</b> Každá strategie prošla jedním společným výpočetním jádrem, které počítá hodinu po hodině, a stejnými kontrolami: obě poloviny historie, každý rok, náklady ×2 a ×3, placebo načasování, blokový bootstrap a korekce na vícenásobné testování napříč pěti hypotézami registrovanými před spuštěním.</p>
+            <p><b>Výsledek.</b> Korekci přežil jen propad po squeeze (p = 0,010). Fungoval i se spouštěčem na <em>denní uzávěrce</em> (61× oproti 13×), což web aktualizovaný každou noc dokáže zajistit. Podobné grafy jako obchodní strategie ztratily 55%; přeplněná páka selhala ve všech podobách.</p>
+            <p class="lesson"><b>Ponaučení:</b> testovat verzi, kterou lze skutečně provozovat, a započítat každý provedený test.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">08</p>
+          <div class="arc-card">
+            <h2 class="h3">Kombinace: trend + squeeze <span class="tag t-work">Funguje</span></h2>
+            <p><b>Nápad.</b> Trend jako základní pozice, propady a průlomy po squeeze jako výjimky. Verze s velikostí pozice podle volatility pro nižší riziko.</p>
+            <p><b>Výsledek.</b> Září 2018–říjen 2026: z 1 $ bylo 28× (Combo A) a 18× (Combo B) oproti 13× u Bitcoinu, s největšími propady −43% a −28% místo −77%. Všech 27 blízkých nastavení překonalo strategii koupit a držet ve výnosu, v Sharpe i v největším propadu. Ze šesti různých dat začátku pokaždé překonaly Sharpe Bitcoinu a jeho výnos pokaždé kromě poloviny roku 2023.</p>
+            <p class="lesson"><b>Ponaučení:</b> většinu práce odvádí trendový filtr; průlomy po squeeze přidávají trochu; prodej při propadu je nejdůležitější, když strategie drží Bitcoin pořád.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">09</p>
+          <div class="arc-card">
+            <h2 class="h3">Vylepšení a past přeučení <span class="tag t-rule">Metoda</span></h2>
+            <p><b>Nápad.</b> Otestovat čtyři úpravy (hladší trend, 2% rezervu, průměrování tří sad průměrů, velikost pozice podle volatility) a úrok z hotovosti, posuzované výběrem walk-forward: každý rok vybrat nejlepší z 32 verzí jen podle minulých dat.</p>
+            <p><b>Výsledek.</b> Výběr „nejlepší“ verze každý rok dopadl <em>hůř</em> než pevná pravidla (8,2 $ oproti 16,4 $ na 1 $ od roku 2020), takže žádné ladění. Úrok z hotovosti přidal asi 2% ročně bez dalšího rizika a byl přijat. Hladší trend byl horší ve 13 z 16 srovnání a byl zamítnut.</p>
+            <p class="lesson"><b>Ponaučení:</b> nastavení, která v minulosti vypadala nejlépe, nejlepší nezůstala. Pevná, jednoduchá pravidla tu porazila chytré ladění.</p>
+          </div>
+        </li>
+        <li class="arc-item">
+          <p class="arc-n">10</p>
+          <div class="arc-card arc-final">
+            <h2 class="h3">Dnes: tři strategie <span class="tag t-work">Živě</span></h2>
+            <p><b>Growth</b> (prodej po squeeze + úrok), <b>Balanced</b> (Combo A + úrok) a <b>Defensive</b> (Combo B + úrok). Jejich živý záznam začíná v říjnu 2026 a má vlastní graf: 100 000 $ od první živé noci, bez příměsi čehokoli ze zpětného testu. O tom, zda opravdu fungují, rozhodne tento záznam, ne zpětný test. <a href="index.html" class="text-link">Co strategie říkají dnes</a> · <a href="method.html" class="text-link">Pravidla</a>.</p>
+            <p class="lesson"><b>Stále otevřené:</b> data akcií a ETF pro veřejný web vyžadují licenci; signály k nákupu a prodeji mohou před širším sdílením potřebovat právní kontrolu; ETH by mohlo být druhým aktivem.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </main>
+
+  <section class="founder" aria-labelledby="founder-h">
+    <div class="wrap founder-in">
+      <img src="../../images/portrait-600.jpg" alt="Martin Bezák, student ekonomie a financí" width="600" height="901" loading="lazy">
+      <div>
+        <p class="r-num">Kdo za tím stojí</p>
+        <h2 class="founder-h" id="founder-h">Martin Bezák</h2>
+        <p class="founder-p">Studuji ekonomii a finance na IES Univerzity Karlovy v Praze. Bitcoin Lab je výzkumný projekt vytvořený s AI, který vedu: vybral jsem nápad, rozhodl, které strategie ponechat a které vyřadit, formoval design a funkce a projekt otestoval a spustil. Kód a statistické metody vytvořila AI. Každý nápad, který nevyšel, najdete v <a href="archive.html" class="text-link">Archivu</a>.</p>
+        <div class="buttons"><a href="../../cs/index.html" class="btn btn-primary">Martin Bezák →</a><a href="../../MBArcade/cs/index.html" class="btn btn-secondary">MB Arcade, hry pro zábavu</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="lab-foot">
+    <div class="wrap lab-foot-in">
+      <a href="#top" class="lab-sign" aria-label="Bitcoin Lab, zpět nahoru"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <div class="lab-foot-side">
+        <nav class="lab-foot-links" aria-label="Zápatí">
+          <a href="index.html">Strategie</a>
+          <a href="method.html">Jak to funguje</a>
+          <a href="archive.html">Archiv</a>
+          <a href="../../cs/index.html">Martin Bezák →</a>
+          <a href="../../MBArcade/cs/index.html">MB Arcade →</a>
+          <a href="../archive.html" hreflang="en" lang="en">English</a>
+          <a href="../sk/archive.html" hreflang="sk" lang="sk">Slovensky</a>
+          <a href="#top">Zpět nahoru <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 Bitcoin Lab · Vytvořeno s AI pod vedením Martina Bezáka · data strategie CC BY-NC-SA 4.0 · nejde o investiční doporučení</small>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">import { chrome } from '../js/lab.js?v=8'; chrome();</script>
+  <script src="../../motion.js?v=10"></script>
+</body>
+</html>

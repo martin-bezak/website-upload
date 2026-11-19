@@ -1,19 +1,20 @@
 // Bitcoin Lab · Strategy page: today's action for the chosen profile, the three profiles, and the mock portfolio.
-import { $, $$, load, usd, pc, when, liveWidget, chrome, el, svg, linear, log, ticks, logTicks, path, yGrid, xLabels, yearTicks, responsive } from './lab.js?v=6';
+import { $, $$, load, usd, pc, when, liveWidget, chrome, el, svg, linear, log, ticks, logTicks, path, yGrid, xLabels, yearTicks, responsive } from './lab.js?v=8';
+import { T, LANG, why, fix, int, money, moneyShort, dayMon, monShort } from './i18n.js?v=2';
 
 const KEYS = ['growth', 'balanced', 'defensive'];
 const NAMES = { growth: 'Growth', balanced: 'Balanced', defensive: 'Defensive' };
 const BENCH = [
-  ['btc', 'Bitcoin, buy and hold'], ['sp500', 'S&P 500'],
+  ['btc', T.benchBtc], ['sp500', 'S&P 500'],
 ];
 let P, sel = 'balanced', show = { btc: true, sp500: true, others: false };
 const DAY = 86400;
 
 // Bitcoin trades all day, but the rules read daily closes: the signal is from 00:00 UTC
-const WHEN = 'The signal is from the daily close at 00:00 UTC; the backtest trades right after that close.';
-const fmtUsd = v => '$' + Math.round(v).toLocaleString('en-US');
+const WHEN = T.when;
+const fmtUsd = money;
 // signed percentages; a value that rounds to zero shows as 0%, never −0%
-const sgn = (v, d) => { const t = Math.abs(v * 100).toFixed(d); return (+t === 0 ? '' : v > 0 ? '+' : '−') + t + '%'; };
+const sgn = (v, d) => { const t = Math.abs(v * 100).toFixed(d); return (+t === 0 ? '' : v > 0 ? '+' : '−') + fix(+t, d) + '%'; };
 const pct1 = v => sgn(v, 1);
 const pct0 = v => sgn(v, 0);
 
@@ -37,7 +38,7 @@ function setProfile(k, push = true) {
   sel = k;
   $$('[data-p]').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === k));
   $$('[data-card]').forEach(c => c.classList.toggle('is-sel', c.dataset.card === k));
-  $$('.pc-pick').forEach(b => (b.textContent = b.dataset.p === k ? 'Viewing' : 'View ' + NAMES[b.dataset.p]));
+  $$('.pc-pick').forEach(b => (b.textContent = b.dataset.p === k ? T.viewing : T.view(NAMES[b.dataset.p])));
   if (push) {
     const u = new URL(location.href); u.searchParams.set('s', k); history.replaceState(null, '', u);
     try { localStorage.setItem('btclab-profile', k); } catch (e) {}
@@ -50,23 +51,23 @@ function renderToday() {
   const pr = P.profiles[sel], st = pr.state, L = P.levels;
   const inBtc = st.target;
   // the headline names the position the strategy is in after this close (a state, not an instruction)
-  const pos = inBtc > 0.99 ? 'In Bitcoin' : inBtc < 0.01 ? 'In cash' : `${Math.round(inBtc * 100)}% in BTC`;
-  const word = st.action === 'HOLD' ? pos : 'Now ' + pos.charAt(0).toLowerCase() + pos.slice(1);
+  const pos = inBtc > 0.99 ? T.inBitcoin : inBtc < 0.01 ? T.inCash : T.partBtc(Math.round(inBtc * 100));
+  const word = st.action === 'HOLD' ? pos : T.now(pos);
   $('#act').textContent = word;
   $('#act').className = 'act-' + st.action.toLowerCase();
-  $('#act-kicker').textContent = `What ${pr.name} says · after the close on ${when(P.last)}`;
+  $('#act-kicker').textContent = T.kicker(NAMES[sel], when(P.last));
   // a squeeze signal can fire while the strategy already holds what it asks for: no trade, but say why
-  const signal = st.action === 'HOLD' && st.why ? ` Today’s ${st.why} keeps it ${st.why.endsWith('breakdown') ? 'out' : 'in'} until that trade’s stop, target or 20 days.` : '';
+  const signal = st.action === 'HOLD' && st.why ? T.signal(why(st.why), st.why.endsWith('breakdown')) : '';
   const sub = {
-    HOLD: (inBtc > 0.99 ? 'No change. The strategy stays fully in Bitcoin.' : inBtc < 0.01 ? 'No change. The strategy stays out of Bitcoin, with its cash earning interest.' : `No change. The strategy keeps about ${Math.round(inBtc * 100)}% in Bitcoin.`) + signal,
-    BUY: `The strategy moves to ${Math.round(st.target * 100)}% Bitcoin (${st.why}). ${WHEN}`,
-    SELL: `The strategy moves to ${Math.round(st.target * 100)}% Bitcoin (${st.why}). ${WHEN}`,
+    HOLD: (inBtc > 0.99 ? T.holdFull : inBtc < 0.01 ? T.holdCash : T.holdPart(Math.round(inBtc * 100))) + signal,
+    BUY: `${T.move(Math.round(st.target * 100), why(st.why))} ${WHEN}`,
+    SELL: `${T.move(Math.round(st.target * 100), why(st.why))} ${WHEN}`,
   }[st.action];
   $('#act-sub').textContent = sub;
   $('#pos-btc').style.width = (inBtc * 100) + '%';
   $('#pos-btc-p').textContent = Math.round(inBtc * 100) + '%';
   $('#pos-cash-p').textContent = Math.round((1 - inBtc) * 100) + '%';
-  $('#rf').textContent = (P.rf_now * 100).toFixed(1) + '%';
+  $('#rf').textContent = fix(P.rf_now * 100, 1) + '%';
   renderAmount();
 
   // active trade
@@ -74,8 +75,8 @@ function renderToday() {
   if (a) {
     box.hidden = false;
     box.innerHTML = a.dir < 0
-      ? `<b>Open sell signal</b> since ${when(a.since)}, sold at ${fmtUsd(a.entry)}. Buys back if a day’s price reaches <b>${fmtUsd(a.stop)}</b> (stop) or <b>${fmtUsd(a.target)}</b> (target), or on ${when(a.until)} at the latest.`
-      : `<b>Open buy signal</b> since ${when(a.since)}, bought at ${fmtUsd(a.entry)}. Stop <b>${fmtUsd(a.stop)}</b>, target <b>${fmtUsd(a.target)}</b>, ends ${when(a.until)} at the latest.`;
+      ? T.activeSell(when(a.since), fmtUsd(a.entry), fmtUsd(a.stop), fmtUsd(a.target), when(a.until))
+      : T.activeBuy(when(a.since), fmtUsd(a.entry), fmtUsd(a.stop), fmtUsd(a.target), when(a.until));
   } else box.hidden = true;
 
   // what would change it
@@ -83,40 +84,44 @@ function renderToday() {
   // a squeeze signal that fired at this close: its trade starts now, so the usual triggers are on hold
   const fired = st.pending && st.why ? (st.why.endsWith('breakdown') ? -1 : 1) : 0;
   if (fired) {
-    w.push(`The <b>${st.why}</b> fired at this close: ${fmtUsd(L.close)} is ${fired < 0 ? 'below' : 'above'} the 20-day range. The trade starts now and ends at its stop, about <b>${fmtUsd(fired < 0 ? sq.hi : sq.lo)}</b>, at a target twice as far the other way, or after 20 days. ${sel === 'growth' ? 'Then it buys back.' : 'Then the averages decide again.'}`);
+    w.push(T.fired(why(st.why), fmtUsd(L.close), fired < 0, fmtUsd(fired < 0 ? sq.hi : sq.lo), sel === 'growth'));
   } else if (sel === 'growth') {
-    if (a && a.dir < 0) w.push(`It buys back at the stop or target above, or after 20 days.`);
-    else if (sq.armed) w.push(`<b>Sell</b> if a daily close is below <b>${fmtUsd(sq.lo)}</b>. Bitcoin has been unusually calm, so a break down is the signal this strategy waits for (watch until ${when(sq.until)}).`);
-    else w.push(`Nothing is armed. It sells only after a calm stretch (volatility in the lowest 20% of the past year) ends with a break down.`);
+    if (a && a.dir < 0) w.push(T.growthBack);
+    else if (sq.armed) w.push(T.growthArmed(fmtUsd(sq.lo), when(sq.until)));
+    else w.push(T.growthIdle);
   } else {
     const inNow = st.w_now > 0.01;
-    if (a) w.push(`The averages decide again when the open ${a.dir < 0 ? 'sell' : 'buy'} signal above ends.`);
-    else if (inNow) w.push(`<b>Sell</b> if a daily close falls below any of the 50-, 100- and 200-day averages; the highest is now ${fmtUsd(maxMa)}.`);
-    else w.push(`<b>Buy</b> when a daily close is above all three averages: 50-day ${fmtUsd(L.ma50)}, 100-day ${fmtUsd(L.ma100)}, 200-day ${fmtUsd(L.ma200)}.`);
+    if (a) w.push(T.avgAfter(a.dir < 0));
+    else if (inNow) w.push(T.avgSell(fmtUsd(maxMa)));
+    else w.push(T.avgBuy(fmtUsd(L.ma50), fmtUsd(L.ma100), fmtUsd(L.ma200)));
     if (sq.armed && !a) {
-      w.push(`Calm market, signal armed until ${when(sq.until)}: a daily close above <b>${fmtUsd(sq.hi)}</b> buys early; below <b>${fmtUsd(sq.lo)}</b> sells.`);
+      w.push(T.armed(when(sq.until), fmtUsd(sq.hi), fmtUsd(sq.lo)));
     }
-    if (sel === 'defensive') w.push(`Position size when in: ${Math.round(L.size * 100)}% (Bitcoin’s volatility is ${Math.round(L.vol * 100)}% a year; the target is 50%).`);
+    if (sel === 'defensive') w.push(T.size(Math.round(L.size * 100), Math.round(L.vol * 100)));
   }
-  w.push(`Close on ${when(P.last)}: ${fmtUsd(L.close)}.`);
+  w.push(T.closeOn(when(P.last), fmtUsd(L.close)));
   $('#watch').innerHTML = w.map(x => `<li>${x}</li>`).join('');
 
   // record
-  const rec = pr.record, ci = c => c[0] == null ? '' : ` (likely range ${Math.round(c[0] * 100)}–${Math.round(c[1] * 100)}%)`;
-  const line = (r, label, rightIs) => r.n ? `<div class="rec-line"><b>${Math.round(r.right / r.n * 100)}%</b><span>${label}: ${r.right} of ${r.n} ${rightIs}${ci(r.ci)}. Median move of Bitcoin over these periods: ${pct1(r.median_btc)}.</span></div>` : '';
-  $('#record').innerHTML = line(rec.in, 'Holding Bitcoin', 'times Bitcoin rose while held') +
-    line(rec.cash, 'Sitting in cash', 'times Bitcoin fell while out') +
-    `<p class="small rec-why">A low hit rate is normal here: the strategy loses small and often, and wins big and rarely. What matters is the result below, not how often it is right.</p>`;
+  const rec = pr.record, ci = c => c[0] == null ? '' : T.ci(Math.round(c[0] * 100), Math.round(c[1] * 100));
+  const line = (r, label, rightIs) => r.n ? `<div class="rec-line"><b>${Math.round(r.right / r.n * 100)}%</b><span>${T.recLine(label, r.right, r.n, rightIs, ci(r.ci), pct1(r.median_btc))}</span></div>` : '';
+  $('#record').innerHTML = line(rec.in, T.recIn, T.recInRight) +
+    line(rec.cash, T.recCash, T.recCashRight) +
+    `<p class="small rec-why">${T.recWhy}</p>`;
   $('#today').removeAttribute('aria-busy');
 }
 
 function amountValue() {
-  const v = parseFloat($('#amount').value.replace(/[^0-9.]/g, ''));
+  // English groups thousands with commas. Slovak and Czech group with spaces and use a decimal comma,
+  // but "100.000" or "100,000" (thousands with dots or commas) must still read as a hundred thousand.
+  let raw = $('#amount').value.replace(/[\s$]/g, '');
+  if (LANG !== 'en') raw = /^\d{1,3}([.,]\d{3})+$/.test(raw) ? raw.replace(/[.,]/g, '') : raw.replace(',', '.');
+  const v = parseFloat(raw.replace(/[^0-9.]/g, ''));
   return isFinite(v) && v > 0 ? v : 0;
 }
 function renderAmount() {
   const v = amountValue(), w = P.profiles[sel].state.target;
-  $('#amount-out').innerHTML = v ? `Bitcoin: <b>${fmtUsd(v * w)}</b> (${(v * w / P.price).toFixed(4)} BTC at ${fmtUsd(P.price)}) · Cash: <b>${fmtUsd(v * (1 - w))}</b>` : 'Type an amount to see the split.';
+  $('#amount-out').innerHTML = v ? T.amount(fmtUsd(v * w), fix(v * w / P.price, 4), fmtUsd(P.price), fmtUsd(v * (1 - w))) : T.amountEmpty;
 }
 
 /* ---------- the three cards ---------- */
@@ -138,53 +143,36 @@ function renderCards() {
   for (const k of KEYS) {
     const e = expectations(k);
     $(`[data-expect="${k}"]`).innerHTML = `
-      <div><dt>Time in Bitcoin</dt><dd>${Math.round(e.inBtc * 100)}% of days</dd></div>
-      <div><dt>Trades</dt><dd>about ${e.trades.toFixed(0)} a year</dd></div>
-      <div><dt>Typical stay in Bitcoin</dt><dd>${e.hold >= 60 ? Math.round(e.hold / 30) + ' months' : e.hold + ' days'}</dd></div>
-      <div><dt>$1 since Sep 2018</dt><dd>${e.mult.toFixed(0)}× (${Math.round(e.cagr * 100)}% a year)</dd></div>
-      <div><dt>Worst drop</dt><dd>${Math.round(e.mdd * 100)}%</dd></div>
-      <div><dt>Worst calendar year</dt><dd>${Math.round(e.worst * 100)}%</dd></div>`;
+      <div><dt>${T.timeIn}</dt><dd>${T.daysPct(Math.round(e.inBtc * 100))}</dd></div>
+      <div><dt>${T.trades}</dt><dd>${T.tradesN(e.trades.toFixed(0))}</dd></div>
+      <div><dt>${T.stay}</dt><dd>${e.hold >= 60 ? T.months(Math.round(e.hold / 30)) : T.days(e.hold)}</dd></div>
+      <div><dt>${T.dollar}</dt><dd>${T.mult(int(e.mult), Math.round(e.cagr * 100))}</dd></div>
+      <div><dt>${T.worstDrop}</dt><dd>${Math.round(e.mdd * 100)}%</dd></div>
+      <div><dt>${T.worstYear}</dt><dd>${Math.round(e.worst * 100)}%</dd></div>`;
   }
   const b = P.series.btc;
-  $('#three').insertAdjacentHTML('afterend', `<p class="chart-cap">For comparison, Bitcoin itself: ${(b[b.length - 1] / b[0]).toFixed(0)}× since Sep 2018, 100% of days in Bitcoin, worst drop −77%, worst year −64%. Simulated with fees; trades are counted as any change of position.</p>`);
+  $('#three').insertAdjacentHTML('afterend', `<p class="chart-cap">${T.compare(int(b[b.length - 1] / b[0]))}</p>`);
   $$('[data-card]').forEach(c => c.addEventListener('click', e => { if (!e.target.closest('a, button')) keepPlace(() => setProfile(c.dataset.card)); }));
 }
 
-/* ---------- the chosen strategy, in detail ---------- */
-const DETAIL = {
-  growth: {
-    buys: 'It is in Bitcoin by default. After a sell signal it buys back when that trade ends: the price returns to the top of the 20-day range (the stop), falls twice as far as that distance (the target), or 20 days pass.',
-    sells: 'Only after a calm stretch (20-day volatility in the lowest 20% of the past year) followed by a daily close below the range of the last 20 days. It then sells everything right after that close.',
-    between: 'Fully in Bitcoin. While in cash after a sell, the money earns the T-bill rate.',
-  },
-  balanced: {
-    buys: 'When a daily close is above all three averages (50, 100 and 200 days), or early, when a calm stretch ends with a close above the 20-day range. It buys 100% right after that close.',
-    sells: 'When a daily close falls below any of the three averages, or early, when a calm stretch ends with a close below the 20-day range.',
-    between: 'Either all in Bitcoin or all in cash earning the T-bill rate. An early (squeeze) move lasts until its stop, target or 20 days; then the averages decide again.',
-  },
-  defensive: {
-    buys: 'At the same moments as Balanced, but buys only 50% ÷ Bitcoin’s yearly volatility of the portfolio, at most 100%. In calm markets that is the full amount; in wild ones much less.',
-    sells: 'At the same moments as Balanced, to 100% cash.',
-    between: 'While in Bitcoin it trims or adds as volatility changes, but only when the gap is more than 10 points. The cash part earns the T-bill rate.',
-  },
-};
+/* ---------- the chosen strategy, in detail (texts in i18n.js) ---------- */
 function renderExplain() {
-  const d = DETAIL[sel], y = P.profiles[sel].years, b = btcYears();
+  const d = T.detail[sel], y = P.profiles[sel].years, b = btcYears();
   const f = v => (v >= 0 ? '+' : '−') + Math.abs(Math.round(v * 100)) + '%';
-  const year = k => `${k}: <b>${f(y[k])}</b> vs Bitcoin ${f(b[k])}`;
+  const year = k => `${k}: <b>${f(y[k])}</b> ${T.vs} ${f(b[k])}`;
   $('#explain').innerHTML = `
-    <h3 class="h3">How ${NAMES[sel]} works, in detail</h3>
+    <h3 class="h3">${T.howWorks(NAMES[sel])}</h3>
     <div class="ex-grid">
-      <div><h4 class="pc-h">When it buys</h4><p>${d.buys}</p></div>
-      <div><h4 class="pc-h">When it sells</h4><p>${d.sells}</p></div>
-      <div><h4 class="pc-h">In between</h4><p>${d.between}</p></div>
+      <div><h4 class="pc-h">${T.whenBuys}</h4><p>${d.buys}</p></div>
+      <div><h4 class="pc-h">${T.whenSells}</h4><p>${d.sells}</p></div>
+      <div><h4 class="pc-h">${T.between}</h4><p>${d.between}</p></div>
     </div>
     <div class="ex-years">
-      <p><span class="ex-tag">In a crash</span> ${year('2022')}</p>
-      <p><span class="ex-tag">In a boom</span> ${year('2020')}</p>
-      <p><span class="ex-tag">Sideways</span> ${year('2025')}</p>
+      <p><span class="ex-tag">${T.crash}</span> ${year('2022')}</p>
+      <p><span class="ex-tag">${T.boom}</span> ${year('2020')}</p>
+      <p><span class="ex-tag">${T.sideways}</span> ${year('2025')}</p>
     </div>
-    <p class="small"><a href="method.html#${sel}" class="text-link">Exact rules, risks and tests for ${NAMES[sel]}</a></p>`;
+    <p class="small"><a href="method.html#${sel}" class="text-link">${T.rulesLink(NAMES[sel])}</a></p>`;
 }
 let _by = null;
 function btcYears() {
@@ -206,19 +194,19 @@ function renderLive() {
   if (!days.length) return;
   const first = days[days.length - 1][0], i0 = Math.round((first - P.t0) / DAY);
   const chg = arr => arr[P.n - 1] / arr[i0] - 1;
-  const f = v => (v >= 0 ? '+' : '−') + Math.abs(v * 100).toFixed(1) + '%';
+  const f = v => (v >= 0 ? '+' : '−') + fix(Math.abs(v * 100), 1) + '%';
   $('#live-sum').innerHTML = days.length < 2
-    ? `<p>The live record started after the close on <b>${when(first)}</b>. The first result appears after the next night’s update.</p>`
-    : `<p>Since the live record started (${when(first)}, ${days.length} nights): <b>${NAMES[sel]} ${f(chg(P.profiles[sel].eq))}</b> · Bitcoin ${f(chg(P.series.btc))}` +
+    ? `<p>${T.liveStarted(when(first))}</p>`
+    : `<p>${T.liveSince(when(first), days.length)}<b>${NAMES[sel]} ${f(chg(P.profiles[sel].eq))}</b> · Bitcoin ${f(chg(P.series.btc))}` +
       KEYS.filter(k => k !== sel).map(k => ` · ${NAMES[k]} ${f(chg(P.profiles[k].eq))}`).join('') + '</p>';
-  const cell = a => `${a.action === 'HOLD' ? (a.target > 0.99 ? 'In BTC' : a.target < 0.01 ? 'In cash' : Math.round(a.target * 100) + '% BTC') : (a.action === 'BUY' ? 'Bought' : 'Sold') + ' → ' + Math.round(a.target * 100) + '%'}`;
+  const cell = a => `${a.action === 'HOLD' ? (a.target > 0.99 ? T.cellBtc : a.target < 0.01 ? T.cellCash : T.cellPart(Math.round(a.target * 100))) : (a.action === 'BUY' ? T.bought : T.sold) + ' → ' + Math.round(a.target * 100) + '%'}`;
   // only the latest night is shown until the reader asks for the rest (the full list is long on a phone)
   $('#live-rows').innerHTML = days.map(([t, v], i) =>
-    `<tr${i ? ' class="is-old"' : ''}><td data-l="After the close on"><b>${when(t)}</b></td><td class="n" data-l="BTC price">${fmtUsd(v.price)}</td>` +
+    `<tr${i ? ' class="is-old"' : ''}><td data-l="${T.afterClose}"><b>${when(t)}</b></td><td class="n" data-l="${T.btcPrice}">${fmtUsd(v.price)}</td>` +
     KEYS.map(k => `<td class="n ${k === sel ? 'is-cur' : ''}" data-l="${NAMES[k]}">${cell(v[k])}</td>`).join('') + '</tr>').join('');
   const more = $('#live-more');
   more.hidden = days.length < 2;
-  more.textContent = liveAll ? 'Show only the latest night' : `Show all ${days.length} nights`;
+  more.textContent = liveAll ? T.showLatest : T.showAll(days.length);
   more.setAttribute('aria-expanded', String(liveAll));
   $('#live-table').classList.toggle('show-all', liveAll);
   liveI0 = i0;
@@ -248,13 +236,13 @@ function liveChart(w) {
   ];
   const H = w < 600 ? 220 : 280, m = { l: w < 600 ? 60 : 72, r: 16, t: 16, b: 30 };
   const g = svg(box, w, H);
-  g.setAttribute('aria-label', `Value of $100,000 in ${NAMES[sel]} and in Bitcoin since the live record started on ${when(P.t0 + i0 * DAY)}`);
+  g.setAttribute('aria-label', T.liveAria(NAMES[sel], when(P.t0 + i0 * DAY)));
   let lo = Infinity, hi = -Infinity;
   for (const l of L) for (const v of l.vals) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
   const pad = Math.max(500, (hi - lo) * 0.15);
   const sy = linear([lo - pad, hi + pad], [H - m.b, m.t]);
   const sx = linear([0, Math.max(1, n - 1)], [m.l, w - m.r]);
-  yGrid(g, sy, ticks(lo - pad, hi + pad, 4), m.l, w - m.r, v => '$' + Math.round(v).toLocaleString('en-US'), { zero: 100000 });
+  yGrid(g, sy, ticks(lo - pad, hi + pad, 4), m.l, w - m.r, money, { zero: 100000 });
   const xs = Array.from({ length: n }, (_, i) => sx(i));
   // a whole-day step so labels stay at least ~70px apart; the last day is always labelled
   const av = w - m.l - m.r, fit = Math.max(2, Math.floor(av / 70) + 1);
@@ -322,14 +310,14 @@ function metrics(vals, i0) {
 }
 // the lines on the chart, as raw series (scaled to $100,000 when drawn)
 function lines() {
-  const L = [{ key: sel, label: NAMES[sel] + ' strategy', arr: P.profiles[sel].eq, cls: 'acc', main: true }];
-  if (show.others) for (const k of KEYS) if (k !== sel) L.push({ key: k, label: NAMES[k] + ' strategy', arr: P.profiles[k].eq, cls: 'other' });
+  const L = [{ key: sel, label: T.strategy(NAMES[sel]), arr: P.profiles[sel].eq, cls: 'acc', main: true }];
+  if (show.others) for (const k of KEYS) if (k !== sel) L.push({ key: k, label: T.strategy(NAMES[k]), arr: P.profiles[k].eq, cls: 'other' });
   for (const [k, label] of BENCH) if (show[k] && P.series[k]) L.push({ key: k, label, arr: P.series[k], cls: k });
   return L;
 }
 function renderKey() {
-  const toggles = [...BENCH.filter(([k]) => P.series[k]), ['others', 'Other two strategies']];
-  $('#mock-key').innerHTML = `<span><i class="k-acc"></i> ${NAMES[sel]} strategy</span>` + toggles.map(([k, label]) =>
+  const toggles = [...BENCH.filter(([k]) => P.series[k]), ['others', T.others]];
+  $('#mock-key').innerHTML = `<span><i class="k-acc"></i> ${T.strategy(NAMES[sel])}</span>` + toggles.map(([k, label]) =>
     `<label class="key-toggle"><input type="checkbox" data-show="${k}" ${show[k] ? 'checked' : ''}> <i class="k-${k}"></i> ${label}</label>`).join('');
   $$('[data-show]').forEach(c => c.addEventListener('change', () => { show[c.dataset.show] = c.checked; scheduleMock(); }));
 }
@@ -337,8 +325,8 @@ let rangeText = '';
 function renderMock() {
   if (!P) return;
   const { r0, r1 } = win(), days = r1 - base;
-  const txt = `$100,000 on <b>${when(P.t0 + base * DAY)}</b>, followed to <b>${when(P.t0 + r1 * DAY)}</b> · ${days >= 730 ? (days / 365.25).toFixed(1) + ' years' : days + ' days'}`
-    + (r0 > base ? `<br><span class="mock-showing">Showing ${when(P.t0 + r0 * DAY)} to ${when(P.t0 + r1 * DAY)}</span>` : '');
+  const txt = T.range(when(P.t0 + base * DAY), when(P.t0 + r1 * DAY), days >= 730 ? T.years(fix(days / 365.25, 1)) : T.days(days))
+    + (r0 > base ? `<br><span class="mock-showing">${T.showing(when(P.t0 + r0 * DAY), when(P.t0 + r1 * DAY))}</span>` : '');
   if (txt !== rangeText) {
     rangeText = txt;
     $('#mock-range').innerHTML = txt;
@@ -352,20 +340,19 @@ function renderMock() {
 }
 function renderTable() {
   const { r1 } = win(), s = arr => seriesWin(arr, base, r1, base);
-  const rows = [...KEYS.map(k => ({ label: NAMES[k] + ' strategy', vals: s(P.profiles[k].eq), cur: k === sel })),
+  const rows = [...KEYS.map(k => ({ label: T.strategy(NAMES[k]), vals: s(P.profiles[k].eq), cur: k === sel })),
                 ...BENCH.filter(([k]) => P.series[k]).map(([k, label]) => ({ label, vals: s(P.series[k]) }))];
   $('#mock-table').innerHTML = rows.map(r => {
     const m = metrics(r.vals, base);
-    return `<tr class="${r.cur ? 'is-cur' : ''}"><td data-l="Portfolio"><b>${r.label}</b></td><td class="n" data-l="Worth at the end"><span class="big">${fmtUsd(m.end)}</span></td>
-      <td class="n" data-l="Return">${pct0(m.ret)}</td><td class="n" data-l="Per year">${m.cagr == null ? '–' : pct1(m.cagr)}</td>
-      <td class="n" data-l="Worst drop">${pct0(m.mdd)}</td><td class="n" data-l="Worst calendar year">${pct0(m.worst)}</td></tr>`;
+    return `<tr class="${r.cur ? 'is-cur' : ''}"><td data-l="${T.portfolio}"><b>${r.label}</b></td><td class="n" data-l="${T.worthEnd}"><span class="big">${fmtUsd(m.end)}</span></td>
+      <td class="n" data-l="${T.ret}">${pct0(m.ret)}</td><td class="n" data-l="${T.perYear}">${m.cagr == null ? '–' : pct1(m.cagr)}</td>
+      <td class="n" data-l="${T.worstDrop}">${pct0(m.mdd)}</td><td class="n" data-l="${T.worstYear}">${pct0(m.worst)}</td></tr>`;
   }).join('');
 }
 let drawMock = () => {}, drawNav = () => {};
-const short = v => v === 0 ? '$0' : v >= 1e6 ? '$' + (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + 'M' : '$' + Math.round(v / 1000) + 'k';
+const short = moneyShort;
 
 // x labels pinned to the calendar (1st of a month, or every few days), so they slide with the lines instead of changing text
-const MON3 = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 function calTicks(k0, k1, maxN) {
   const span = k1 - k0, out = [];
   if (span > 730) return yearTicks(k0, k1, maxN).map(([k, y]) => [k, String(y)]);
@@ -373,7 +360,7 @@ function calTicks(k0, k1, maxN) {
   if (span < 75) {
     const step = [1, 2, 7, 14].find(s => span / s <= maxN) || 14;
     // weekly steps land on Mondays (day 4 of the epoch was a Monday)
-    for (let k = Math.ceil((k0 - 4) / step) * step + 4; k <= k1; k += step) { const d = dd(k); out.push([k, `${d.getUTCDate()} ${MON3[d.getUTCMonth()]}`]); }
+    for (let k = Math.ceil((k0 - 4) / step) * step + 4; k <= k1; k += step) { const d = dd(k); out.push([k, dayMon(d.getUTCDate(), d.getUTCMonth())]); }
     return out;
   }
   const step = [1, 2, 3, 6].find(s => span / 30.4 / s <= maxN) || 12;
@@ -382,7 +369,7 @@ function calTicks(k0, k1, maxN) {
     if (mo > 11) { mo = 0; y++; }
     const k = Date.UTC(y, mo, 1) / 864e5;
     if (k > k1) break;
-    if (k >= k0 && mo % step === 0) out.push([k, mo === 0 ? String(y) : MON3[mo] + (step === 1 && span > 150 ? '' : ' ' + String(y).slice(2))]);
+    if (k >= k0 && mo % step === 0) out.push([k, mo === 0 ? String(y) : monShort(mo) + (step === 1 && span > 150 ? '' : ' ' + String(y).slice(2))]);
   }
   return out;
 }
@@ -431,7 +418,7 @@ function mockChart(w) {
     geo = { sig, w, H, m, g, axis, paths, labels, cross };
   }
   const { g, axis, paths, labels } = geo;
-  g.setAttribute('aria-label', `Value of $100,000 put in on ${when(P.t0 + base * DAY)}, shown from ${when(P.t0 + r0 * DAY)} to ${when(P.t0 + r1 * DAY)}, in each portfolio`);
+  g.setAttribute('aria-label', T.mockAria(when(P.t0 + base * DAY), when(P.t0 + r0 * DAY), when(P.t0 + r1 * DAY)));
 
   // scale of each line: $100,000 on the start date; when the start changes, the lines glide to their new scale
   const now = performance.now(), dt = Math.min(64, now - (ease.t || now)); ease.t = now;
@@ -492,7 +479,7 @@ function fillValues(k, pointed) {
   const sig = [k, base, pointed, ...L.map(l => l.key)].join('|');
   if (sig === valuesSig) return;
   valuesSig = sig;
-  $('#mock-readout').innerHTML = `<span class="mv-date">${when(P.t0 + k * DAY)}${pointed ? '' : '<small>end of period</small>'}</span>` +
+  $('#mock-readout').innerHTML = `<span class="mv-date">${when(P.t0 + k * DAY)}${pointed ? '' : `<small>${T.endOfPeriod}</small>`}</span>` +
     L.map(l => `<span><i class="k-${KEY_CLS[l.cls] || l.cls}"></i>${SHORT[l.cls] || l.label}<b>${fmtUsd(100000 * l.arr[k] / l.arr[base])}</b></span>`).join('');
 }
 function hideReadout() {
@@ -778,7 +765,7 @@ async function init() {
   sel = KEYS.includes(from) ? from : KEYS.includes(saved) ? saved : 'balanced';
   $$('[data-p]').forEach(b => b.addEventListener('click', () => keepPlace(() => setProfile(b.dataset.p))));
   $('#amount').addEventListener('input', renderAmount);
-  $('#amount').addEventListener('blur', () => { const v = amountValue(); if (v) $('#amount').value = Math.round(v).toLocaleString('en-US'); });
+  $('#amount').addEventListener('blur', () => { const v = amountValue(); if (v) $('#amount').value = int(v); });
   const fr = $('#from'), to = $('#to');
   for (const x of [fr, to]) { x.min = iso(0); x.max = iso(P.n - 1); }
   fr.addEventListener('change', () => fr.value && setStart(idxOf(fr.value), Math.max(v1, idxOf(fr.value) + MIN_SPAN)));
@@ -798,4 +785,4 @@ async function init() {
   setProfile(sel, false);
 }
 
-init().catch(e => { console.error(e); $('#act').textContent = '–'; $('#act-sub').textContent = 'The data could not be loaded. ' + e.message; });
+init().catch(e => { console.error(e); $('#act').textContent = '–'; $('#act-sub').textContent = T.loadFail + e.message; });

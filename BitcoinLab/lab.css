@@ -347,9 +347,13 @@ html.btc[data-theme="light"] .s-ink { --surface: var(--btc-black); background: v
 .lab-logo:hover .ll-mb { color: var(--btc-orange); }
 
 .lab-links { display: flex; gap: var(--s40); }
-.lab-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: var(--fs-small); font-weight: 500; text-decoration: none; text-decoration-thickness: 2px; text-underline-offset: 0.35em; }
+.lab-links a { display: inline-flex; align-items: center; gap: var(--s4); min-height: 44px; font-size: var(--fs-small); font-weight: 500; text-decoration: none; text-decoration-thickness: 2px; text-underline-offset: 0.35em; }
 .lab-links a:hover { text-decoration-line: underline; }
 .lab-links a[aria-current="page"] { text-decoration-line: underline; text-decoration-color: var(--btc-orange); font-weight: 700; }
+.lab-lang { display: flex; gap: var(--s8); }
+.lab-lang a { min-width: 44px; justify-content: center; }
+.lab-lang { flex: none; }   /* the language pair never stacks */
+@media (min-width: 860px) and (max-width: 1099px) { .lab-links { gap: var(--s24); } }   /* SK / CS (or EN / CS, EN / SK) */
 .theme-btn { min-height: 44px; min-width: 64px; padding: 0 var(--s16); border: 2px solid var(--btc-white); background: none; cursor: pointer; font: 700 var(--fs-small)/1 var(--body); }
 .theme-btn:hover { background: var(--btc-white); color: var(--btc-night); }
 .lab-menu { display: none; }

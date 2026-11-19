@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Martin Bezák · študent ekonómie a financií, Praha</title>
-  <meta name="description" content="Martin Bezák, študent ekonómie a financií na IES Univerzity Karlovej v Prahe: automatizácia procesov, študentské parlamenty a organizovanie akcií. Životopis a kontakt.">
+  <meta name="description" content="Martin Bezák, študent ekonómie a financií na IES Univerzity Karlovej v Prahe. Študentský líder, ktorý vedie Bitcoin Lab, finančný projekt vytvorený s AI. Životopis a kontakt.">
   <link rel="canonical" href="https://martinbezak.com/sk/">
   <link rel="alternate" hreflang="en" href="https://martinbezak.com/">
   <link rel="alternate" hreflang="sk" href="https://martinbezak.com/sk/">
@@ -17,30 +17,53 @@
   <link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 
-  <!-- TODO po zverejnení: nahraďte "../og-image.jpg" plnou adresou, napr. https://martin-bezak.netlify.app/og-image.jpg -->
+  <!-- Link preview on LinkedIn, WhatsApp, Messenger, Slack. The image needs the full https address (LinkedIn requires it). -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Martin Bezák · Ekonómia a financie, IES Karlova univerzita">
-  <meta property="og:description" content="Študent ekonómie a financií v Prahe. Automatizácia procesov, študentské parlamenty a GymParty, školská akcia, ktorú som založil.">
+  <meta property="og:description" content="Študent ekonómie a financií v Prahe, študentský líder zo Slovenska. Vediem Bitcoin Lab, finančný projekt vytvorený s AI.">
   <meta property="og:url" content="https://martinbezak.com/sk/">
   <meta property="og:image" content="https://martinbezak.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Martin Bezák, študent ekonómie a financií na IES Univerzity Karlovej">
   <meta property="og:locale" content="sk_SK">
   <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="cs_CZ">
   <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Martin Bezák",
+    "alternateName": "Martin Bezak",
+    "jobTitle": "Študent ekonómie a financií",
+    "affiliation": { "@type": "CollegeOrUniversity", "name": "Institute of Economic Studies, Charles University" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Prague", "addressCountry": "CZ" },
+    "nationality": "Slovak",
+    "email": "mailto:bezak84.martin@gmail.com",
+    "sameAs": ["https://www.linkedin.com/in/martin-bezak"]
+  }
+  </script>
 
   <link rel="preload" as="image" href="../images/portrait.jpg" imagesrcset="../images/portrait-600.jpg 600w, ../images/portrait.jpg 1000w, ../images/portrait-1600.jpg 1600w" imagesizes="(min-width: 960px) 100vh, 100vw">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=3">
+  <link rel="stylesheet" href="../styles.css?v=19">
   <script>
     document.documentElement.classList.add('js');
     /* Apply a saved light/dark choice before the page paints, so it never flashes */
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
   </script>
   <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
   <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="../motion.css?v=1">
 </head>
 
 <body>
@@ -52,7 +75,7 @@
       <a href="#top" class="mark" aria-label="Martin Bezák, späť hore">MB</a>
       <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <nav aria-label="Hlavná">
-        <ul class="nav-links" id="nav-links"><li><a href="#about">O mne</a></li><li><a href="#experience">Skúsenosti</a></li><li><a href="#skills">Zručnosti</a></li><li><a href="#hobbies">Záľuby</a></li><li><a href="projects.html">Projekty</a></li><li><a href="#contact">Kontakt</a></li></ul>
+        <ul class="nav-links" id="nav-links"><li><a href="#about">O mne</a></li><li><a href="#projects">Projekty</a></li><li><a href="#experience">Skúsenosti</a></li><li><a href="#skills">Zručnosti</a></li><li><a href="#hobbies">Záľuby</a></li><li><a href="#contact">Kontakt</a></li></ul>
       </nav>
       <div class="prefs" data-prefs></div>
     </div>
@@ -66,7 +89,7 @@
         <p class="hero-role">Ekonómia a financie · IES, Karlova univerzita</p>
         <h1 class="hero-name"><span>Martin</span> <span>Bezák</span></h1>
         <div class="hero-foot">
-          <p class="hero-tagline">Študent v Prahe, pôvodom zo Slovenska. Viedol som študentský parlament, založil školskú párty GymParty a bol som kapitánom hokejového tímu. Baví ma zlepšovať veci, od dát až po akcie.</p>
+          <p class="hero-tagline">Študent v Prahe, pôvodom zo Slovenska. Viedol som študentský parlament, založil školskú párty a bol som kapitánom hokejového tímu. Teraz vediem Bitcoin Lab, finančný projekt vytvorený s AI, a MB Arcade, ekonomické hry pre zábavu.</p>
           <div class="buttons">
             <a href="#contact" class="btn btn-primary">Napíšte mi</a>
             <a href="../Bezak_Martin_SK.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Stiahnuť životopis</a>
@@ -79,14 +102,6 @@
     </div>
   </section>
 
-  <section class="now" aria-label="Teraz">
-    <div class="wrap">
-      <dl>
-        <div><dt>Študujem</dt><dd>Bc. Ekonómia a financie, IES FSV UK</dd></div><div><dt>Tvorím</dt><dd><a href="../MBArcade/sk/index.html">MB Arcade</a>, hry v prehliadači o ekonómii a trhoch, a <a href="../BitcoinLab/index.html" hreflang="en">Bitcoin Lab</a>, štúdia stratégií pre Bitcoin</dd></div><div><dt>Jazyky</dt><dd>slovenčina, angličtina C2, čeština, nemčina A2</dd></div>
-      </dl>
-    </div>
-  </section>
-
   <main id="main">
 
     <!-- ===================== ABOUT ===================== -->
@@ -95,10 +110,35 @@
         <h2 class="sec-label" id="about-h">O mne</h2>
         <div class="body">
           <p class="statement"><span>Mám analytickú povahu, no stále sa ocitám</span> <span>pred ľuďmi.</span></p>
-          <div class="prose cols">
-            <p>Študujem ekonómiu a financie na Inštitúte ekonomických štúdií v Prahe. Začalo to, keď som mal 13: počas covidu som začal počúvať biznisové podcasty a chytilo ma, ako peniaze fungujú a ako sa hýbu.</p>
-            <p>Predseda parlamentu, kapitán tímu, organizátor akcie od nuly. Práve túto kombináciu si chcem udržať: rozumieť číslam a viesť ľudí, ktorí za nimi stoja.</p>
+          <div class="prose">
+            <p>Študujem ekonómiu a financie na Inštitúte ekonomických štúdií v Prahe. Začalo to, keď som mal 13: počas covidu som začal počúvať biznisové podcasty a chytilo ma, ako peniaze fungujú a ako sa hýbu. Túto kombináciu si chcem udržať: rozumieť číslam a viesť ľudí, ktorí za nimi stoja.</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== PROJECTS: Bitcoin Lab (ink panel, wide, the serious one) + MB Arcade (smaller, a fun side project). Role lines come from Martin's 19 Nov interview only. ===================== -->
+    <section class="section work-sec" id="projects" aria-labelledby="work-h">
+      <div class="wrap">
+        <div class="work-head">
+          <h2 class="sec-label" id="work-h">Projekty</h2>
+          <a class="text-link" href="projects.html">Všetky projekty</a>
+        </div>
+        <div class="work">
+          <article class="work-item work-btc s-ink" aria-labelledby="btc-h">
+            <p class="work-meta">10/2026 – súčasnosť · Zakladateľ a vedúci projektu</p>
+            <h3 class="work-name" id="btc-h">Bitcoin<br>Lab</h3>
+            <p class="work-what">Tri spätne otestované stratégie pre Bitcoin, aktualizované každú noc: čo dnes hovorí každá z nich a čo by sa stalo so 100 000 $ v ľubovoľnom období od roku 2018.</p>
+            <p class="work-role"><b>Moja úloha:</b> nápad, výber stratégií, ktoré zostali a ktoré vypadli, dizajn a funkcie, testovanie a spustenie. Kód, štatistické metódy a spätné testy vytvorila AI.</p>
+            <div class="buttons"><a href="../BitcoinLab/sk/index.html" class="btn btn-primary">Otvoriť Bitcoin Lab</a></div>
+          </article>
+          <article class="work-item work-arcade" aria-labelledby="arcade-h">
+            <p class="work-meta">10/2026 – súčasnosť · Vedľajší projekt pre zábavu</p>
+            <h3 class="arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h3>
+            <p class="work-what">Tri rýchle hry v prehliadači o ekonómii a trhoch, každá s denným kolom.</p>
+            <p class="work-role"><b>Moja úloha:</b> nápad, koncepty hier, dizajn a testovanie s kamarátmi. Kód a obsah hier vytvorila AI podľa môjho zadania.</p>
+            <p><a class="text-link work-link" href="../MBArcade/sk/index.html">Hrať MB Arcade</a></p>
+          </article>
         </div>
       </div>
     </section>
@@ -109,18 +149,14 @@
         <h2 class="h3" id="numbers-h">V číslach</h2>
         <div class="stats">
           <div class="stat">
-            <p class="fig">200+</p>
-            <p class="desc">ľudí na GymParty, školskej párty, ktorú som založil a dvakrát viedol</p>
-          </div>
-          <div class="stat">
             <p class="fig">40h → 5h</p>
             <p class="desc">čas spracovania jednej jednotky po automatizácii, ktorú som navrhol vo VIPO</p>
             <div class="ratio" aria-hidden="true"><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i><i style="--i:16"></i><i style="--i:17"></i><i style="--i:18"></i><i style="--i:19"></i><i style="--i:20"></i><i style="--i:21"></i><i style="--i:22"></i><i style="--i:23"></i><i style="--i:24"></i><i style="--i:25"></i><i style="--i:26"></i><i style="--i:27"></i><i style="--i:28"></i><i style="--i:29"></i><i style="--i:30"></i><i style="--i:31"></i><i style="--i:32"></i><i style="--i:33"></i><i style="--i:34"></i><i style="--i:35"></i><i style="--i:36"></i><i style="--i:37"></i><i style="--i:38"></i><i style="--i:39"></i><i style="--i:40"></i></div>
             <div class="ratio-scale" aria-hidden="true"><span>0h</span><span>5h</span><span>40h</span></div>
           </div>
           <div class="stat">
-            <p class="fig">1.</p>
-            <p class="desc">miesto v krajskom kole Matematickej olympiády</p>
+            <p class="fig">200+</p>
+            <p class="desc">hostí na GymParty, školskej párty, ktorú som založil</p>
           </div>
         </div>
       </div>
@@ -142,40 +178,7 @@
               <div>
                 <h4>Stážista pre digitalizáciu</h4>
                 <p class="row-org">VIPO a.s. · výroba pneumatík, ~100 zamestnancov</p>
-                <ul><li>Navrhol som automatizáciu a presadil jej zavedenie; skript napísal kolega</li><li>Čas spracovania jednej jednotky klesol zo 40 hodín na 5</li><li>Otestoval som skript, aby fungoval na každom počítači</li><li>Nahrával som dokumenty a dáta do B2B systému</li></ul>
-              </div>
-            </div>
-            <div class="row">
-              <p class="row-date">Letá 2023, 2024</p>
-              <div>
-                <h4>Stážista v predaji a marketingu</h4>
-                <p class="row-org">VIPO a.s. · dve letné stáže</p>
-                <ul><li>Spracúval som dáta objednávok v Exceli</li><li>Pripravoval som prezentácie pre obchodný tím</li></ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="group">
-          <h3 class="h3">Nezávislé projekty</h3>
-          <div class="rows">
-            <div class="row">
-              <p class="row-date">10/2026 – súčasnosť</p>
-              <div>
-                <h4>Zakladateľ a vedúci projektu, Bitcoin Lab</h4>
-                <p class="row-org">Nezávislý projekt · štúdia troch spätne otestovaných stratégií pre Bitcoin, vytvorená s nástrojmi AI</p>
-                <ul><li>Prišiel som s nápadom: štúdia troch stratégií pre Bitcoin, ktorá každú noc ukáže, čo dnes hovorí každá z nich</li><li>Rozhodol som, ktoré stratégie zostanú a ktoré vypadnú, a určil som dizajn a funkcie</li><li>Kód, štatistické metódy a spätné testy vytvorila AI</li><li>Stránku som testoval a v októbri 2026 spustil</li></ul>
-                <p class="row-link"><a class="text-link" href="projects.html">Pozrieť projekt</a></p>
-              </div>
-            </div>
-            <div class="row">
-              <!-- TODO (Martin): skontrolujte dátum začiatku -->
-              <p class="row-date">2026 – súčasnosť</p>
-              <div>
-                <h4>Zakladateľ a vedúci projektu, MB Arcade</h4>
-                <p class="row-org">Nezávislý projekt · hry v prehliadači o ekonómii a trhoch, vytvorené s nástrojmi AI</p>
-                <ul><li>Prišiel som s nápadom, určil cieľovú skupinu a navrhol tri hry: Odhadni to, Nakresli to a Predaj na vrchole</li><li>Určil som dizajn a rozhodol, že hry budú v angličtine, češtine a slovenčine</li><li>Kód a obsah hier (750 otázok, 821 skutočných grafov, 1 000 ročných cenových úsekov) vytvorila AI podľa môjho zadania</li><li>Hry som testoval, požiadal kamarátov, aby ich hrali a hlásili chyby, a rozhodol som, kedy ich spustiť</li></ul>
-                <p class="row-link"><a class="text-link" href="projects.html">Pozrieť projekt</a></p>
+                <ul><li>Navrhol som automatizáciu a presadil jej zavedenie; skript napísal kolega</li><li>Otestoval som skript, aby fungoval na každom počítači</li><li>Nahrával som dokumenty a dáta do B2B systému</li><li>Predtým dve letné stáže v predaji a marketingu (2023, 2024): dáta objednávok v Exceli a prezentácie pre obchodný tím</li></ul>
               </div>
             </div>
           </div>
@@ -189,7 +192,7 @@
               <div>
                 <h4>Podpredseda</h4>
                 <p class="row-org">Krajský parlament mládeže, Trenčiansky kraj</p>
-                <ul><li>Zrealizoval som celokrajský prieskum problémov študentov</li><li>Dvakrát ročne som organizoval Zhromaždenie delegátov</li></ul>
+                <ul><li>Zrealizoval som celokrajský prieskum problémov študentov</li><li>Dvakrát ročne som pomáhal organizovať Zhromaždenie delegátov, kde delegát z každej strednej školy v kraji hovoril o problémoch na svojej škole</li></ul>
               </div>
             </div>
             <div class="row">
@@ -197,56 +200,19 @@
               <div>
                 <h4>Predseda</h4>
                 <p class="row-org">Študentský parlament, Gymnázium Partizánske</p>
-                <ul><li>Zlepšil som organizáciu školských akcií</li><li>Spustil som GymParty, novú školskú akciu</li></ul>
+                <ul><li>Zlepšil som organizáciu školských akcií</li></ul>
               </div>
             </div>
             <div class="row">
-              <!-- TODO (Martin): doplňte roky, keď ste boli kapitánom -->
-              <p class="row-date">Ľadový hokej</p>
+              <!-- TODO (Martin): roky ročníkov GymParty -->
+              <p class="row-date">Tri ročníky</p>
               <div>
-                <h4>Kapitán tímu</h4>
-                <p class="row-org">Obranca, hral som od 4 do 19 rokov</p>
+                <h4>Zakladateľ, GymParty</h4>
+                <p class="row-org">Školská párty, ktorú som rozbehol od nuly až po tradíciu</p>
+                <ul><li>Založil som ju ako predseda Študentského parlamentu a viedol tím 5–10 ľudí</li><li>Mal som na starosti program a ceny a vyjednal som dohodu s priestormi vrátane zliav pre hostí</li><li>Prvé dva ročníky som viedol, pri treťom som mentoroval študenta, ktorý ho viedol</li></ul>
+                <!-- TODO (Martin): jedna-dve vety o najťažšom probléme a ako ste ho vyriešili -->
               </div>
             </div>
-          </div>
-        </div>
-
-        <!-- Featured project -->
-        <article class="case" aria-labelledby="case-h">
-          <p class="h3">Hlavný projekt</p>
-          <div class="case-media">
-            <figure class="case-photo">
-              <img src="../images/gymparty-stage.jpg" width="940" height="660" loading="lazy" alt="Martin a ďalší moderátori na pódiu na GymParty">
-              <figcaption>Na pódiu na GymParty s moderátorským tímom</figcaption>
-            </figure>
-            <dl class="case-facts s-ink"><div><dt>Hostia</dt><dd>200+</dd></div><div><dt>Tím</dt><dd>5–10 ľudí</dd></div><div><dt>Ročníky</dt><dd>3<small>2 som viedol, 1 mentoroval</small></dd></div><div><dt>Rola</dt><dd>Zakladateľ<small>neskôr mentor</small></dd></div></dl>
-          </div>
-          <div class="case-body">
-            <div class="case-intro">
-              <h3 class="case-name" id="case-h">GymParty</h3>
-              <p class="case-lede">Školská párty, ktorú som rozbehol od nuly až po tradíciu.</p>
-            </div>
-            <div class="case-did">
-              <h4>Čo som robil</h4>
-              <ul><li>Založil som ju ako predseda Študentského parlamentu, aby po mne na škole zostalo niečo trvalé</li><li>Viedol som tím 5–10 ľudí</li><li>Mal som na starosti program, prípravu a ceny</li><li>Vyjednal som dohodu s priestormi vrátane zliav pre hostí</li><li>Prvé dva ročníky som viedol, pri treťom som mentoroval študenta, ktorý ho viedol</li></ul>
-              <!-- TODO (Martin): jedna-dve vety o najťažšom probléme a ako ste ho vyriešili -->
-            </div>
-          </div>
-        </article>
-
-        <div class="group">
-          <h3 class="h3">Ďalšie akcie</h3>
-          <div class="events">
-            <article class="event">
-              <h4>Zhromaždenie delegátov</h4>
-              <p class="event-meta"><span>Krajský parlament mládeže</span><span>Dvakrát ročne</span></p>
-              <p>Delegát z každej strednej školy v Trenčianskom kraji prišiel hovoriť o problémoch na svojej škole. Ako podpredseda som ho pomáhal organizovať dvakrát ročne.</p>
-            </article>
-            <article class="event">
-              <h4>Desiatky ďalších</h4>
-              <p class="event-meta"><span>V škole aj mimo nej</span></p>
-              <p>Menšie školské a komunitné akcie, ktoré som organizoval počas celého štúdia na strednej škole.</p>
-            </article>
           </div>
         </div>
 
@@ -270,17 +236,10 @@
               </div>
             </div>
             <div class="row">
-              <p class="row-date">Krajské kolo</p>
+              <p class="row-date">Krajské kolá</p>
               <div>
-                <h4>Matematická olympiáda</h4>
-                <p class="row-org">1. miesto v kategóriách B a C, 2. miesto v kategórii A</p>
-              </div>
-            </div>
-            <div class="row">
-              <p class="row-date">Krajské kolo</p>
-              <div>
-                <h4>Fyzikálna olympiáda</h4>
-                <p class="row-org">5. miesto v kategórii D</p>
+                <h4>Matematická a fyzikálna olympiáda</h4>
+                <ul><li>Matematika: 1. miesto v kategóriách B a C, 2. miesto v kategórii A</li><li>Fyzika: 5. miesto v kategórii D</li></ul>
               </div>
             </div>
           </div>
@@ -311,61 +270,24 @@
       </div>
     </section>
 
-    <!-- ===================== HOBBIES ===================== -->
-    <section class="section hobbies-sec" id="hobbies" aria-labelledby="hob-h">
-      <div class="wrap g12">
-        <div class="hob-head">
-          <h2 class="h2" id="hob-h">Mimo životopisu</h2>
-          <p class="lead">Čo robím popri škole a práci a čo ma každá z týchto vecí naučila.</p>
-        </div>
-        <div class="hob-body">
-          <p class="statement"><span>Mojou najobľúbenejšou záľubou sú</span> <span>ľudia.</span></p>
-          <div class="prose">
-            <p>Baví ma viesť skupinu, byť hostiteľom a vytvárať akcie, na ktorých sa všetci dobre bavia. Tak vznikla aj GymParty, naša školská párty: nie z povinnosti, ale preto, že ma to naozaj baví.</p>
-            <p>To, čo začalo ako záľuba, sa zmenilo na jednu z mojich najcennejších skúseností.</p>
-          </div>
-          <ul class="traits"><li>Vedenie</li><li>Moderovanie</li><li>Organizovanie</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Ice hockey (ink) -->
-    <section class="section hockey s-ink" id="hockey" aria-labelledby="hockey-h">
-      <div class="hockey-grid">
-        <figure class="hockey-photo">
+    <!-- ===================== BEYOND THE CV (ink): hockey leads, art beside it, hiking as one line ===================== -->
+    <section class="section beyond s-ink" id="hobbies" aria-labelledby="hob-h">
+      <div class="beyond-grid">
+        <figure class="beyond-photo">
           <img src="../images/hockey.jpg" width="480" height="600" loading="lazy" alt="Martin v plnej výstroji pri hokeji">
-          <figcaption>Ľadový hokej</figcaption>
         </figure>
-        <div class="hockey-text">
-          <h2 class="h2" id="hockey-h">Pätnásť rokov na ľade</h2>
-          <div class="prose"><p>Ľadový hokej som hral ako obranca od 4 do 19 rokov a stal som sa kapitánom tímu. Hokej ma naučil prísť každý deň, nevzdať to, keď je ťažko, a niesť zodpovednosť za ľudí okolo seba.</p></div>
-          <div class="figures"><div class="figure"><p class="num">15 rokov</p><p class="desc">ľadového hokeja, od 4 do 19 rokov</p></div><div class="figure"><p class="num">Kapitán</p><p class="desc">vedenie tímu na ľade aj mimo neho</p></div></div>
-          <ul class="traits"><li>Disciplína</li><li>Vytrvalosť</li><li>Zodpovednosť</li><li>Práca v tíme</li></ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- Art and hiking -->
-    <section class="section art-hiking" id="art" aria-labelledby="ah-h">
-      <div class="wrap">
-        <h2 class="sec-label" id="ah-h">Umenie a turistika</h2>
-        <div class="pair">
-          <div class="art">
-            <h3 class="kicker">Umenie</h3>
-            <p class="h3-statement"><span>Tvarovať niečo rukami je</span> <span>opak tabuľky v Exceli.</span></p>
-            <div class="prose"><p>Od 4 do 18 rokov som chodil do umeleckej školy a keramika bola vždy moja voľba. Z hliny som väčšinou tvoril mestá a budovy. Odmeňuje trpezlivosť, intuíciu a pozornosť k najmenšiemu detailu.</p></div>
-            <div class="figures"><div class="figure"><p class="num">14 rokov</p><p class="desc">v umeleckej škole, od 4 do 18 rokov</p></div><div class="figure"><p class="num">Hlina</p><p class="desc">môj obľúbený materiál, najmä mestá a budovy</p></div></div>
-            <ul class="traits"><li>Kreativita</li><li>Trpezlivosť</li><li>Zmysel pre detail</li></ul>
+        <div class="beyond-text">
+          <h2 class="h2" id="hob-h">Mimo<br>životopisu</h2>
+          <div class="beyond-item">
+            <h3 class="h3">Ľadový hokej</h3>
+            <div class="figures"><div class="figure"><p class="num">15 rokov</p><p class="desc">ako obranca, od 4 do 19 rokov</p></div><div class="figure"><p class="num">Kapitán</p><p class="desc">vedenie tímu na ľade aj mimo neho</p></div></div>
+            <p class="beyond-copy">Hokej ma naučil prísť každý deň, nevzdať to, keď je ťažko, a niesť zodpovednosť za ľudí okolo seba.</p>
           </div>
-          <div class="hiking" id="hiking">
-            <figure class="hiking-photo">
-              <img src="../images/hiking.jpg" width="480" height="600" loading="lazy" alt="Martin so psom na turistickom chodníku">
-            </figure>
-            <h3 class="kicker">Turistika</h3>
-            <p class="h3-statement"><span>Čas</span> <span>v prírode.</span></p>
-            <div class="prose"><p>Turistika je môj spôsob, ako vypnúť a nabrať energiu, väčšinou v kopcoch a lesoch neďaleko môjho rodného mesta. Dlhý deň vonku, bez obrazoviek a s jasným cieľom na vrchole, je najlepší spôsob, ako si vyčistiť hlavu.</p></div>
-            <ul class="traits"><li>Vytrvalosť</li><li>Nadhľad</li><li>Rovnováha</li></ul>
+          <div class="beyond-item">
+            <h3 class="h3">Umenie</h3>
+            <p class="beyond-copy">Štrnásť rokov v umeleckej škole. Keramika bola vždy moja voľba: z hliny som väčšinou tvoril mestá a budovy, čo odmeňuje trpezlivosť a pozornosť k najmenšiemu detailu.</p>
           </div>
+          <p class="beyond-line"><b>Turistika</b> je môj spôsob, ako vypnúť: dlhý deň v kopcoch a lesoch neďaleko môjho rodného mesta, bez obrazoviek.</p>
         </div>
       </div>
     </section>
@@ -388,12 +310,13 @@
   <footer class="site-footer s-ink">
     <div class="wrap">
       <span>© 2026 Martin Bezák</span>
-      <nav class="foot-alt" aria-label="Iné verzie"><a href="../index.html" hreflang="en" lang="en">English</a><a href="../cs/index.html" hreflang="cs" lang="cs">Česky</a><a href="projects.html">Projekty</a></nav>
+      <nav class="foot-alt" aria-label="Iné verzie"><a href="../index.html" hreflang="en" lang="en">English</a><a href="../cs/index.html" hreflang="cs" lang="cs">Česky</a><a href="projects.html">Projekty</a><a href="../BitcoinLab/sk/index.html">Bitcoin Lab →</a><a href="../MBArcade/sk/index.html">MB Arcade →</a></nav>
       <a href="#top">Späť hore</a>
     </div>
   </footer>
 
-  <script src="../prefs.js"></script>
+  <script src="../prefs.js?v=2"></script>
   <script src="../main.js"></script>
+  <script src="../motion.js?v=10"></script>
 </body>
 </html>

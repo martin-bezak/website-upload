@@ -28,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..700&family=JetBrains+Mono:wght@400;600&display=swap">
-  <link rel="stylesheet" href="../style.css?v=13">
+  <link rel="stylesheet" href="../style.css?v=15">
   <script>
     document.documentElement.classList.add('js', 'intro');
     /* Saved light/dark choice (shared with the professional page); this page defaults to dark */
@@ -36,6 +36,14 @@
   </script>
   <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
   <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="../../motion.css?v=1">
+  <script>
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
+  </script>
 </head>
 
 <body>
@@ -155,9 +163,9 @@
         <img src="../images/portrait-founder.jpg" width="320" height="320" loading="lazy" alt="Martin Bezák">
         <p>
           <span class="eyebrow">Zakladateľ</span>
-          Som Martin Bezák, študent ekonómie a financií na IES Univerzity Karlovej, a MB Arcade som založil a vediem. Vymyslel som hry, určil ich dizajn a testoval ich; samotné hry vznikli s pomocou AI.
+          Som Martin Bezák, študent ekonómie a financií na IES Univerzity Karlovej. MB Arcade je môj vedľajší projekt pre zábavu: vymyslel som hry, určil ich dizajn a testoval ich; samotné hry (kód aj obsah) vytvorila AI. Mojím hlavným projektom je Bitcoin Lab.
         </p>
-        <a class="btn btn-line" href="../../sk/index.html">Martin Bezák <span aria-hidden="true">→</span></a>
+        <div class="founder-btns"><a class="btn btn-line" href="../../sk/index.html">Martin Bezák <span aria-hidden="true">→</span></a><a class="btn btn-line" href="../../BitcoinLab/sk/index.html">Bitcoin Lab <span aria-hidden="true">→</span></a></div>
       </div>
     </section>
   </main>
@@ -171,6 +179,7 @@
           <a href="../index.html" hreflang="en" lang="en">English</a>
           <a href="../cs/index.html" hreflang="cs" lang="cs">Česky</a>
           <a href="../../sk/index.html">Martin Bezák →</a>
+          <a href="../../BitcoinLab/sk/index.html">Bitcoin Lab →</a>
           <a href="#top" class="to-top">Späť hore <span aria-hidden="true">↑</span></a>
         </nav>
         <small>© 2026 MB Arcade · Vytvorené s AI pod vedením Martina Bezáka</small>
@@ -178,7 +187,8 @@
     </div>
   </footer>
 
-  <script src="../../prefs.js"></script>
+  <script src="../../prefs.js?v=2"></script>
   <script src="../script.js?v=10"></script>
+  <script src="../../motion.js?v=10"></script>
 </body>
 </html>

@@ -1,0 +1,257 @@
+// Bitcoin Lab: every sentence the scripts write, in English, Slovak and Czech.
+// The language comes from <html lang>; anything else falls back to English.
+// Strategy names (Growth, Balanced, Defensive) stay English in every language: they are names, like in the URL (?s=growth).
+export const LANG = ['sk', 'cs'].includes(document.documentElement.lang) ? document.documentElement.lang : 'en';
+const LOC = { en: 'en-US', sk: 'sk-SK', cs: 'cs-CZ' }[LANG];
+
+// numbers: a decimal comma and space-grouped thousands in Slovak and Czech
+export const fix = (v, d) => LANG === 'en' ? v.toFixed(d) : v.toFixed(d).replace('.', ',');
+export const int = v => Math.round(v).toLocaleString(LOC);
+export const money = v => LANG === 'en' ? '$' + int(v) : int(v) + ' $';
+// chart labels: $120k / $1.2M in English, 120 tis. $ / 1,2 mil. $ in Slovak and Czech
+export const moneyShort = v => {
+  if (v === 0) return LANG === 'en' ? '$0' : '0 $';
+  const m = v >= 1e6, n = m ? fix(v / 1e6, v >= 1e7 ? 0 : 1) : Math.round(v / 1000);
+  return LANG === 'en' ? '$' + n + (m ? 'M' : 'k') : n + (m ? ' mil.' : ' tis.') + ' $';
+};
+
+// Slovak and Czech plurals: 1 / 2–4 / 5 and more
+const pl = (n, one, few, many) => n === 1 ? one : n >= 2 && n <= 4 ? few : many;
+
+const MON = {
+  en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+  sk: ['jan', 'feb', 'mar', 'apr', 'máj', 'jún', 'júl', 'aug', 'sep', 'okt', 'nov', 'dec'],
+  cs: ['led', 'úno', 'bře', 'dub', 'kvě', 'čvn', 'čvc', 'srp', 'zář', 'říj', 'lis', 'pro'],
+}[LANG];
+export const dayMon = (d, m) => LANG === 'en' ? `${d} ${MON[m]}` : `${d}. ${MON[m]}`;
+export const date = (d, m, y) => `${dayMon(d, m)} ${y}`;
+export const monShort = m => MON[m];
+
+const EN = {
+  viewing: 'Viewing', view: n => 'View ' + n,
+  inBitcoin: 'In Bitcoin', inCash: 'In cash', partBtc: p => `${p}% in BTC`,
+  now: pos => 'Now ' + pos.charAt(0).toLowerCase() + pos.slice(1),
+  kicker: (n, d) => `What ${n} says · after the close on ${d}`,
+  when: 'The signal is from the daily close at 00:00 UTC; the backtest trades right after that close.',
+  signal: (why, out) => ` Today’s ${why} keeps it ${out ? 'out' : 'in'} until that trade’s stop, target or 20 days.`,
+  holdFull: 'No change. The strategy stays fully in Bitcoin.',
+  holdCash: 'No change. The strategy stays out of Bitcoin, with its cash earning interest.',
+  holdPart: p => `No change. The strategy keeps about ${p}% in Bitcoin.`,
+  move: (p, why) => `The strategy moves to ${p}% Bitcoin (${why}).`,
+  activeSell: (since, entry, stop, target, until) => `<b>Open sell signal</b> since ${since}, sold at ${entry}. Buys back if a day’s price reaches <b>${stop}</b> (stop) or <b>${target}</b> (target), or on ${until} at the latest.`,
+  activeBuy: (since, entry, stop, target, until) => `<b>Open buy signal</b> since ${since}, bought at ${entry}. Stop <b>${stop}</b>, target <b>${target}</b>, ends ${until} at the latest.`,
+  fired: (why, close, below, level, growth) => `The <b>${why}</b> fired at this close: ${close} is ${below ? 'below' : 'above'} the 20-day range. The trade starts now and ends at its stop, about <b>${level}</b>, at a target twice as far the other way, or after 20 days. ${growth ? 'Then it buys back.' : 'Then the averages decide again.'}`,
+  growthBack: 'It buys back at the stop or target above, or after 20 days.',
+  growthArmed: (lo, until) => `<b>Sell</b> if a daily close is below <b>${lo}</b>. Bitcoin has been unusually calm, so a break down is the signal this strategy waits for (watch until ${until}).`,
+  growthIdle: 'Nothing is armed. It sells only after a calm stretch (volatility in the lowest 20% of the past year) ends with a break down.',
+  avgAfter: sell => `The averages decide again when the open ${sell ? 'sell' : 'buy'} signal above ends.`,
+  avgSell: max => `<b>Sell</b> if a daily close falls below any of the 50-, 100- and 200-day averages; the highest is now ${max}.`,
+  avgBuy: (a, b, c) => `<b>Buy</b> when a daily close is above all three averages: 50-day ${a}, 100-day ${b}, 200-day ${c}.`,
+  armed: (until, hi, lo) => `Calm market, signal armed until ${until}: a daily close above <b>${hi}</b> buys early; below <b>${lo}</b> sells.`,
+  size: (p, vol) => `Position size when in: ${p}% (Bitcoin’s volatility is ${vol}% a year; the target is 50%).`,
+  closeOn: (d, v) => `Close on ${d}: ${v}.`,
+  ci: (a, b) => ` (likely range ${a}–${b}%)`,
+  recLine: (label, right, n, rightIs, ci, med) => `${label}: ${right} of ${n} ${rightIs}${ci}. Median move of Bitcoin over these periods: ${med}.`,
+  recIn: 'Holding Bitcoin', recInRight: 'times Bitcoin rose while held',
+  recCash: 'Sitting in cash', recCashRight: 'times Bitcoin fell while out',
+  recWhy: 'A low hit rate is normal here: the strategy loses small and often, and wins big and rarely. What matters is the result below, not how often it is right.',
+  amount: (btc, qty, price, cash) => `Bitcoin: <b>${btc}</b> (${qty} BTC at ${price}) · Cash: <b>${cash}</b>`,
+  amountEmpty: 'Type an amount to see the split.',
+  timeIn: 'Time in Bitcoin', daysPct: p => `${p}% of days`,
+  trades: 'Trades', tradesN: n => `about ${n} a year`,
+  stay: 'Typical stay in Bitcoin', months: n => `${n} months`, days: n => `${n} days`,
+  dollar: '$1 since Sep 2018', mult: (m, c) => `${m}× (${c}% a year)`,
+  worstDrop: 'Worst drop', worstYear: 'Worst calendar year',
+  compare: x => `For comparison, Bitcoin itself: ${x}× since Sep 2018, 100% of days in Bitcoin, worst drop −77%, worst year −64%. Simulated with fees; trades are counted as any change of position.`,
+  detail: {
+    growth: {
+      buys: 'It is in Bitcoin by default. After a sell signal it buys back when that trade ends: the price returns to the top of the 20-day range (the stop), falls twice as far as that distance (the target), or 20 days pass.',
+      sells: 'Only after a calm stretch (20-day volatility in the lowest 20% of the past year) followed by a daily close below the range of the last 20 days. It then sells everything right after that close.',
+      between: 'Fully in Bitcoin. While in cash after a sell, the money earns the T-bill rate.',
+    },
+    balanced: {
+      buys: 'When a daily close is above all three averages (50, 100 and 200 days), or early, when a calm stretch ends with a close above the 20-day range. It buys 100% right after that close.',
+      sells: 'When a daily close falls below any of the three averages, or early, when a calm stretch ends with a close below the 20-day range.',
+      between: 'Either all in Bitcoin or all in cash earning the T-bill rate. An early (squeeze) move lasts until its stop, target or 20 days; then the averages decide again.',
+    },
+    defensive: {
+      buys: 'At the same moments as Balanced, but buys only 50% ÷ Bitcoin’s yearly volatility of the portfolio, at most 100%. In calm markets that is the full amount; in wild ones much less.',
+      sells: 'At the same moments as Balanced, to 100% cash.',
+      between: 'While in Bitcoin it trims or adds as volatility changes, but only when the gap is more than 10 points. The cash part earns the T-bill rate.',
+    },
+  },
+  howWorks: n => `How ${n} works, in detail`, whenBuys: 'When it buys', whenSells: 'When it sells', between: 'In between',
+  crash: 'In a crash', boom: 'In a boom', sideways: 'Sideways', vs: 'vs Bitcoin',
+  rulesLink: n => `Exact rules, risks and tests for ${n}`,
+  liveStarted: d => `The live record started after the close on <b>${d}</b>. The first result appears after the next night’s update.`,
+  liveSince: (d, n) => `Since the live record started (${d}, ${n} nights): `,
+  cellBtc: 'In BTC', cellCash: 'In cash', cellPart: p => `${p}% BTC`, bought: 'Bought', sold: 'Sold',
+  afterClose: 'After the close on', btcPrice: 'BTC price',
+  showLatest: 'Show only the latest night', showAll: n => `Show all ${n} nights`,
+  liveAria: (n, d) => `Value of $100,000 in ${n} and in Bitcoin since the live record started on ${d}`,
+  strategy: n => `${n} strategy`, benchBtc: 'Bitcoin, buy and hold', others: 'Other two strategies',
+  range: (d0, d1, len) => `$100,000 on <b>${d0}</b>, followed to <b>${d1}</b> · ${len}`,
+  years: x => `${x} years`,
+  showing: (a, b) => `Showing ${a} to ${b}`,
+  portfolio: 'Portfolio', worthEnd: 'Worth at the end', ret: 'Return', perYear: 'Per year',
+  mockAria: (d0, a, b) => `Value of $100,000 put in on ${d0}, shown from ${a} to ${b}, in each portfolio`,
+  endOfPeriod: 'end of period', loadFail: 'The data could not be loaded. ',
+  year: 'Year',
+  why: {},
+  liveFallback: d => `Live price unavailable. Last close, ${d}.`,
+  dark: 'Dark', light: 'Light', toDark: 'Switch to dark', toLight: 'Switch to light',
+};
+
+const SK = {
+  viewing: 'Zobrazená', view: n => 'Zobraziť ' + n,
+  inBitcoin: 'V Bitcoine', inCash: 'V hotovosti', partBtc: p => `${p}% v BTC`,
+  now: pos => 'Teraz ' + pos.charAt(0).toLowerCase() + pos.slice(1),
+  kicker: (n, d) => `Čo hovorí ${n} · po uzávierke ${d}`,
+  when: 'Signál vychádza z dennej uzávierky o 00:00 UTC; spätný test obchoduje hneď po nej.',
+  signal: (why, out) => ` Dnešný signál (${why}) ju drží ${out ? 'mimo Bitcoinu' : 'v Bitcoine'} až do stopu, cieľa alebo 20 dní.`,
+  holdFull: 'Bez zmeny. Stratégia zostáva celá v Bitcoine.',
+  holdCash: 'Bez zmeny. Stratégia zostáva mimo Bitcoinu a jej hotovosť nesie úrok.',
+  holdPart: p => `Bez zmeny. Stratégia drží asi ${p}% v Bitcoine.`,
+  move: (p, why) => `Stratégia sa presúva na ${p}% Bitcoinu (${why}).`,
+  activeSell: (since, entry, stop, target, until) => `<b>Otvorený predajný signál</b> od ${since}, predané za ${entry}. Spätný nákup, ak denná cena dosiahne <b>${stop}</b> (stop) alebo <b>${target}</b> (cieľ), najneskôr ${until}.`,
+  activeBuy: (since, entry, stop, target, until) => `<b>Otvorený nákupný signál</b> od ${since}, kúpené za ${entry}. Stop <b>${stop}</b>, cieľ <b>${target}</b>, končí najneskôr ${until}.`,
+  fired: (why, close, below, level, growth) => `Pri tejto uzávierke sa spustil signál <b>${why}</b>: ${close} je ${below ? 'pod' : 'nad'} 20-dňovým pásmom. Obchod začína teraz a končí na stope, približne <b>${level}</b>, na cieli dvakrát tak ďaleko opačným smerom alebo po 20 dňoch. ${growth ? 'Potom nakúpi späť.' : 'Potom znova rozhodnú priemery.'}`,
+  growthBack: 'Nakúpi späť na stope alebo cieli vyššie, alebo po 20 dňoch.',
+  growthArmed: (lo, until) => `<b>Predá</b>, ak je denná uzávierka pod <b>${lo}</b>. Bitcoin je nezvyčajne pokojný, takže prepad nadol je signál, na ktorý táto stratégia čaká (sleduje do ${until}).`,
+  growthIdle: 'Nič nie je pripravené. Predáva len vtedy, keď pokojné obdobie (volatilita v najnižších 20% za posledný rok) skončí prepadom nadol.',
+  avgAfter: sell => `Priemery znova rozhodnú, keď skončí otvorený ${sell ? 'predajný' : 'nákupný'} signál vyššie.`,
+  avgSell: max => `<b>Predá</b>, ak denná uzávierka klesne pod ktorýkoľvek z 50-, 100- a 200-dňových priemerov; najvyšší je teraz ${max}.`,
+  avgBuy: (a, b, c) => `<b>Nakúpi</b>, keď je denná uzávierka nad všetkými tromi priemermi: 50-dňový ${a}, 100-dňový ${b}, 200-dňový ${c}.`,
+  armed: (until, hi, lo) => `Pokojný trh, signál pripravený do ${until}: denná uzávierka nad <b>${hi}</b> znamená skorší nákup, pod <b>${lo}</b> predaj.`,
+  size: (p, vol) => `Veľkosť pozície v Bitcoine: ${p}% (volatilita Bitcoinu je ${vol}% ročne; cieľ je 50%).`,
+  closeOn: (d, v) => `Uzávierka ${d}: ${v}.`,
+  ci: (a, b) => ` (pravdepodobný rozsah ${a}–${b}%)`,
+  recLine: (label, right, n, rightIs, ci, med) => `${label}: ${right} z ${n} ${rightIs}${ci}. Medián pohybu Bitcoinu v týchto obdobiach: ${med}.`,
+  recIn: 'Drží Bitcoin', recInRight: 'prípadov, keď Bitcoin počas držby rástol',
+  recCash: 'V hotovosti', recCashRight: 'prípadov, keď Bitcoin mimo pozície klesol',
+  recWhy: 'Nízka úspešnosť je tu normálna: stratégia prehráva málo a často, vyhráva veľa a zriedka. Dôležitý je výsledok nižšie, nie to, ako často má pravdu.',
+  amount: (btc, qty, price, cash) => `Bitcoin: <b>${btc}</b> (${qty} BTC pri cene ${price}) · Hotovosť: <b>${cash}</b>`,
+  amountEmpty: 'Zadajte sumu a uvidíte rozdelenie.',
+  timeIn: 'Čas v Bitcoine', daysPct: p => `${p}% dní`,
+  trades: 'Obchody', tradesN: n => `asi ${n} ročne`,
+  stay: 'Typická doba v Bitcoine', months: n => `${n} ${pl(n, 'mesiac', 'mesiace', 'mesiacov')}`, days: n => `${n} ${pl(n, 'deň', 'dni', 'dní')}`,
+  dollar: '1 $ od sep 2018', mult: (m, c) => `${m}× (${c}% ročne)`,
+  worstDrop: 'Najväčší prepad', worstYear: 'Najhorší kalendárny rok',
+  compare: x => `Pre porovnanie, samotný Bitcoin: ${x}× od septembra 2018, 100% dní v Bitcoine, najväčší prepad −77%, najhorší rok −64%. Simulované s poplatkami; obchod je každá zmena pozície.`,
+  detail: {
+    growth: {
+      buys: 'Štandardne je v Bitcoine. Po predajnom signáli nakúpi späť, keď sa ten obchod skončí: cena sa vráti na vrchol 20-dňového pásma (stop), klesne o dvojnásobok tej vzdialenosti (cieľ) alebo uplynie 20 dní.',
+      sells: 'Len po pokojnom období (20-dňová volatilita v najnižších 20% za posledný rok), po ktorom príde denná uzávierka pod pásmom posledných 20 dní. Vtedy predá všetko hneď po tejto uzávierke.',
+      between: 'Celá v Bitcoine. Kým je po predaji v hotovosti, peniaze nesú úrok amerických pokladničných poukážok (T-bills).',
+    },
+    balanced: {
+      buys: 'Keď je denná uzávierka nad všetkými tromi priemermi (50, 100 a 200 dní), alebo skôr, keď pokojné obdobie skončí uzávierkou nad 20-dňovým pásmom. Nakúpi 100% hneď po tejto uzávierke.',
+      sells: 'Keď denná uzávierka klesne pod ktorýkoľvek z troch priemerov, alebo skôr, keď pokojné obdobie skončí uzávierkou pod 20-dňovým pásmom.',
+      between: 'Buď celá v Bitcoine, alebo celá v hotovosti s úrokom T-bills. Skorší (squeeze) pohyb trvá do stopu, cieľa alebo 20 dní; potom znova rozhodnú priemery.',
+    },
+    defensive: {
+      buys: 'V rovnakých chvíľach ako Balanced, ale nakúpi len podiel portfólia 50% ÷ ročná volatilita Bitcoinu, najviac 100%. Na pokojnom trhu je to celá suma, na divokom oveľa menej.',
+      sells: 'V rovnakých chvíľach ako Balanced, na 100% hotovosť.',
+      between: 'Kým je v Bitcoine, pri zmene volatility pozíciu zmenšuje alebo zväčšuje, ale len keď je rozdiel viac ako 10 bodov. Hotovostná časť nesie úrok T-bills.',
+    },
+  },
+  howWorks: n => `Ako funguje ${n}, podrobne`, whenBuys: 'Kedy nakupuje', whenSells: 'Kedy predáva', between: 'Medzitým',
+  crash: 'Pri prepade', boom: 'Pri raste', sideways: 'Do strany', vs: 'vs. Bitcoin',
+  rulesLink: n => `Presné pravidlá, riziká a testy pre ${n}`,
+  liveStarted: d => `Živý záznam sa začal po uzávierke <b>${d}</b>. Prvý výsledok sa objaví po aktualizácii nasledujúcu noc.`,
+  liveSince: (d, n) => `Od začiatku živého záznamu (${d}, ${n} ${pl(n, 'noc', 'noci', 'nocí')}): `,
+  cellBtc: 'V BTC', cellCash: 'V hotovosti', cellPart: p => `${p}% BTC`, bought: 'Kúpené', sold: 'Predané',
+  afterClose: 'Po uzávierke', btcPrice: 'Cena BTC',
+  showLatest: 'Zobraziť len poslednú noc', showAll: n => `Zobraziť všetky noci (${n})`,
+  liveAria: (n, d) => `Hodnota 100 000 $ v stratégii ${n} a v Bitcoine od začiatku živého záznamu ${d}`,
+  strategy: n => `Stratégia ${n}`, benchBtc: 'Bitcoin, kúpiť a držať', others: 'Ďalšie dve stratégie',
+  range: (d0, d1, len) => `100 000 $ dňa <b>${d0}</b>, sledované do <b>${d1}</b> · ${len}`,
+  years: x => `${x} roka`,
+  showing: (a, b) => `Zobrazené ${a} až ${b}`,
+  portfolio: 'Portfólio', worthEnd: 'Hodnota na konci', ret: 'Výnos', perYear: 'Ročne',
+  mockAria: (d0, a, b) => `Hodnota 100 000 $ vložených ${d0}, zobrazené od ${a} do ${b}, v každom portfóliu`,
+  endOfPeriod: 'koniec obdobia', loadFail: 'Dáta sa nepodarilo načítať. ',
+  year: 'Rok',
+  why: { 'squeeze breakdown': 'prepad zo squeezu', 'squeeze breakout': 'prielom zo squeezu', 'trend turned up': 'trend sa otočil nahor', 'trend turned down': 'trend sa otočil nadol' },
+  liveFallback: d => `Živá cena nie je dostupná. Posledná uzávierka: ${d}.`,
+  dark: 'Tmavý', light: 'Svetlý', toDark: 'Prepnúť na tmavý režim', toLight: 'Prepnúť na svetlý režim',
+};
+
+const CS = {
+  viewing: 'Zobrazená', view: n => 'Zobrazit ' + n,
+  inBitcoin: 'V Bitcoinu', inCash: 'V hotovosti', partBtc: p => `${p}% v BTC`,
+  now: pos => 'Nyní ' + pos.charAt(0).toLowerCase() + pos.slice(1),
+  kicker: (n, d) => `Co říká ${n} · po uzávěrce ${d}`,
+  when: 'Signál vychází z denní uzávěrky v 00:00 UTC; zpětný test obchoduje hned po ní.',
+  signal: (why, out) => ` Dnešní signál (${why}) ji drží ${out ? 'mimo Bitcoin' : 'v Bitcoinu'} až do stopu, cíle nebo 20 dní.`,
+  holdFull: 'Beze změny. Strategie zůstává celá v Bitcoinu.',
+  holdCash: 'Beze změny. Strategie zůstává mimo Bitcoin a její hotovost nese úrok.',
+  holdPart: p => `Beze změny. Strategie drží asi ${p}% v Bitcoinu.`,
+  move: (p, why) => `Strategie se přesouvá na ${p}% Bitcoinu (${why}).`,
+  activeSell: (since, entry, stop, target, until) => `<b>Otevřený prodejní signál</b> od ${since}, prodáno za ${entry}. Zpětný nákup, pokud denní cena dosáhne <b>${stop}</b> (stop) nebo <b>${target}</b> (cíl), nejpozději ${until}.`,
+  activeBuy: (since, entry, stop, target, until) => `<b>Otevřený nákupní signál</b> od ${since}, koupeno za ${entry}. Stop <b>${stop}</b>, cíl <b>${target}</b>, končí nejpozději ${until}.`,
+  fired: (why, close, below, level, growth) => `Při této uzávěrce se spustil signál <b>${why}</b>: ${close} je ${below ? 'pod' : 'nad'} 20denním pásmem. Obchod začíná teď a končí na stopu, přibližně <b>${level}</b>, na cíli dvakrát tak daleko opačným směrem nebo po 20 dnech. ${growth ? 'Pak nakoupí zpět.' : 'Pak znovu rozhodnou průměry.'}`,
+  growthBack: 'Nakoupí zpět na stopu nebo cíli výše, nebo po 20 dnech.',
+  growthArmed: (lo, until) => `<b>Prodá</b>, pokud je denní uzávěrka pod <b>${lo}</b>. Bitcoin je neobvykle klidný, takže propad dolů je signál, na který tato strategie čeká (sleduje do ${until}).`,
+  growthIdle: 'Nic není připraveno. Prodává jen tehdy, když klidné období (volatilita v nejnižších 20% za poslední rok) skončí propadem dolů.',
+  avgAfter: sell => `Průměry znovu rozhodnou, až skončí otevřený ${sell ? 'prodejní' : 'nákupní'} signál výše.`,
+  avgSell: max => `<b>Prodá</b>, pokud denní uzávěrka klesne pod kterýkoli z 50-, 100- a 200denních průměrů; nejvyšší je teď ${max}.`,
+  avgBuy: (a, b, c) => `<b>Nakoupí</b>, když je denní uzávěrka nad všemi třemi průměry: 50denní ${a}, 100denní ${b}, 200denní ${c}.`,
+  armed: (until, hi, lo) => `Klidný trh, signál připravený do ${until}: denní uzávěrka nad <b>${hi}</b> znamená dřívější nákup, pod <b>${lo}</b> prodej.`,
+  size: (p, vol) => `Velikost pozice v Bitcoinu: ${p}% (volatilita Bitcoinu je ${vol}% ročně; cíl je 50%).`,
+  closeOn: (d, v) => `Uzávěrka ${d}: ${v}.`,
+  ci: (a, b) => ` (pravděpodobné rozpětí ${a}–${b}%)`,
+  recLine: (label, right, n, rightIs, ci, med) => `${label}: ${right} z ${n} ${rightIs}${ci}. Medián pohybu Bitcoinu v těchto obdobích: ${med}.`,
+  recIn: 'Drží Bitcoin', recInRight: 'případů, kdy Bitcoin během držení rostl',
+  recCash: 'V hotovosti', recCashRight: 'případů, kdy Bitcoin mimo pozici klesl',
+  recWhy: 'Nízká úspěšnost je tu normální: strategie prohrává málo a často, vyhrává hodně a zřídka. Důležitý je výsledek níže, ne to, jak často má pravdu.',
+  amount: (btc, qty, price, cash) => `Bitcoin: <b>${btc}</b> (${qty} BTC při ceně ${price}) · Hotovost: <b>${cash}</b>`,
+  amountEmpty: 'Zadejte částku a uvidíte rozdělení.',
+  timeIn: 'Čas v Bitcoinu', daysPct: p => `${p}% dní`,
+  trades: 'Obchody', tradesN: n => `asi ${n} ročně`,
+  stay: 'Typická doba v Bitcoinu', months: n => `${n} ${pl(n, 'měsíc', 'měsíce', 'měsíců')}`, days: n => `${n} ${pl(n, 'den', 'dny', 'dní')}`,
+  dollar: '1 $ od září 2018', mult: (m, c) => `${m}× (${c}% ročně)`,
+  worstDrop: 'Největší propad', worstYear: 'Nejhorší kalendářní rok',
+  compare: x => `Pro srovnání, samotný Bitcoin: ${x}× od září 2018, 100% dní v Bitcoinu, největší propad −77%, nejhorší rok −64%. Simulováno s poplatky; obchod je každá změna pozice.`,
+  detail: {
+    growth: {
+      buys: 'Standardně je v Bitcoinu. Po prodejním signálu nakoupí zpět, když ten obchod skončí: cena se vrátí na vrchol 20denního pásma (stop), klesne o dvojnásobek té vzdálenosti (cíl) nebo uplyne 20 dní.',
+      sells: 'Jen po klidném období (20denní volatilita v nejnižších 20% za poslední rok), po kterém přijde denní uzávěrka pod pásmem posledních 20 dní. Pak prodá všechno hned po této uzávěrce.',
+      between: 'Celá v Bitcoinu. Dokud je po prodeji v hotovosti, peníze nesou úrok amerických pokladničních poukázek (T-bills).',
+    },
+    balanced: {
+      buys: 'Když je denní uzávěrka nad všemi třemi průměry (50, 100 a 200 dní), nebo dříve, když klidné období skončí uzávěrkou nad 20denním pásmem. Nakoupí 100% hned po této uzávěrce.',
+      sells: 'Když denní uzávěrka klesne pod kterýkoli ze tří průměrů, nebo dříve, když klidné období skončí uzávěrkou pod 20denním pásmem.',
+      between: 'Buď celá v Bitcoinu, nebo celá v hotovosti s úrokem T-bills. Dřívější (squeeze) pohyb trvá do stopu, cíle nebo 20 dní; pak znovu rozhodnou průměry.',
+    },
+    defensive: {
+      buys: 'Ve stejných chvílích jako Balanced, ale nakoupí jen podíl portfolia 50% ÷ roční volatilita Bitcoinu, nejvýš 100%. Na klidném trhu je to celá částka, na divokém mnohem méně.',
+      sells: 'Ve stejných chvílích jako Balanced, na 100% hotovost.',
+      between: 'Dokud je v Bitcoinu, při změně volatility pozici zmenšuje nebo zvětšuje, ale jen když je rozdíl víc než 10 bodů. Hotovostní část nese úrok T-bills.',
+    },
+  },
+  howWorks: n => `Jak funguje ${n}, podrobně`, whenBuys: 'Kdy nakupuje', whenSells: 'Kdy prodává', between: 'Mezitím',
+  crash: 'Při propadu', boom: 'Při růstu', sideways: 'Do strany', vs: 'vs. Bitcoin',
+  rulesLink: n => `Přesná pravidla, rizika a testy pro ${n}`,
+  liveStarted: d => `Živý záznam začal po uzávěrce <b>${d}</b>. První výsledek se objeví po aktualizaci následující noc.`,
+  liveSince: (d, n) => `Od začátku živého záznamu (${d}, ${n} ${pl(n, 'noc', 'noci', 'nocí')}): `,
+  cellBtc: 'V BTC', cellCash: 'V hotovosti', cellPart: p => `${p}% BTC`, bought: 'Koupeno', sold: 'Prodáno',
+  afterClose: 'Po uzávěrce', btcPrice: 'Cena BTC',
+  showLatest: 'Zobrazit jen poslední noc', showAll: n => `Zobrazit všechny noci (${n})`,
+  liveAria: (n, d) => `Hodnota 100 000 $ ve strategii ${n} a v Bitcoinu od začátku živého záznamu ${d}`,
+  strategy: n => `Strategie ${n}`, benchBtc: 'Bitcoin, koupit a držet', others: 'Další dvě strategie',
+  range: (d0, d1, len) => `100 000 $ dne <b>${d0}</b>, sledováno do <b>${d1}</b> · ${len}`,
+  years: x => `${x} roku`,
+  showing: (a, b) => `Zobrazeno ${a} až ${b}`,
+  portfolio: 'Portfolio', worthEnd: 'Hodnota na konci', ret: 'Výnos', perYear: 'Ročně',
+  mockAria: (d0, a, b) => `Hodnota 100 000 $ vložených ${d0}, zobrazeno od ${a} do ${b}, v každém portfoliu`,
+  endOfPeriod: 'konec období', loadFail: 'Data se nepodařilo načíst. ',
+  year: 'Rok',
+  why: { 'squeeze breakdown': 'propad po squeeze', 'squeeze breakout': 'průlom po squeeze', 'trend turned up': 'trend se otočil nahoru', 'trend turned down': 'trend se otočil dolů' },
+  liveFallback: d => `Živá cena není dostupná. Poslední uzávěrka: ${d}.`,
+  dark: 'Tmavý', light: 'Světlý', toDark: 'Přepnout na tmavý režim', toLight: 'Přepnout na světlý režim',
+};
+
+export const T = { en: EN, sk: SK, cs: CS }[LANG];
+// the nightly data names its reasons in English ("squeeze breakdown"); show them in the page's language
+export const why = w => (w && T.why[w]) || w;

@@ -6,6 +6,10 @@
   <title>How it works · Bitcoin Lab · Martin Bezak</title>
   <meta name="description" content="The exact rules of the Growth, Balanced and Defensive Bitcoin strategies, how they were tested, their results since 2018, and their risks.">
   <link rel="canonical" href="https://martinbezak.com/BitcoinLab/method.html">
+  <link rel="alternate" hreflang="en" href="https://martinbezak.com/BitcoinLab/method.html">
+  <link rel="alternate" hreflang="sk" href="https://martinbezak.com/BitcoinLab/sk/method.html">
+  <link rel="alternate" hreflang="cs" href="https://martinbezak.com/BitcoinLab/cs/method.html">
+  <link rel="alternate" hreflang="x-default" href="https://martinbezak.com/BitcoinLab/method.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="How it works · Bitcoin Lab · Martin Bezak">
   <meta property="og:description" content="The exact rules of the Growth, Balanced and Defensive Bitcoin strategies, how they were tested, their results since 2018, and their risks.">
@@ -23,15 +27,23 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=3">
+  <link rel="stylesheet" href="../styles.css?v=19">
   <link rel="stylesheet" href="base.css?v=1">
-  <link rel="stylesheet" href="lab.css?v=30">
+  <link rel="stylesheet" href="lab.css?v=34">
   <script>
     document.documentElement.classList.add('js');
     try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
   </script>
   <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
   <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="../motion.css?v=1">
+  <script>
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
+  </script>
 </head>
 
 <body>
@@ -47,6 +59,7 @@
           <li><a href="method.html" aria-current="page">How it works</a></li>
           <li><a href="archive.html">Archive</a></li>
           <li><a href="../index.html">Martin Bezak <span aria-hidden="true">→</span></a></li>
+          <li class="lab-lang"><a href="sk/method.html" hreflang="sk" lang="sk" aria-label="Slovensky">SK</a><a href="cs/method.html" hreflang="cs" lang="cs" aria-label="Česky">CS</a></li>
         </ul>
       </nav>
       <button type="button" class="theme-btn" id="theme-btn" aria-label="Switch light or dark">Aa</button>
@@ -82,7 +95,7 @@
 
       <article class="doc-body">
         <h1 class="h2">How it<br>works</h1>
-        <p class="lead">Three strategies, built from two signals that survived a long series of tests. This page gives the exact rules, the numbers, and the ways they can go wrong. <a href="archive.html" class="text-link">The Archive</a> tells how we got here, including everything that failed.</p>
+        <p class="lead">Three strategies, built from two signals that survived a long series of tests. This page gives the exact rules, the numbers, and the ways they can go wrong. <a href="archive.html" class="text-link">The Archive</a> tells how the project got here, including everything that failed.</p>
 
         <section id="short">
           <h2 class="h3">In short</h2>
@@ -226,7 +239,7 @@
         <p class="r-num">Who’s behind this</p>
         <h2 class="founder-h" id="founder-h">Martin Bezak</h2>
         <p class="founder-p">Economics &amp; Finance student at IES, Charles University in Prague. Bitcoin Lab is an AI-built research project that I lead: I chose the idea, decided which strategies to keep and which to drop, shaped the design and features, and tested and launched it. The code and the statistical methods were produced with AI. Every idea that failed is in the <a href="archive.html" class="text-link">Archive</a>.</p>
-        <div class="buttons"><a href="../index.html" class="btn btn-primary">Martin Bezak →</a><a href="../MBArcade/index.html" class="btn btn-secondary">MB Arcade, finance games</a></div>
+        <div class="buttons"><a href="../index.html" class="btn btn-primary">Martin Bezak →</a><a href="../MBArcade/index.html" class="btn btn-secondary">MB Arcade, games for fun</a></div>
       </div>
     </div>
   </section>
@@ -240,6 +253,9 @@
           <a href="method.html">How it works</a>
           <a href="archive.html">Archive</a>
           <a href="../index.html">Martin Bezak →</a>
+          <a href="../MBArcade/index.html">MB Arcade →</a>
+          <a href="sk/method.html" hreflang="sk" lang="sk">Slovensky</a>
+          <a href="cs/method.html" hreflang="cs" lang="cs">Česky</a>
           <a href="#top">Back to top <span aria-hidden="true">↑</span></a>
         </nav>
         <small>© 2026 Bitcoin Lab · Built with AI, directed by Martin Bezak · strategy data CC BY-NC-SA 4.0 · not investment advice</small>
@@ -249,7 +265,7 @@
 
   <script type="module">
     // Keep the numbers on this page in step with the nightly data
-    import { load, chrome } from './js/lab.js?v=6';
+    import { load, chrome } from './js/lab.js?v=8';
     chrome();
     const P = await load('profiles');
     const set = (k, v) => document.querySelectorAll(`[data-m="${k}"]`).forEach(n => (n.textContent = v));
@@ -278,5 +294,6 @@
       ['growth', 'balanced', 'defensive'].map(k => `<td class="n" data-l="${P.profiles[k].name}">${f(P.profiles[k].years[y])}</td>`).join('') +
       `<td class="n" data-l="Bitcoin">${f(btcYear(+y))}</td></tr>`).join('');
   </script>
+  <script src="../motion.js?v=10"></script>
 </body>
 </html>

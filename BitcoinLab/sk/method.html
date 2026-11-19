@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="sk" class="btc" data-style="classic" data-lang="sk" data-root="../../">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Ako to funguje · Bitcoin Lab · Martin Bezák</title>
+  <meta name="description" content="Presné pravidlá stratégií Growth, Balanced a Defensive pre Bitcoin, ako boli otestované, ich výsledky od roku 2018 a ich riziká.">
+  <link rel="canonical" href="https://martinbezak.com/BitcoinLab/sk/method.html">
+  <link rel="alternate" hreflang="en" href="https://martinbezak.com/BitcoinLab/method.html">
+  <link rel="alternate" hreflang="sk" href="https://martinbezak.com/BitcoinLab/sk/method.html">
+  <link rel="alternate" hreflang="cs" href="https://martinbezak.com/BitcoinLab/cs/method.html">
+  <link rel="alternate" hreflang="x-default" href="https://martinbezak.com/BitcoinLab/method.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ako to funguje · Bitcoin Lab · Martin Bezák">
+  <meta property="og:description" content="Presné pravidlá stratégií Growth, Balanced a Defensive pre Bitcoin, ako boli otestované, ich výsledky od roku 2018 a ich riziká.">
+  <meta property="og:url" content="https://martinbezak.com/BitcoinLab/sk/method.html">
+  <meta property="og:image" content="https://martinbezak.com/BitcoinLab/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo Bitcoin Lab: MB nad oranžovým pruhom a nápis Bitcoin Lab">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="author" content="Martin Bezák">
+  <meta name="theme-color" content="#08090b">
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="../../styles.css?v=19">
+  <link rel="stylesheet" href="../base.css?v=1">
+  <link rel="stylesheet" href="../lab.css?v=34">
+  <script>
+    document.documentElement.classList.add('js');
+    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+  </script>
+  <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
+  <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="../../motion.css?v=1">
+  <script>
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
+  </script>
+</head>
+
+<body>
+  <a href="#main" class="skip">Preskočiť na obsah</a>
+
+  <header class="lab-nav" id="lab-nav">
+    <div class="wrap lab-nav-in">
+      <a href="index.html" class="lab-logo" aria-label="Bitcoin Lab, domov"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <button type="button" class="lab-menu" aria-expanded="false" aria-controls="lab-links">Menu</button>
+      <nav aria-label="Bitcoin Lab">
+        <ul class="lab-links" id="lab-links">
+          <li><a href="index.html">Stratégia</a></li>
+          <li><a href="method.html" aria-current="page">Ako to funguje</a></li>
+          <li><a href="archive.html">Archív</a></li>
+          <li><a href="../../sk/index.html">Martin Bezák <span aria-hidden="true">→</span></a></li>
+          <li class="lab-lang"><a href="../method.html" hreflang="en" lang="en" aria-label="English">EN</a><a href="../cs/method.html" hreflang="cs" lang="cs" aria-label="Česky">CS</a></li>
+        </ul>
+      </nav>
+      <button type="button" class="theme-btn" id="theme-btn" aria-label="Prepnúť svetlý alebo tmavý režim">Aa</button>
+    </div>
+  </header>
+
+  <section class="r-head lab-head s-oxblood" id="top">
+    <div class="wrap">
+      <p class="r-kicker">Výskumný projekt vytvorený s AI pod vedením <a href="../../sk/index.html">Martina Bezáka</a></p>
+      <p class="page-title" aria-hidden="true">Bitcoin<br><span class="o">lab</span></p>
+    </div>
+  </section>
+
+  <main id="main" class="doc">
+    <div class="wrap doc-grid">
+      <nav class="toc" aria-label="Na tejto stránke">
+        <p class="toc-h">Na tejto stránke</p>
+        <ol>
+          <li><a href="#short">Stručne</a></li>
+          <li><a href="#signals">Dva signály</a></li>
+          <li><a href="#growth">Growth</a></li>
+          <li><a href="#balanced">Balanced</a></li>
+          <li><a href="#defensive">Defensive</a></li>
+          <li><a href="#cash">Úrok z hotovosti</a></li>
+          <li><a href="#results">Výsledky od roku 2018</a></li>
+          <li><a href="#testing">Ako sa testovalo</a></li>
+          <li><a href="#risks">Riziká a obmedzenia</a></li>
+          <li><a href="#practice">Ako obchoduje spätný test</a></li>
+          <li><a href="#words">Použité pojmy</a></li>
+          <li><a href="#data">Dáta a licencie</a></li>
+        </ol>
+      </nav>
+
+      <article class="doc-body">
+        <h1 class="h2">Ako to<br>funguje</h1>
+        <p class="lead">Tri stratégie postavené na dvoch signáloch, ktoré prešli dlhou sériou testov. Táto stránka uvádza presné pravidlá, čísla a to, ako sa môžu pokaziť. <a href="archive.html" class="text-link">Archív</a> opisuje, ako sa projekt dostal sem, vrátane všetkého, čo zlyhalo.</p>
+
+        <section id="short">
+          <h2 class="h3">Stručne</h2>
+          <div class="table-scroll">
+            <table class="ledger stack">
+              <caption class="vh">Porovnanie troch stratégií</caption>
+              <thead><tr><th>Stratégia</th><th>Čo robí</th><th class="n">1 $ od sep 2018</th><th class="n">Najväčší prepad</th><th class="n">Najhorší rok</th></tr></thead>
+              <tbody>
+                <tr><td data-l="Stratégia"><b>Growth</b></td><td data-l="Čo robí">Drží Bitcoin; pri prepade zo squeezu (obdobia nezvyčajne nízkej volatility) predá, kým sa ten pohyb neskončí</td><td class="n" data-l="1 $ od sep 2018" data-m="growth.mult">55×</td><td class="n" data-l="Najväčší prepad" data-m="growth.mdd">−61%</td><td class="n" data-l="Najhorší rok" data-m="growth.worst">−46%</td></tr>
+                <tr><td data-l="Stratégia"><b>Balanced</b></td><td data-l="Čo robí">Bitcoin len v rastovom trende; squeeze môže spustiť skorší nákup alebo predaj</td><td class="n" data-l="1 $ od sep 2018" data-m="balanced.mult">32×</td><td class="n" data-l="Najväčší prepad" data-m="balanced.mdd">−42%</td><td class="n" data-l="Najhorší rok" data-m="balanced.worst">−15%</td></tr>
+                <tr><td data-l="Stratégia"><b>Defensive</b></td><td data-l="Čo robí">Balanced s menšími pozíciami, keď je Bitcoin volatilný</td><td class="n" data-l="1 $ od sep 2018" data-m="defensive.mult">20×</td><td class="n" data-l="Najväčší prepad" data-m="defensive.mdd">−27%</td><td class="n" data-l="Najhorší rok" data-m="defensive.worst">−11%</td></tr>
+                <tr><td data-l="Stratégia">Bitcoin, kúpiť a držať</td><td data-l="Čo robí">Raz kúpi, nikdy nepredá</td><td class="n" data-l="1 $ od sep 2018" data-m="btc.mult">13×</td><td class="n" data-l="Najväčší prepad">−77%</td><td class="n" data-l="Najhorší rok">−64%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="chart-cap">Simulované s poplatkami, od 7. sep 2018 po najnovšie dáta (aktualizované každú noc). Minulé výsledky; bez záruky.</p>
+        </section>
+
+        <section id="signals">
+          <h2 class="h3">Dva signály</h2>
+          <h3 class="h4-label">1 · Trend</h3>
+          <p>Bitcoin je „v rastovom trende“, keď je jeho denná uzatváracia cena nad priemernou uzatváracou cenou za posledných 50, 100 <em>aj</em> 200 dní. Ak je pod ktoroukoľvek z nich, trend neplatí.</p>
+          <p><b>Prečo to môže fungovať:</b> veľké pohyby Bitcoinu trvajú mesiace a jeho krachy sa zriedka odohrajú, kým je cena nad všetkými tromi priemermi. Zostať mimo, keď trend neplatí, znamenalo vynechať väčšinu rokov 2018 a 2022. Cena za to: neskorý vstup aj výstup a niekoľko falošných štartov na trhoch bez jasného smeru.</p>
+          <h3 class="h4-label">2 · Prielom zo squeezu</h3>
+          <ol class="steps">
+            <li><b>Pokojné obdobie.</b> Volatilita Bitcoinu za posledných 20 dní je v najnižších 20% za posledný rok. Tým sa signál na 10 dní „pripraví“.</li>
+            <li><b>Pásmo.</b> Najvyššie maximum a najnižšie minimum posledných 20 dní.</li>
+            <li><b>Prielom.</b> Denná uzávierka pod pásmom je <b>prepad</b> (predaj), nad ním <b>prielom</b> (nákup).</li>
+            <li><b>Výstup.</b> Obchod sa končí, keď cena dosiahne druhú stranu pásma (stop), pohne sa v smere obchodu dvakrát tak ďaleko ako riziko (cieľ, „2R“) alebo po 20 dňoch, podľa toho, čo nastane skôr. Stopy a ciele sa kontrolujú voči maximu a minimu každej hodiny.</li>
+          </ol>
+          <p><b>Prečo to môže fungovať:</b> po nezvyčajne pokojných trhoch zvyčajne prichádzajú veľké pohyby a vzorec Bitcoinu „pokoj, potom krach“ sa zopakoval v novembri 2018, vo februári až marci 2020, v januári a máji 2022 a v novembri 2025. Strana prepadov prešla každým testom (prekonala náhodné načasovanie v 995 z 1 000 simulácií); pre stranu prielomov sú dôkazy slabšie.</p>
+        </section>
+
+        <section id="growth">
+          <h2 class="h3">Growth</h2>
+          <ol class="steps">
+            <li>Drží 100% v Bitcoine.</li>
+            <li>Pri <b>prepade</b> zo squeezu (denná uzávierka pod pásmom) predá všetko hneď po tejto uzávierke.</li>
+            <li>Všetko nakúpi späť, keď sa ten obchod skončí: stop vyššie, cieľ nižšie alebo 20 dní.</li>
+            <li>Kým je v hotovosti, peniaze nesú úrok amerických pokladničných poukážok (T-bills).</li>
+          </ol>
+          <p><b>Kedy sa jej nedarí:</b> pri dlhých poklesoch, ktorým nepredchádza pokojné obdobie (počas väčšiny roka 2022 s poklesom −64% zostala v Bitcoine a stratila −46%), a pri prepadoch, ktoré sa hneď otočia (júl 2021: predala, potom Bitcoin vzrástol o 19%, kým stop nespustil spätný nákup).</p>
+        </section>
+
+        <section id="balanced">
+          <h2 class="h3">Balanced</h2>
+          <ol class="steps">
+            <li>Každý deň pri uzávierke (00:00 UTC): ak trend platí, drží 100% v Bitcoine; ak neplatí, drží 0% a hotovosť nesie úrok.</li>
+            <li><b>Prepad</b> zo squeezu predá na 0% aj v rastovom trende; <b>prielom</b> zo squeezu nakúpi 100% ešte predtým, ako sa trend otočí. Každá takáto výnimka trvá, kým sa jej obchod neskončí (stop, cieľ 2R alebo 20 dní); potom znova rozhoduje pravidlo trendu.</li>
+          </ol>
+          <p><b>Kedy sa jej nedarí:</b> v rokoch bez jasného smeru, keď cena opakovane pretína svoje priemery (2025 skončila zhruba na nule, kým Bitcoin stratil 6%), a pri prudkých oživeniach, do ktorých vstúpi neskoro (2023: +95% oproti +156% pri Bitcoine).</p>
+        </section>
+
+        <section id="defensive">
+          <h2 class="h3">Defensive</h2>
+          <ol class="steps">
+            <li>Rovnaké rozhodnutia ako Balanced.</li>
+            <li>Keď je však v Bitcoine, drží len <code>min(100%, 50% ÷ aktuálna ročná volatilita Bitcoinu)</code>. Volatilita sa meria metódou RiskMetrics (exponenciálne vážený priemer denných pohybov, λ = 0,94). Pri 80% volatilite to znamená 62% v Bitcoine, pri 40% alebo menej 100%.</li>
+            <li>Zmeny pozície pod 10 percentuálnych bodov vynecháva, aby ušetrila na poplatkoch.</li>
+          </ol>
+          <p><b>Kedy sa jej nedarí:</b> rovnako ako Balanced a navyše drží menej počas najdivokejších rastov (2020: +132% oproti +165% pri Balanced).</p>
+        </section>
+
+        <section id="cash">
+          <h2 class="h3">Úrok z hotovosti</h2>
+          <p>Všetky tri stratégie trávia časť času mimo Bitcoinu (Balanced a Defensive asi 60% času). Tieto peniaze nesú úrok 3-mesačných amerických pokladničných poukážok platný v daný deň: takmer 0% v rokoch 2020–21, asi 5% v rokoch 2023–24, teraz <span data-m="rf">–</span>. Stratégii Balanced to od roku 2020 pridalo asi 2% ročne bez akéhokoľvek dodatočného trhového rizika. Aj verzia s polovičnou sadzbou stále skončila vo výhode.</p>
+          <p>V praxi to znamená T-bills, fond peňažného trhu alebo sporiaci produkt so stablecoinom. Nenesú rovnaké riziko: T-bills sú kryté americkou vládou, produkty so stablecoinmi len firmou, ktorá ich ponúka.</p>
+        </section>
+
+        <section id="results">
+          <h2 class="h3">Výsledky od roku 2018</h2>
+          <div class="table-scroll">
+            <table class="ledger stack" id="years">
+              <caption class="vh">Výnos za kalendárny rok</caption>
+              <thead><tr><th>Rok</th><th class="n">Growth</th><th class="n">Balanced</th><th class="n">Defensive</th><th class="n">Bitcoin</th></tr></thead>
+              <tbody><tr><td colspan="5">Načítava sa…</td></tr></tbody>
+            </table>
+          </div>
+          <p class="chart-cap">Rok 2018 začína 7. septembra; aktuálny rok siaha po najnovšie dáta. Iné dátumy začiatku si môžete vyskúšať v <a href="index.html#mock-h" class="text-link">modelovom portfóliu</a>.</p>
+          <dl class="method">
+            <div><dt>Sharpe</dt><dd>Growth <span data-m="growth.sharpe">1,15</span> · Balanced <span data-m="balanced.sharpe">1,28</span> · Defensive <span data-m="defensive.sharpe">1,36</span> · Bitcoin <span data-m="btc.sharpe">0,82</span>. Vyššie je lepšie: viac výnosu na jednotku kolísania.</dd></div>
+            <div><dt>Z každého začiatku</dt><dd>Pri štarte v ktoromkoľvek zo šiestich dátumov medzi rokmi 2018 a 2024 mali Balanced a Defensive vyšší Sharpe a približne polovičný najväčší prepad. Ich výnos prekonal Bitcoin pri každom začiatku okrem polovice roka 2023, začiatku silného rastu (2,9× oproti 3,0×).</dd></div>
+            <div><dt>Podobné nastavenia</dt><dd>Všetkých 27 blízkych verzií (iné priemery, prahy pokoja a dĺžky pásma) prekonalo stratégiu kúpiť a držať vo výnose aj v Sharpe (z 1 $ bolo 16× až 31× oproti 13×). Zvolené nastavenia nie sú najlepšie z nich; boli stanovené pred testovaním.</dd></div>
+          </dl>
+        </section>
+
+        <section id="testing">
+          <h2 class="h3">Ako sa testovalo</h2>
+          <dl class="method">
+            <div><dt>Dáta</dt><dd>Hodinové ceny Bitcoinu na Binance od augusta 2017 (Binance Vision). Každé rozhodnutie používa len dáta, ktoré v danom okamihu existovali.</dd></div>
+            <div><dt>Realizácia</dt><dd>Bitcoin sa obchoduje nepretržite, no každé pravidlo číta <em>denné</em> uzávierky (00:00 UTC), takže signál je známy až na konci dňa. Spätný test obchoduje za prvú cenu po tejto uzávierke. Stopy a ciele sa kontrolujú voči maximu a minimu každej hodiny; ak cena v tej istej hodine zasiahne oboje, predpokladá sa, že stop prišiel prvý. Stop, ktorý cena preskočí, sa vyplní za horšiu cenu.</dd></div>
+            <div><dt>Náklady</dt><dd>Poplatok 0,10% plus sklz 0,05% pri každom obchode. Pri opakovanom teste s dvoj- a trojnásobnými nákladmi a o 0,5% horším plnením stopov všetky tri stratégie stále prekonali stratégiu kúpiť a držať.</dd></div>
+            <div><dt>Najprv pravidlá</dt><dd>Každé pravidlo bolo zapísané pred svojím prvým testom, so štandardnými hodnotami, nie vyladené podľa výsledkov. Hlavné hypotézy boli vopred zaregistrované a pri vyhodnotení sa zohľadnilo testovanie viacerých nápadov naraz (Holmova metóda); prešiel len prepad zo squeezu (p = 0,010).</dd></div>
+            <div><dt>Placebá</dt><dd>Rovnaké výstupy z 1 000 sád náhodných časov vstupu a rovnaké pozície posunuté na náhodné dátumy. Skutočný signál musí prekonať oboje.</dd></div>
+            <div><dt>Žiadne ladenie podľa minulosti</dt><dd>Verzia, ktorá každý január vyberala najlepší z 32 variantov pravidiel len na základe minulých dát, dopadla mimo vzorky horšie ako pevné pravidlá (8,2 $ oproti 16,4 $ z každého 1 $ od roku 2020). Preto pravidlá zostávajú pevné.</dd></div>
+          </dl>
+        </section>
+
+        <section id="risks">
+          <h2 class="h3">Riziká a obmedzenia</h2>
+          <ul class="bullets">
+            <li><b>História je krátka.</b> Približne dva a pol trhového cyklu Bitcoinu. Dôkazy, že stratégie po zohľadnení rizika prekonávajú stratégiu kúpiť a držať, sú pre Balanced a Defensive len hraničné (p ≈ 0,05–0,10); silné sú len pre prepad zo squeezu.</li>
+            <li><b>Nápady vznikli až po pohľade na dáta.</b> Pravidlá boli stanovené pred každým testom, ale samotné nápady sa vyberali so znalosťou minulosti Bitcoinu. Skutočným testom je živý záznam, ktorý sa začal v októbri 2026.</li>
+            <li><b>Veľké prepady stále prichádzajú.</b> Growth v najhoršom klesla o 61%, Balanced o 42%, Defensive o 27%.</li>
+            <li><b>Dlhé nudné obdobia.</b> Trendové stratégie môžu pri rýchlych rastoch zaostávať za Bitcoinom aj rok a dlhšie.</li>
+            <li><b>Jedna burza.</b> Ceny sú z Binance; na iných burzách sa mierne líšia a burzy môžu skrachovať.</li>
+            <li><b>Dane nie sú zahrnuté.</b> Každý predaj môže byť tam, kde žijete, zdaniteľnou udalosťou.</li>
+          </ul>
+        </section>
+
+        <section id="practice">
+          <h2 class="h3">Ako obchoduje spätný test</h2>
+          <p>Bitcoin sa obchoduje celý deň, ale pravidlá sa pozerajú len na dennú uzávierku (00:00 UTC). Spätný test predpokladá, že každý obchod prebehne za prvú cenu po tejto uzávierke na spotovej burze (bez páky, bez predaja nakrátko), s poplatkom 0,10% a sklzom 0,05%. Stop a cieľ otvoreného obchodu sa kontrolujú voči maximu a minimu každej hodiny, takže v spätnom teste môžu obchod ukončiť kedykoľvek počas dňa, nielen pri uzávierke. Hotovostná časť nesie úrok T-bills. <a href="index.html" class="text-link">Stránka Stratégia</a> ukazuje rozhodnutie za každú noc, keď sú zverejnené dáta za daný deň, úrovne, ktoré by ho zmenili, a stop a cieľ prípadného otvoreného obchodu.</p>
+          <p class="disclaimer"><b>Toto je výskumný projekt, nie investičné odporúčanie.</b> Pravidlá nepoznajú vaše ciele, dane ani to, aké straty znesiete, a minulé výsledky nezaručujú budúce.</p>
+        </section>
+
+        <section id="words">
+          <h2 class="h3">Použité pojmy</h2>
+          <dl class="method">
+            <div><dt>Kĺzavý priemer</dt><dd>Priemerná uzatváracia cena za posledných N dní.</dd></div>
+            <div><dt>Volatilita</dt><dd>Ako veľmi cena kolíše, vyjadrené ako ročné percento. Bitcoin býva na 50–80%, S&amp;P 500 asi na 15–20%.</dd></div>
+            <div><dt>Najväčší prepad</dt><dd>Najväčší pokles z vrcholu na neskoršie minimum (maximum drawdown).</dd></div>
+            <div><dt>Sharpeov pomer</dt><dd>Priemerný výnos vydelený volatilitou, v ročnom vyjadrení. Spôsob, ako porovnať výnos pri rovnakej miere rizika.</dd></div>
+            <div><dt>R, 2R</dt><dd>R je riziko obchodu: vzdialenosť od vstupu po stop. Cieľ 2R je dvojnásobok tejto vzdialenosti v prospech obchodu.</dd></div>
+            <div><dt>p-hodnota</dt><dd>Ako pravdepodobné je, že by aspoň taký dobrý výsledok vznikol len náhodou. Bežnou hranicou je hodnota pod 0,05.</dd></div>
+          </dl>
+        </section>
+
+        <section id="data">
+          <h2 class="h3">Dáta a licencie</h2>
+          <p class="licence">Ceny Bitcoinu a dáta futures: <a href="https://data.binance.vision/" class="text-link">Binance Vision</a>, licencia <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="text-link">CC BY-NC-SA 4.0</a>; dáta stratégií na týchto stránkach sú zdieľané pod rovnakou licenciou. Výnosy T-bills a 10-ročných amerických štátnych dlhopisov: <a href="https://fred.stlouisfed.org/" class="text-link">FRED</a>, Federal Reserve Bank of St. Louis. Porovnanie so S&amp;P 500: fond SPY, Yahoo Finance. Živá cena: TradingView. Projekt nie je s nikým z nich prepojený ani nimi podporovaný. Kód: Python a NumPy, prepočítava sa každú noc.</p>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <section class="founder" aria-labelledby="founder-h">
+    <div class="wrap founder-in">
+      <img src="../../images/portrait-600.jpg" alt="Martin Bezák, študent ekonómie a financií" width="600" height="901" loading="lazy">
+      <div>
+        <p class="r-num">Kto za tým stojí</p>
+        <h2 class="founder-h" id="founder-h">Martin Bezák</h2>
+        <p class="founder-p">Študent ekonómie a financií na IES Univerzity Karlovej v Prahe. Bitcoin Lab je výskumný projekt vytvorený s AI, ktorý vediem: vybral som nápad, rozhodol som, ktoré stratégie ponechať a ktoré vyradiť, formoval som dizajn a funkcie, projekt som otestoval a spustil. Kód a štatistické metódy vytvorila AI. Každý nápad, ktorý zlyhal, je v <a href="archive.html" class="text-link">Archíve</a>.</p>
+        <div class="buttons"><a href="../../sk/index.html" class="btn btn-primary">Martin Bezák →</a><a href="../../MBArcade/sk/index.html" class="btn btn-secondary">MB Arcade, hry pre zábavu</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="lab-foot">
+    <div class="wrap lab-foot-in">
+      <a href="#top" class="lab-sign" aria-label="Bitcoin Lab, späť hore"><span class="ll-mb" aria-hidden="true">MB</span><span class="ll-bar" aria-hidden="true"></span><span class="ll-word" aria-hidden="true"><span>Bitcoin</span> <span class="ll-o">Lab</span></span></a>
+      <div class="lab-foot-side">
+        <nav class="lab-foot-links" aria-label="Päta stránky">
+          <a href="index.html">Stratégia</a>
+          <a href="method.html">Ako to funguje</a>
+          <a href="archive.html">Archív</a>
+          <a href="../../sk/index.html">Martin Bezák →</a>
+          <a href="../../MBArcade/sk/index.html">MB Arcade →</a>
+          <a href="../method.html" hreflang="en" lang="en">English</a>
+          <a href="../cs/method.html" hreflang="cs" lang="cs">Česky</a>
+          <a href="#top">Späť hore <span aria-hidden="true">↑</span></a>
+        </nav>
+        <small>© 2026 Bitcoin Lab · Vytvorené s AI pod vedením Martina Bezáka · dáta stratégie CC BY-NC-SA 4.0 · nie je investičné odporúčanie</small>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module">
+    // Keep the numbers on this page in step with the nightly data
+    import { load, chrome } from '../js/lab.js?v=8';
+    import { fix, T } from '../js/i18n.js?v=2';
+    chrome();
+    const P = await load('profiles');
+    const set = (k, v) => document.querySelectorAll(`[data-m="${k}"]`).forEach(n => (n.textContent = v));
+    const b = P.series.btc;
+    set('btc.mult', (b[b.length - 1] / b[0]).toFixed(0) + '×');
+    set('rf', fix(P.rf_now * 100, 1) + '%');
+    const br = b.slice(1).map((v, i) => v / b[i] - 1), bm = br.reduce((x, y) => x + y, 0) / br.length;
+    set('btc.sharpe', fix(bm / Math.sqrt(br.reduce((x, y) => x + (y - bm) ** 2, 0) / (br.length - 1)) * Math.sqrt(365), 2));
+    for (const k of ['growth', 'balanced', 'defensive']) {
+      const s = P.profiles[k].stats, ys = Object.values(P.profiles[k].years);
+      set(k + '.mult', (1 + s.total).toFixed(0) + '×');
+      set(k + '.mdd', '−' + Math.abs(Math.round(s.mdd * 100)) + '%');
+      set(k + '.worst', '−' + Math.abs(Math.round(Math.min(...ys) * 100)) + '%');
+      set(k + '.sharpe', fix(s.sharpe, 2));
+    }
+    const yrs = Object.keys(P.profiles.growth.years);
+    const btcYear = y => {
+      const t = P.t0, n = P.n, idx = i => new Date((t + i * 86400) * 1000).getUTCFullYear();
+      let a = -1, z = -1;
+      for (let i = 0; i < n; i++) if (idx(i) == y) { if (a < 0) a = i; z = i; }
+      const base = a > 0 ? b[a - 1] : b[a];
+      return b[z] / base - 1;
+    };
+    const f = v => (v >= 0 ? '+' : '−') + Math.abs(Math.round(v * 100)) + '%';
+    document.querySelector('#years tbody').innerHTML = yrs.map(y => `<tr><td data-l="${T.year}"><b>${y}</b></td>` +
+      ['growth', 'balanced', 'defensive'].map(k => `<td class="n" data-l="${['growth','balanced','defensive'].includes(k) ? {growth:'Growth',balanced:'Balanced',defensive:'Defensive'}[k] : k}">${f(P.profiles[k].years[y])}</td>`).join('') +
+      `<td class="n" data-l="Bitcoin">${f(btcYear(+y))}</td></tr>`).join('');
+  </script>
+  <script src="../../motion.js?v=10"></script>
+</body>
+</html>

@@ -1,5 +1,11 @@
 // Bitcoin Lab: shared helpers for the Today and Backtest pages.
 export { el, svg, linear, log, ticks, logTicks, path, area, yGrid, xLabels, yearTicks, responsive, pct, pctPlain } from './chart.js?v=4';
+import { T, date, money, monShort } from './i18n.js?v=2';
+
+// Language links keep the reader's place: the chosen strategy (?s=) and the #section
+export function keepLangPlace() {
+  document.querySelectorAll('.lab-lang a, .lab-foot-links a[hreflang]').forEach(a => { a.search = location.search; a.hash = location.hash; });
+}
 
 export const $ = s => document.querySelector(s);
 export const $$ = s => [...document.querySelectorAll(s)];
@@ -15,16 +21,15 @@ export async function load(name) {
   return r.json();
 }
 
-export const usd = v => v == null ? '–' : '$' + Math.round(v).toLocaleString('en-US');
+export const usd = v => v == null ? '–' : money(v);
 export const pc = (v, d = 0) => v == null ? '–' : (v * 100).toFixed(d) + '%';
 
-const MON = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 export function when(ts, withTime = false) {
   const d = new Date(ts * 1000);
-  const s = `${d.getUTCDate()} ${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`;
+  const s = date(d.getUTCDate(), d.getUTCMonth(), d.getUTCFullYear());
   return withTime ? `${s}, ${String(d.getUTCHours()).padStart(2, '0')}:00 UTC` : s;
 }
-export const monthYear = ts => { const d = new Date(ts * 1000); return `${MON[d.getUTCMonth()]} ${d.getUTCFullYear()}`; };
+export const monthYear = ts => { const d = new Date(ts * 1000); return `${monShort(d.getUTCMonth())} ${d.getUTCFullYear()}`; };
 
 // The horizon switcher: buttons with data-h, state kept in ?h= so every view has its own link
 export function horizonSwitch(onChange, fallback = '30d') {
@@ -71,12 +76,13 @@ export function liveWidget(box, lastPrice, lastTime) {
   s.src = 'https://s3.tradingview.com/external-embedding/embed-widget-single-quote.js';
   s.async = true;
   s.textContent = JSON.stringify({ symbol: 'BINANCE:BTCUSDT', width: '100%', isTransparent: true, colorTheme: 'dark', locale: 'en' });
-  s.onerror = () => { box.innerHTML = `<div class="live-fallback"><b>${usd(lastPrice)}</b><span>Live price unavailable. Last close, ${when(lastTime)}.</span></div>`; };
+  s.onerror = () => { box.innerHTML = `<div class="live-fallback"><b>${usd(lastPrice)}</b><span>${T.liveFallback(when(lastTime))}</span></div>`; };
   box.querySelector('.tradingview-widget-container').appendChild(s);
 }
 
 // Bitcoin Lab's own top bar: phone menu and the light/dark switch (same saved setting as the main site)
 export function chrome() {
+  keepLangPlace();
   // No page zoom from a trackpad pinch (Chrome, Firefox and Edge send it as Ctrl + scroll; Safari as gesture events).
   // The mock-portfolio chart catches the pinch first and zooms itself. Cmd + and Cmd − still work.
   document.addEventListener('wheel', e => { if (e.ctrlKey) e.preventDefault(); }, { passive: false });
@@ -90,7 +96,7 @@ export function chrome() {
   }
   const tb = document.getElementById('theme-btn');
   if (tb) {
-    const label = () => { const light = document.documentElement.getAttribute('data-theme') === 'light'; tb.textContent = light ? 'Dark' : 'Light'; tb.setAttribute('aria-label', light ? 'Switch to dark' : 'Switch to light'); };
+    const label = () => { const light = document.documentElement.getAttribute('data-theme') === 'light'; tb.textContent = light ? T.dark : T.light; tb.setAttribute('aria-label', light ? T.toDark : T.toLight); };
     tb.addEventListener('click', () => {
       const next = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
       document.documentElement.setAttribute('data-theme', next);

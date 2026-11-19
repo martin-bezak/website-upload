@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects · Martin Bezak</title>
-  <meta name="description" content="Two projects led by Martin Bezak and built with AI: Bitcoin Lab, a study of three backtested Bitcoin strategies, and MB Arcade, browser games on economics and finance.">
+  <meta name="description" content="Two projects led by Martin Bezak and built with AI: Bitcoin Lab, a study of three backtested Bitcoin strategies, and MB Arcade, a side project of economics games for fun.">
   <link rel="canonical" href="https://martinbezak.com/projects.html">
   <link rel="alternate" hreflang="en" href="https://martinbezak.com/projects.html">
   <link rel="alternate" hreflang="sk" href="https://martinbezak.com/sk/projects.html">
@@ -20,7 +20,7 @@
   <!-- Link preview on LinkedIn, WhatsApp, Messenger, Slack. The image needs the full https address (LinkedIn requires it). -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Martin Bezak · Economics &amp; Finance, IES Charles University">
-  <meta property="og:description" content="Student in Prague. Process automation, student parliaments and a school event for 200+ guests.">
+  <meta property="og:description" content="Bitcoin Lab, an AI-built finance project I lead, and MB Arcade, economics games for fun.">
   <meta property="og:url" content="https://martinbezak.com/projects.html">
   <meta property="og:image" content="https://martinbezak.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -34,7 +34,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=19">
   <script>
     document.documentElement.classList.add('js');
     /* Apply a saved light/dark choice before the page paints, so it never flashes */
@@ -42,6 +42,14 @@
   </script>
   <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
   <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="motion.css?v=1">
+  <script>
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
+  </script>
 </head>
 
 <body>
@@ -53,7 +61,7 @@
       <a href="index.html" class="mark" aria-label="Martin Bezak">MB</a>
       <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <nav aria-label="Main">
-        <ul class="nav-links" id="nav-links"><li><a href="index.html#about">About</a></li><li><a href="index.html#experience">Experience</a></li><li><a href="index.html#skills">Skills</a></li><li><a href="index.html#hobbies">Hobbies</a></li><li><a href="projects.html" aria-current="page">Projects</a></li><li><a href="index.html#contact">Contact</a></li></ul>
+        <ul class="nav-links" id="nav-links"><li><a href="index.html#about">About</a></li><li><a href="projects.html" aria-current="page">Projects</a></li><li><a href="index.html#experience">Experience</a></li><li><a href="index.html#skills">Skills</a></li><li><a href="index.html#hobbies">Hobbies</a></li><li><a href="index.html#contact">Contact</a></li></ul>
       </nav>
       <div class="prefs" data-prefs></div>
     </div>
@@ -71,6 +79,7 @@
     <article class="section project" aria-labelledby="btclab-h">
       <div class="wrap g12">
         <div class="project-head">
+          <p class="work-meta">10/2026 – present · Founder and project lead</p>
           <h2 class="h2" id="btclab-h">Bitcoin<br>Lab</h2>
           <p class="lead">Three backtested Bitcoin strategies, updated every night: what each one says today, and what $100,000 would have become in any period since 2018.</p>
           <div class="buttons"><a href="BitcoinLab/index.html" class="btn btn-primary">Open Bitcoin Lab</a></div>
@@ -108,9 +117,10 @@
     <article class="section project project-next" aria-labelledby="arcade-h">
       <div class="wrap g12">
         <div class="project-head">
+          <p class="work-meta">10/2026 – present · Side project, for fun</p>
           <h2 class="h2 arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h2>
-          <p class="lead">Economics and finance, played: browser games for students and anyone curious about markets.</p>
-          <div class="buttons"><a href="MBArcade/index.html" class="btn btn-primary">Open MB Arcade</a></div>
+          <p class="lead">A side project for fun: quick browser games on economics and markets, for students and anyone curious.</p>
+          <div class="buttons"><a href="MBArcade/index.html" class="btn btn-secondary">Open MB Arcade</a></div>
         </div>
         <div class="project-body">
           <p class="project-note">Three games so far: Estimate it, Chart it and Sell the top. Each has a daily round, the same for everyone. More are being built.</p>
@@ -146,12 +156,13 @@
   <footer class="site-footer s-ink">
     <div class="wrap">
       <span>© 2026 Martin Bezak</span>
-      <nav class="foot-alt" aria-label="Other versions"><a href="sk/projects.html" hreflang="sk" lang="sk">Slovensky</a><a href="cs/projects.html" hreflang="cs" lang="cs">Česky</a></nav>
+      <nav class="foot-alt" aria-label="Other versions"><a href="sk/projects.html" hreflang="sk" lang="sk">Slovensky</a><a href="cs/projects.html" hreflang="cs" lang="cs">Česky</a><a href="BitcoinLab/index.html">Bitcoin Lab →</a><a href="MBArcade/index.html">MB Arcade →</a></nav>
       <a href="#top">Back to top</a>
     </div>
   </footer>
 
-  <script src="prefs.js"></script>
+  <script src="prefs.js?v=2"></script>
   <script src="main.js"></script>
+  <script src="motion.js?v=10"></script>
 </body>
 </html>

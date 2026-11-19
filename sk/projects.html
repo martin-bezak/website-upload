@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projekty · Martin Bezák</title>
-  <meta name="description" content="Dva projekty, ktoré vedie Martin Bezák a ktoré vznikli s pomocou AI: Bitcoin Lab, štúdia troch spätne otestovaných stratégií pre Bitcoin, a MB Arcade, hry v prehliadači o ekonómii a financiách.">
+  <meta name="description" content="Dva projekty, ktoré vedie Martin Bezák a ktoré vznikli s pomocou AI: Bitcoin Lab, štúdia troch spätne otestovaných stratégií pre Bitcoin, a MB Arcade, vedľajší projekt s ekonomickými hrami pre zábavu.">
   <link rel="canonical" href="https://martinbezak.com/sk/projects.html">
   <link rel="alternate" hreflang="en" href="https://martinbezak.com/projects.html">
   <link rel="alternate" hreflang="sk" href="https://martinbezak.com/sk/projects.html">
@@ -20,7 +20,7 @@
   <!-- TODO po zverejnení: nahraďte "../og-image.jpg" plnou adresou, napr. https://martin-bezak.netlify.app/og-image.jpg -->
   <meta property="og:type" content="profile">
   <meta property="og:title" content="Martin Bezák · Ekonómia a financie, IES Karlova univerzita">
-  <meta property="og:description" content="Študent v Prahe. Automatizácia procesov, študentské parlamenty a školská akcia pre 200+ ľudí.">
+  <meta property="og:description" content="Bitcoin Lab, finančný projekt vytvorený s AI, ktorý vediem, a MB Arcade, ekonomické hry pre zábavu.">
   <meta property="og:url" content="https://martinbezak.com/sk/projects.html">
   <meta property="og:image" content="https://martinbezak.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=3">
+  <link rel="stylesheet" href="../styles.css?v=19">
   <script>
     document.documentElement.classList.add('js');
     /* Apply a saved light/dark choice before the page paints, so it never flashes */
@@ -40,6 +40,14 @@
   </script>
   <!-- Visitor counts (GoatCounter: no cookies, no personal data). Dashboard: https://martinbezak.goatcounter.com -->
   <script data-goatcounter="https://martinbezak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+  <link rel="stylesheet" href="../motion.css?v=1">
+  <script>
+    /* Scroll motion only when the visitor has not asked for less. If motion.js never runs, show everything. */
+    if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      document.documentElement.classList.add('motion');
+      setTimeout(function () { if (!window.mbMotion) document.documentElement.classList.remove('motion'); }, 2500);
+    }
+  </script>
 </head>
 
 <body>
@@ -51,7 +59,7 @@
       <a href="index.html" class="mark" aria-label="Martin Bezák">MB</a>
       <button type="button" class="menu-btn" aria-expanded="false" aria-controls="nav-links">Menu</button>
       <nav aria-label="Hlavná">
-        <ul class="nav-links" id="nav-links"><li><a href="index.html#about">O mne</a></li><li><a href="index.html#experience">Skúsenosti</a></li><li><a href="index.html#skills">Zručnosti</a></li><li><a href="index.html#hobbies">Záľuby</a></li><li><a href="projects.html" aria-current="page">Projekty</a></li><li><a href="index.html#contact">Kontakt</a></li></ul>
+        <ul class="nav-links" id="nav-links"><li><a href="index.html#about">O mne</a></li><li><a href="projects.html" aria-current="page">Projekty</a></li><li><a href="index.html#experience">Skúsenosti</a></li><li><a href="index.html#skills">Zručnosti</a></li><li><a href="index.html#hobbies">Záľuby</a></li><li><a href="index.html#contact">Kontakt</a></li></ul>
       </nav>
       <div class="prefs" data-prefs></div>
     </div>
@@ -69,32 +77,33 @@
     <article class="section project" aria-labelledby="btclab-h">
       <div class="wrap g12">
         <div class="project-head">
+          <p class="work-meta">10/2026 – súčasnosť · Zakladateľ a vedúci projektu</p>
           <h2 class="h2" id="btclab-h">Bitcoin<br>Lab</h2>
           <p class="lead">Tri spätne otestované stratégie pre Bitcoin, aktualizované každú noc: čo dnes hovorí každá z nich a čo by sa stalo so 100 000 $ v ľubovoľnom období od roku 2018.</p>
-          <div class="buttons"><a href="../BitcoinLab/index.html" class="btn btn-primary">Otvoriť Bitcoin Lab</a></div>
+          <div class="buttons"><a href="../BitcoinLab/sk/index.html" class="btn btn-primary">Otvoriť Bitcoin Lab</a></div>
         </div>
         <div class="project-body">
-          <p class="project-note">Postavené na ôsmich rokoch hodinových dát. Každé pravidlo bolo stanovené ešte pred spätným testom a každý nápad, ktorý zlyhal, zostáva v archíve. Bitcoin Lab je v angličtine.</p>
+          <p class="project-note">Postavené na ôsmich rokoch hodinových dát. Každé pravidlo bolo stanovené ešte pred spätným testom a každý nápad, ktorý zlyhal, zostáva v archíve.</p>
           <p class="project-note project-role"><b>Moja úloha:</b> nápad, výber stratégií, ktoré zostali a ktoré vypadli, dizajn a funkcie, testovanie a spustenie. Kód, štatistické metódy a spätné testy vytvorila AI.</p>
           <ul class="games">
             <li class="game">
               <div class="game-cover s-ink" aria-hidden="true"><span>Takmer</span><b>BTC</b></div>
               <div>
-                <h3 class="h3"><a href="../BitcoinLab/index.html?s=growth">Growth</a></h3>
+                <h3 class="h3"><a href="../BitcoinLab/sk/index.html?s=growth">Growth</a></h3>
                 <p>Drží Bitcoin takmer stále a predá všetko, keď sa nezvyčajne pokojné obdobie skončí prelomením ceny nadol.</p>
               </div>
             </li>
             <li class="game">
               <div class="game-cover s-ink" aria-hidden="true"><span>Trend</span><b>Dnu/von</b></div>
               <div>
-                <h3 class="h3"><a href="../BitcoinLab/index.html?s=balanced">Balanced</a></h3>
+                <h3 class="h3"><a href="../BitcoinLab/sk/index.html?s=balanced">Balanced</a></h3>
                 <p>Drží Bitcoin len nad jeho 50-, 100- a 200-dňovým priemerom, inak hotovosť, ktorá nesie úrok.</p>
               </div>
             </li>
             <li class="game">
               <div class="game-cover s-ink" aria-hidden="true"><span>Menšie</span><b>Riziko</b></div>
               <div>
-                <h3 class="h3"><a href="../BitcoinLab/index.html?s=defensive">Defensive</a></h3>
+                <h3 class="h3"><a href="../BitcoinLab/sk/index.html?s=defensive">Defensive</a></h3>
                 <p>Rovnaké rozhodnutia ako Balanced, no keď je Bitcoin divoký, drží ho menej.</p>
               </div>
             </li>
@@ -106,9 +115,10 @@
     <article class="section project project-next" aria-labelledby="arcade-h">
       <div class="wrap g12">
         <div class="project-head">
+          <p class="work-meta">10/2026 – súčasnosť · Vedľajší projekt pre zábavu</p>
           <h2 class="h2 arcade-lockup" id="arcade-h" aria-label="MB Arcade"><span class="lk-mb" aria-hidden="true">MB</span><span class="lk-bar" aria-hidden="true"></span><span class="lk-word" aria-hidden="true"><span>A</span><span>R</span><span>C</span><span>A</span><span>D</span><span>E</span></span></h2>
-          <p class="lead">Ekonómia a financie ako hra: hry v prehliadači pre študentov aj každého, koho zaujímajú trhy.</p>
-          <div class="buttons"><a href="../MBArcade/sk/index.html" class="btn btn-primary">Otvoriť MB Arcade</a></div>
+          <p class="lead">Vedľajší projekt pre zábavu: rýchle hry v prehliadači o ekonómii a trhoch pre študentov aj ďalších zvedavcov.</p>
+          <div class="buttons"><a href="../MBArcade/sk/index.html" class="btn btn-secondary">Otvoriť MB Arcade</a></div>
         </div>
         <div class="project-body">
           <p class="project-note">Zatiaľ tri hry: Odhadni to, Nakresli to a Predaj na vrchole. Každá má denné kolo, rovnaké pre všetkých. Ďalšie sa práve tvoria.</p>
@@ -144,12 +154,13 @@
   <footer class="site-footer s-ink">
     <div class="wrap">
       <span>© 2026 Martin Bezák</span>
-      <nav class="foot-alt" aria-label="Iné verzie"><a href="../projects.html" hreflang="en" lang="en">English</a><a href="../cs/projects.html" hreflang="cs" lang="cs">Česky</a></nav>
+      <nav class="foot-alt" aria-label="Iné verzie"><a href="../projects.html" hreflang="en" lang="en">English</a><a href="../cs/projects.html" hreflang="cs" lang="cs">Česky</a><a href="../BitcoinLab/sk/index.html">Bitcoin Lab →</a><a href="../MBArcade/sk/index.html">MB Arcade →</a></nav>
       <a href="#top">Späť hore</a>
     </div>
   </footer>
 
-  <script src="../prefs.js"></script>
+  <script src="../prefs.js?v=2"></script>
   <script src="../main.js"></script>
+  <script src="../motion.js?v=10"></script>
 </body>
 </html>

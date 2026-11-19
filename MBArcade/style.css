@@ -138,6 +138,7 @@ strong { font-weight: 700; }
   display: grid; gap: var(--s16);
 }
 .prefs-panel[hidden] { display: none; }
+.prefs-panel:focus { outline: none; }   /* focused only to hold the place after a mouse click */
 .prefs-label { font-weight: 700; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 8px; color: var(--cream); }
 .prefs-seg { display: flex; gap: 8px; flex-wrap: wrap; }
 .prefs-opt {
@@ -342,6 +343,7 @@ strong { font-weight: 700; }
 .founder p { font-size: clamp(19px, 1.6vw, 24px); line-height: 1.35; flex: 1 1 320px; max-width: 34em; }
 .founder .eyebrow { margin-bottom: var(--s8); font-size: 13px; }
 .founder .btn { --sh: var(--hot); }
+.founder-btns { display: flex; flex-wrap: wrap; gap: var(--s16); }   /* Martin Bezak → and Bitcoin Lab → */
 
 /* ---------- footer: the big sign ---------- */
 .foot { padding: var(--s96) var(--pad) var(--s40); }

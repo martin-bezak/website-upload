@@ -23,7 +23,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@800;900&family=Schibsted+Grotesk:wght@400;500;700&display=swap">
-  <link rel="stylesheet" href="../styles.css?v=2">
+  <link rel="stylesheet" href="../styles.css?v=3">
   <link rel="stylesheet" href="base.css?v=1">
   <link rel="stylesheet" href="lab.css?v=30">
   <script>
@@ -74,7 +74,7 @@
           <li><a href="#results">Results since 2018</a></li>
           <li><a href="#testing">How it was tested</a></li>
           <li><a href="#risks">Risks and limits</a></li>
-          <li><a href="#practice">Following it in practice</a></li>
+          <li><a href="#practice">How the backtest trades</a></li>
           <li><a href="#words">Words used here</a></li>
           <li><a href="#data">Data and licences</a></li>
         </ol>
@@ -194,8 +194,8 @@
         </section>
 
         <section id="practice">
-          <h2 class="h3">Following it in practice</h2>
-          <p>Bitcoin trades all day, but the rules only look at the daily close (00:00 UTC). The backtest trades right after that close, which an exchange bot or scheduled order can do for you. This page shows each night’s action once the day’s data is published. Stop and target levels can be set as orders on the exchange straight away. The <a href="index.html" class="text-link">Strategy page</a> shows that night’s action, the levels that would change it, and any open trade’s stop and target. Following a strategy means checking once a day and trading on a spot exchange (no leverage, no shorting), plus holding the cash part somewhere that earns interest.</p>
+          <h2 class="h3">How the backtest trades</h2>
+          <p>Bitcoin trades all day, but the rules only look at the daily close (00:00 UTC). The backtest assumes each trade happens at the first price after that close, on a spot exchange (no leverage, no shorting), with a 0.10% fee and 0.05% slippage. An open trade’s stop and target are checked against every hour’s high and low, so in the backtest they can end a trade at any time of day, not only at the close. The cash part earns the T-bill rate. The <a href="index.html" class="text-link">Strategy page</a> shows each night’s action once the day’s data is published, the levels that would change it, and any open trade’s stop and target.</p>
           <p class="disclaimer"><b>This is a research project, not investment advice.</b> The rules don’t know your goals, taxes or tolerance for losses, and past results don’t guarantee future ones.</p>
         </section>
 

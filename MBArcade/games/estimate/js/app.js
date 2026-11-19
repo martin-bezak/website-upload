@@ -420,10 +420,13 @@ function render() {
   els.view.innerHTML = html;
   els.home.setAttribute('aria-label', t(state.view === 'home' && standalone ? 'logoLabelSite' : 'logoLabel'));
   if (key !== lastViewKey) {
-    // Restart the 150ms fade only when the screen actually changes
+    // Restart the 150ms fade only when the screen actually changes; the first screen shows at once
+    // (a fade from opacity 0 on load can leave the menu looking faded in slow or background tabs)
     els.view.classList.remove('est-fade');
-    void els.view.offsetWidth;
-    els.view.classList.add('est-fade');
+    if (lastViewKey) {
+      void els.view.offsetWidth;
+      els.view.classList.add('est-fade');
+    }
     lastViewKey = key;
     copyNote = '';
   }

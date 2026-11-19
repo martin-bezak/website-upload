@@ -575,6 +575,9 @@ h4 { font-size: var(--fs-h4); font-weight: 700; line-height: 1.3; }
   .project-body { grid-column: 7 / 13; }
   .project-note { margin-top: var(--s16); }
 }
+/* "My role" line right under the project note: same column, body size, tight to the note above */
+.project-note:has(+ .project-role) { margin-bottom: var(--s16); }
+.project-note.project-role { font-size: var(--fs-body); margin-top: 0; }
 
 /* ---------- 16. Footer ---------- */
 .site-footer { padding-block: var(--s40); font-size: var(--fs-small); }

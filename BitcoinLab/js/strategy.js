@@ -49,7 +49,9 @@ function setProfile(k, push = true) {
 function renderToday() {
   const pr = P.profiles[sel], st = pr.state, L = P.levels;
   const inBtc = st.target;
-  const word = st.action === 'HOLD' ? (inBtc > 0.99 ? 'Hold BTC' : inBtc < 0.01 ? 'Hold cash' : `Hold ${Math.round(inBtc * 100)}% BTC`) : st.action === 'BUY' ? 'Buy' : 'Sell';
+  // the headline names the position the strategy is in after this close (a state, not an instruction)
+  const pos = inBtc > 0.99 ? 'In Bitcoin' : inBtc < 0.01 ? 'In cash' : `${Math.round(inBtc * 100)}% in BTC`;
+  const word = st.action === 'HOLD' ? pos : 'Now ' + pos.charAt(0).toLowerCase() + pos.slice(1);
   $('#act').textContent = word;
   $('#act').className = 'act-' + st.action.toLowerCase();
   $('#act-kicker').textContent = `What ${pr.name} says · after the close on ${when(P.last)}`;
@@ -209,7 +211,7 @@ function renderLive() {
     ? `<p>The live record started after the close on <b>${when(first)}</b>. The first result appears after the next night’s update.</p>`
     : `<p>Since the live record started (${when(first)}, ${days.length} nights): <b>${NAMES[sel]} ${f(chg(P.profiles[sel].eq))}</b> · Bitcoin ${f(chg(P.series.btc))}` +
       KEYS.filter(k => k !== sel).map(k => ` · ${NAMES[k]} ${f(chg(P.profiles[k].eq))}`).join('') + '</p>';
-  const cell = a => `${a.action === 'HOLD' ? (a.target > 0.99 ? 'Hold BTC' : a.target < 0.01 ? 'Hold cash' : 'Hold ' + Math.round(a.target * 100) + '%') : (a.action === 'BUY' ? 'Buy' : 'Sell') + ' → ' + Math.round(a.target * 100) + '%'}`;
+  const cell = a => `${a.action === 'HOLD' ? (a.target > 0.99 ? 'In BTC' : a.target < 0.01 ? 'In cash' : Math.round(a.target * 100) + '% BTC') : (a.action === 'BUY' ? 'Bought' : 'Sold') + ' → ' + Math.round(a.target * 100) + '%'}`;
   // only the latest night is shown until the reader asks for the rest (the full list is long on a phone)
   $('#live-rows').innerHTML = days.map(([t, v], i) =>
     `<tr${i ? ' class="is-old"' : ''}><td data-l="After the close on"><b>${when(t)}</b></td><td class="n" data-l="BTC price">${fmtUsd(v.price)}</td>` +

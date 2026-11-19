@@ -264,7 +264,9 @@ function render() {
   els.view.innerHTML = html;
   els.home.setAttribute('aria-label', t(state.view === 'home' ? 'logoLabelSite' : 'logoLabel'));
   if (key !== lastKey) {
-    els.view.classList.remove('est-fade'); void els.view.offsetWidth; els.view.classList.add('est-fade');
+    // no fade on the first screen (or a language switch): a fade from opacity 0 on load can leave the menu looking faded
+    els.view.classList.remove('est-fade');
+    if (lastKey) { void els.view.offsetWidth; els.view.classList.add('est-fade'); }
     lastKey = key; copyNote = '';
   }
   view = null;

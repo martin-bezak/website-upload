@@ -23,7 +23,7 @@ let index = null;
 const files = new Map();
 let state = load(STATE_KEY, null);
 if (!state || state.v !== 1) state = freshState();
-let els, view = null, copyNote = '';
+let els, view = null, copyNote = '', rendered = false;
 let run = null;   // { t0, before, raf, paused } while a round is playing
 
 function freshState() {
@@ -242,7 +242,9 @@ function render() {
   else if (v === 'results' && state.daily) html = renderResults();
   else if (v === 'stats') html = renderStats();
   else { state.view = 'home'; html = renderHome(); }
-  els.view.innerHTML = `<div class="est-fade">${html}</div>`;
+  // no fade on the first screen: a fade from opacity 0 on load can leave the menu looking faded
+  els.view.innerHTML = rendered ? `<div class="est-fade">${html}</div>` : `<div>${html}</div>`;
+  rendered = true;
   if (state.view === 'play') mountChart();
 }
 

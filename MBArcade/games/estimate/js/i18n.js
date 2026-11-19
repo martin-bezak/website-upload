@@ -2,11 +2,11 @@
    The questions themselves are translated inside questions.json. */
 
 export const LANGS = ['en', 'cs', 'sk'];
-export const LANG_LABELS = { en: 'EN', cs: 'CZ', sk: 'SK' };
+export const LANG_LABELS = { en: 'EN', cs: 'CS', sk: 'SK' };
 
 export const STRINGS = {
   en: {
-    docTitle: 'Estimate · Martin Bezak',
+    docTitle: 'Estimate it · MB Arcade',
     appTitle: 'Estimate',
     // The game page's own intro (title, lede, rules)
     pageEyebrow: 'Game 01',
@@ -114,7 +114,7 @@ export const STRINGS = {
   },
 
   cs: {
-    docTitle: 'Odhad · Martin Bezák',
+    docTitle: 'Odhadni to · MB Arcade',
     appTitle: 'Odhad',
     pageEyebrow: 'Hra 01',
     pageTitle: ['Odhadni', 'to.'],
@@ -221,7 +221,7 @@ export const STRINGS = {
   },
 
   sk: {
-    docTitle: 'Odhad · Martin Bezák',
+    docTitle: 'Odhadni to · MB Arcade',
     appTitle: 'Odhad',
     pageEyebrow: 'Hra 01',
     pageTitle: ['Odhadni', 'to.'],

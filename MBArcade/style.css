@@ -359,20 +359,20 @@ strong { font-weight: 700; }
 }
 
 /* ---------- reveal on scroll ---------- */
-.js .rv { opacity: 0; transform: translateY(32px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.js .rv { opacity: 0; transform: translateY(16px); transition: opacity .3s var(--ease), transform .3s var(--ease); }
 .js .rv.in { opacity: 1; transform: none; }
-.js .games-grid .rv:nth-child(2) { transition-delay: .08s; }
+.js .games-grid .rv:nth-child(2) { transition-delay: .05s; }
 
 /* ---------- the entrance (home page only, once per load) ---------- */
 @media (prefers-reduced-motion: no-preference) {
-  .intro .nav { animation: in-fade .5s var(--ease) both; }
-  .intro .eyebrow-hero { animation: in-left .5s var(--ease) .05s both; }
-  .intro .arcade-title .ch { animation: slam .42s var(--snap) both; animation-delay: calc(120ms + var(--i) * 45ms); }
-  .intro .arcade-title .caret { animation: in-fade .01s linear 1s both, blink 1s steps(2) 1s infinite; }
-  .intro .arcade-tag, .intro .arcade .cta { animation: in-up .6s var(--ease) .75s both; }
-  .intro .cabinet { animation: in-up .6s var(--ease) .35s both; }
-  .intro .screen { animation: power-on .5s var(--ease) .8s both; }
-  .intro .marquee-hot { animation: in-left .7s var(--ease) 1s both; }
+  .intro .nav { animation: in-fade .3s var(--ease) both; }
+  .intro .eyebrow-hero { animation: in-left .3s var(--ease) .05s both; }
+  .intro .arcade-title .ch { animation: slam .42s var(--snap) both; animation-delay: calc(40ms + var(--i) * 20ms); }
+  .intro .arcade-title .caret { animation: in-fade .01s linear .65s both, blink 1s steps(2) .65s infinite; }
+  .intro .arcade-tag, .intro .arcade .cta { animation: in-up .3s var(--ease) .4s both; }
+  .intro .cabinet { animation: in-up .3s var(--ease) .1s both; }
+  .intro .screen { animation: power-on .4s var(--ease) .3s both; }
+  .intro .marquee-hot { animation: in-left .4s var(--ease) .3s both; }
 }
 @keyframes slam { from { opacity: 0; transform: translateY(-40%) scale(1.35); } 60% { opacity: 1; } to { opacity: 1; transform: none; } }
 @keyframes in-fade { from { opacity: 0; } }

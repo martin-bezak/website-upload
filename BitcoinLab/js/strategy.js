@@ -37,7 +37,7 @@ function setProfile(k, push = true) {
   sel = k;
   $$('[data-p]').forEach(b => b.setAttribute('aria-pressed', b.dataset.p === k));
   $$('[data-card]').forEach(c => c.classList.toggle('is-sel', c.dataset.card === k));
-  $$('.pc-pick').forEach(b => (b.textContent = b.dataset.p === k ? 'Selected' : 'Use ' + NAMES[b.dataset.p]));
+  $$('.pc-pick').forEach(b => (b.textContent = b.dataset.p === k ? 'Viewing' : 'View ' + NAMES[b.dataset.p]));
   if (push) {
     const u = new URL(location.href); u.searchParams.set('s', k); history.replaceState(null, '', u);
     try { localStorage.setItem('btclab-profile', k); } catch (e) {}
@@ -52,13 +52,13 @@ function renderToday() {
   const word = st.action === 'HOLD' ? (inBtc > 0.99 ? 'Hold BTC' : inBtc < 0.01 ? 'Hold cash' : `Hold ${Math.round(inBtc * 100)}% BTC`) : st.action === 'BUY' ? 'Buy' : 'Sell';
   $('#act').textContent = word;
   $('#act').className = 'act-' + st.action.toLowerCase();
-  $('#act-kicker').textContent = `${pr.name} · after the close on ${when(P.last)}`;
+  $('#act-kicker').textContent = `What ${pr.name} says · after the close on ${when(P.last)}`;
   // a squeeze signal can fire while the strategy already holds what it asks for: no trade, but say why
   const signal = st.action === 'HOLD' && st.why ? ` Today’s ${st.why} keeps it ${st.why.endsWith('breakdown') ? 'out' : 'in'} until that trade’s stop, target or 20 days.` : '';
   const sub = {
-    HOLD: (inBtc > 0.99 ? 'No change. Stay fully in Bitcoin.' : inBtc < 0.01 ? 'No change. Stay out of Bitcoin and keep the cash earning interest.' : `No change. Keep about ${Math.round(inBtc * 100)}% in Bitcoin.`) + signal,
-    BUY: `Move to ${Math.round(st.target * 100)}% Bitcoin (${st.why}). ${WHEN}`,
-    SELL: `Move to ${Math.round(st.target * 100)}% Bitcoin (${st.why}). ${WHEN}`,
+    HOLD: (inBtc > 0.99 ? 'No change. The strategy stays fully in Bitcoin.' : inBtc < 0.01 ? 'No change. The strategy stays out of Bitcoin, with its cash earning interest.' : `No change. The strategy keeps about ${Math.round(inBtc * 100)}% in Bitcoin.`) + signal,
+    BUY: `The strategy moves to ${Math.round(st.target * 100)}% Bitcoin (${st.why}). ${WHEN}`,
+    SELL: `The strategy moves to ${Math.round(st.target * 100)}% Bitcoin (${st.why}). ${WHEN}`,
   }[st.action];
   $('#act-sub').textContent = sub;
   $('#pos-btc').style.width = (inBtc * 100) + '%';

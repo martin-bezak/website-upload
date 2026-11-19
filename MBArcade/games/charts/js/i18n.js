@@ -2,13 +2,13 @@
    Pattern names, explanations and target rules live here too. */
 
 export const LANGS = ['en', 'cs', 'sk'];
-export const LANG_LABELS = { en: 'EN', cs: 'CZ', sk: 'SK' };
+export const LANG_LABELS = { en: 'EN', cs: 'CS', sk: 'SK' };
 export const PATTERNS = ['head_shoulders', 'inverse_head_shoulders', 'double_top', 'double_bottom', 'bull_flag', 'bear_flag',
   'ascending_triangle', 'descending_triangle', 'symmetrical_triangle', 'cup_handle'];
 
 export const STRINGS = {
   en: {
-    docTitle: 'Chart it · Martin Bezak',
+    docTitle: 'Chart it · MB Arcade',
     title: ['Chart', 'it.'],
     langLabel: 'Language', logoLabel: 'Back to the menu', logoLabelSite: 'Back to the Games page',
     loading: 'Loading charts…',
@@ -91,7 +91,7 @@ export const STRINGS = {
   },
 
   cs: {
-    docTitle: 'Nakresli to · Martin Bezák',
+    docTitle: 'Nakresli to · MB Arcade',
     title: ['Nakresli', 'to.'],
     langLabel: 'Jazyk', logoLabel: 'Zpět do nabídky', logoLabelSite: 'Zpět na stránku Hry',
     loading: 'Načítám grafy…',
@@ -174,7 +174,7 @@ export const STRINGS = {
   },
 
   sk: {
-    docTitle: 'Nakresli to · Martin Bezák',
+    docTitle: 'Nakresli to · MB Arcade',
     title: ['Nakresli', 'to.'],
     langLabel: 'Jazyk', logoLabel: 'Späť do ponuky', logoLabelSite: 'Späť na stránku Hry',
     loading: 'Načítavam grafy…',

@@ -1,7 +1,7 @@
 /* Every user-facing string of Sell the top, one object per language. {name} placeholders are filled by fill(). */
 
 export const LANGS = ['en', 'cs', 'sk'];
-export const LANG_LABELS = { en: 'EN', cs: 'CZ', sk: 'SK' };
+export const LANG_LABELS = { en: 'EN', cs: 'CS', sk: 'SK' };
 export const FILTERS = ['all', 'stock', 'crypto', 'commodity', 'index'];   // "index" also covers currencies
 
 export const STRINGS = {
